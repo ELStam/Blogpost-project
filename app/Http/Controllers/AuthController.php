@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Mockery\Exception;
@@ -70,6 +71,19 @@ class AuthController extends Controller
             'message' => 'Login succesful!',
             'auth_token' => $token,
             'user' => $user
+        ]);
+    }
+
+    /**
+     * Log out the authenticated user by deleting their current Sanctum token.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request) {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => 'Logged out succesfully!',
         ]);
     }
 }
