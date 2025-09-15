@@ -1,7 +1,8 @@
 <template>
     <div id="app">
         <header>
-            <h1>Blog App</h1>
+            <img src="../assets/writingwit.png" height="30" width="30"/>
+            <h1>Blog.</h1>
             <nav>
                 <router-link to="/">Home</router-link>
                 <router-link :to="{name: 'UserList'}">Users</router-link>
@@ -11,11 +12,13 @@
             <router-view></router-view>
         </main>
     </div>
-</template> 
+</template>
 
 <script>
-
 export default {
     name: 'App'
 }
 </script>
+
+<style lang="scss" src="../scss/_app.scss"></style>
+

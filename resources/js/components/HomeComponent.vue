@@ -1,12 +1,28 @@
 <template>
-  <div>
-    <h2>Home Page</h2>
-    <p>Welcome to the homepage!</p>
-  </div>
+    <div class="home">
+        <aside class="sidebar">
+            <h3>Categorieën</h3>
+            <ul class="categories">
+                <li v-for="cat in data.categories" :key="cat.id">
+                    <button>{{ cat.name }}</button>
+                </li>
+            </ul>
+        </aside>
+    </div>
 </template>
 
 <script>
+import axios from "axios";
+
+
 export default {
-  name: 'Home'
+    name: "HomeComponent",
+    data() {
+        return {
+            data: {
+                categories: [],
+            }
+        };
+    },
 };
 </script>
