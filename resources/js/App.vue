@@ -2,7 +2,7 @@
     <div id="app">
         <header>
             <img src="/assets/writing-wit.png" height="30" width="30"/>
-            <h1>Blog.</h1>
+            <h1>BLOG.</h1>
             <nav>
                 <router-link to="/">Home</router-link>
                 <router-link :to="{name: 'UserList'}">Users</router-link>
