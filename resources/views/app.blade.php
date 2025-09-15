@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Blog App</title>
+        <title>Blog App</title>
     @routes
-    @vite('resources/js/app.js') 
+    @vite('resources/js/app.js')
 </head>
 <body>
     <div id="app"></div>
