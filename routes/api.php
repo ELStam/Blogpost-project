@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -11,5 +12,7 @@ use Illuminate\Support\Facades\Route;
  * in the frontend (e.g. route('users.index)).
  */
 
-Route::get('/', [HomeController::class, 'index']);
+//Route::get('/', [HomeController::class, 'index']);
 Route::get('users', [UserController::class, 'index'])->name('users.index');
+
+Route::post('/register', [AuthController::class, 'register'])->name('register');
