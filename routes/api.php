@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -9,4 +10,6 @@ use Illuminate\Support\Facades\Route;
  * This route is name 'users.index' so it can be referenced with Ziggy
  * in the frontend (e.g. route('users.index)).
  */
+
+Route::get('/', [HomeController::class, 'index']);
 Route::get('users', [UserController::class, 'index'])->name('users.index');
