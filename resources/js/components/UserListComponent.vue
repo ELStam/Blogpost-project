@@ -14,7 +14,6 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: "UserList",
-  
   computed: {
     ...mapGetters(['allUsers']),
     users() {

@@ -47,13 +47,13 @@ header {
 
 .home {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr; /* Links - Midden - Rechts */
     gap: 20px;
     padding: 20px;
     min-height: 100vh;
 }
 
-// Sidebar
+// sidebar
 .sidebar {
     background: #fff;
     padding: 15px;
@@ -132,5 +132,41 @@ header {
         font-size: 1rem;
         color: #111A51;
         margin-bottom: 10px;
+    }
+}
+
+.main-content {
+    grid-column: 2;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.blog-input {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    min-height: 100px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        background: #f4f4f4;
+        padding: 20px 20px;
+        border-radius: 25px;
     }
 }
