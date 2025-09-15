@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Mockery\Exception;
 
@@ -19,7 +19,7 @@ class AuthController extends Controller
      *
      * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse JSON response containing:
-     *      - 'auth_token': the generated Sanctum token for API authentication
+     *      - 'auth_token' => the generated Sanctum token for API authentication
      *      - 'user' => the created user object
      */
     public function register(RegisterRequest $request) {
@@ -38,6 +38,36 @@ class AuthController extends Controller
         }
 
         return response()->json([
+            'auth_token' => $token,
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * Handle user login
+     *
+     * This method authenticates a user based on the username and password.
+     * If the credentials are valid, it generated a personal access token.
+     *
+     * @param LoginRequest $request
+     * @return \Illuminate\Http\JsonResponse JSON response containing:
+     *      - 'message' => if the user is succesfully logged in
+     *      - 'auth_token' => the generated Sanctum token for the API authentication
+     *      - 'user' => the created user object
+     */
+    public function login(LoginRequest $request) {
+        $user = User::where('username', $request->username)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'Invalid credentials'
+            ], 401);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Login succesful!',
             'auth_token' => $token,
             'user' => $user
         ]);
