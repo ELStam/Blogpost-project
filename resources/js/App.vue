@@ -6,6 +6,10 @@
             <nav>
                 <router-link to="/">Home</router-link>
                 <router-link :to="{name: 'UserList'}">Users</router-link>
+                <router-link to="/ontdek">Ontdek</router-link>
+                <router-link to="/volgend">Volgend</router-link>
+                <router-link to="/categorieen">Categorieën</router-link>
+                <router-link to="/TopPosts">Top Posts</router-link>
             </nav>
         </header>
         <main>
