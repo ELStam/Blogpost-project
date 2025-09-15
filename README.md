@@ -1,7 +1,7 @@
 # Blog Post Project
 
 ## Overview
-This is a blog post management application built with **Laravel 10** (backend) and **Vue 3** (frontend). It demonstrates a SPA architecture using:
+This is a blog post management application built with **Laravel 12** (backend) and **Vue 3** (frontend). It demonstrates a SPA architecture using:
 - **VueX** for state management
 - **Axios** for API requests
 - **Ziggy** for Laravel named route management
