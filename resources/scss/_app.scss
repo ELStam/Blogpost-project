@@ -182,3 +182,78 @@ header {
         padding: 20px 20px;
     }
 }
+
+.profile-page {
+    background: #f4f4f4;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+
+    .hero {
+        grid-column: 1 / -1;
+        height: 300px;
+        overflow: hidden;
+        width: 100%;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+            object-position: center 60%;
+            width: 100%;
+        }
+    }
+}
+
+.profile-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    margin-top: -190px;
+    padding: 30px;
+    text-align: center;
+
+    .profile-picture {
+        margin-bottom: 15px;
+
+        img {
+            border: 5px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            height: 150px;
+            object-fit: cover;
+            width: 150px;
+        }
+    }
+
+    h2 {
+        color: #D66D35;
+        font-family: "Rockwell Extra Bold", Rockwell, serif;
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+
+    .username {
+        color: #111B4E;
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .stats {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+
+        div {
+            font-size: 1rem;
+
+            strong {
+                color: #111a51;
+                display: block;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
