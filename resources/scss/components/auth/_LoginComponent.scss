@@ -15,10 +15,10 @@
     }
 
     &__img {
+        height: 800px;
         margin-left: 70px;
         object-fit: cover;
         width: 800px;
-
     }
 
     &__box {
@@ -64,15 +64,11 @@
         }
     }
 
-    &__privacy-label {
-        color: #C0C0C0;
-    }
-
     &__links {
         align-items: center;
         display: flex;
         justify-content: space-between;
-        margin-top: 400px;
+        margin-top: 375px;
         width: 100%;
     }
 
@@ -80,7 +76,7 @@
         align-items: center;
         display: flex;
         gap: 10px;
-        
+
         &--register {
             color: #E56620;
             margin-left: auto;
