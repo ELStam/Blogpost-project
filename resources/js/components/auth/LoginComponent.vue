@@ -6,30 +6,31 @@
         <div class="login__box">
             <h1 class="login__title">INLOGGEN</h1>
 
-            <form class="login__form">
-                <base-input-component
-                    v-model="user.username"
-                    class="login__input login__input--username"
-                    label="Gebruikersnaam"
-                    type="text"
-                />
+            <div class="login__content">
+                <form class="login__form">
+                    <base-input-component
+                        v-model="user.username"
+                        class="login__input login__input--username"
+                        label="Gebruikersnaam"
+                        type="text"
+                    />
 
-                <base-input-component
-                    v-model="user.password"
-                    class="login__input login__input--password"
-                    label="Wachtwoord"
-                    type="password"
-                />
+                    <base-input-component
+                        v-model="user.password"
+                        class="login__input login__input--password"
+                        label="Wachtwoord"
+                        type="password"
+                    />
 
-                <div class="login__privacy">
-                    <input class="login__checkbox" type="checkbox"/>
-                    <label class="login__privacy-label">
-                        Ja, Ik ga akkoord met de privacyverklaring
-                    </label>
-                </div>
+                    <div class="login__privacy">
+                        <input class="login__checkbox" type="checkbox"/>
+                        <label class="login__privacy-label">
+                            Ja, Ik ga akkoord met de privacyverklaring
+                        </label>
+                    </div>
 
-
-                <button class="login__button">Inloggen</button>
+                    <button class="login__button">Inloggen</button>
+                </form>
 
                 <div class="login__links">
                     <img class="login__link-icon" src="/assets/padlock.png">
@@ -40,7 +41,7 @@
                         Nog geen account?
                     </span>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </template>
