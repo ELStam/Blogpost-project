@@ -7,6 +7,11 @@
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
 body {
     background: #f4f4f4;
     color: #333;
