@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeComponent from '@/components/HomeComponent.vue';
 import UserListComponent from '@/components/UserListComponent.vue';
+import LoginComponent from "@/components/auth/LoginComponent.vue";
 
 const routes = [
     {
@@ -8,6 +9,14 @@ const routes = [
         component: HomeComponent,
         name: 'Home'
     },
+
+    {
+        path: '/login',
+        component: LoginComponent,
+        name: 'Login'
+
+    },
+
     {
         path: '/users',
         component: UserListComponent,
