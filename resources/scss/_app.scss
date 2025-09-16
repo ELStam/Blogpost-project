@@ -184,34 +184,28 @@ header {
 }
 
 .profile-page {
-    background: #f4f4f4;
     display: grid;
     gap: 20px;
     grid-template-columns: 300px 1fr;
     min-height: 100vh;
+    position: relative;
+}
 
-    .hero {
-        grid-column: 1 / -1;
-        height: 300px;
-        overflow: hidden;
-        width: 100%;
-
-        img {
-            height: 100%;
-            object-fit: cover;
-            object-position: center 60%;
-            width: 100%;
-        }
-    }
+.profile-page .hero {
+    grid-column: 1 / -1;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
 }
 
 .profile-card {
-    background: #fff;
     border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
-    margin-top: -190px;
+    left: 50%;
     padding: 30px;
-    text-align: center;
+    position: absolute;
+    top: 200px;
+    transform: translateX(-50%);
 
     .profile-picture {
         margin-bottom: 15px;
@@ -220,9 +214,9 @@ header {
             border: 5px solid #fff;
             border-radius: 50%;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            height: 150px;
+            height: 250px;
             object-fit: cover;
-            width: 150px;
+            width: 250px;
         }
     }
 
