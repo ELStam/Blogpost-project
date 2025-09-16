@@ -7,16 +7,16 @@
             <h1 class="login__title">INLOGGEN</h1>
 
             <div class="login__content">
-                <form class="login__form">
+                <form class="login__form" @submit.prevent="submitLogin">
                     <base-input-component
-                        v-model="user.username"
+                        v-model="username"
                         class="login__input login__input--username"
                         label="Gebruikersnaam"
                         type="text"
                     />
 
                     <base-input-component
-                        v-model="user.password"
+                        v-model="password"
                         class="login__input login__input--password"
                         label="Wachtwoord"
                         type="password"
@@ -31,6 +31,8 @@
 
                     <button class="login__button">Inloggen</button>
                 </form>
+
+                <pre>{{ user }}</pre>
 
                 <div class="login__links">
                     <img class="login__link-icon" src="/assets/padlock.png">
@@ -49,6 +51,7 @@
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import BaseButtonComponent from "@/components/forms/BaseInputComponent.vue";
+import {mapActions} from "vuex";
 
 export default {
     name: 'LoginComponent',
@@ -60,9 +63,21 @@ export default {
 
     data() {
         return {
-            user: {
-                username: '',
-                password: ''
+            username: '',
+            password: ''
+
+        }
+    },
+
+    methods: {
+        ...mapActions(['login']),
+
+        async submitLogin() {
+            try {
+                await this.login({username: this.username, password: this.password})
+                this.$router.push('/')
+            } catch (error) {
+                console.log(error)
             }
         }
     }
