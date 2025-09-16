@@ -103,6 +103,7 @@ header {
 
                 &.btn-primary {
                     color: white;
+                    background-color: #111A51;
                     border: none;
 
                     &:hover {
@@ -112,6 +113,8 @@ header {
 
                 &.btn-secondary {
                     background-color: white;
+                    color: #111A51;
+                    border: 1px solid #111A51;
 
                     &:hover {
                         background-color: #f0f0f0;
@@ -119,10 +122,12 @@ header {
                 }
 
                 &.btn-tertiary {
+                    background-color: #E56620;
                     color: white;
                     border: none;
 
                     &:hover {
+                        background-color: #c04e1a;
                     }
                 }
             }

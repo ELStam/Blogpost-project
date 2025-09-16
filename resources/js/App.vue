@@ -10,6 +10,7 @@
                 <router-link to="/volgend">Volgend</router-link>
                 <router-link to="/categorieen">Categorieën</router-link>
                 <router-link to="/TopPosts">Top Posts</router-link>
+                <router-link to="/profiel">Profiel</router-link> <!-- wordt later aangepast met profielfoto -->
             </nav>
         </header>
         <main>
