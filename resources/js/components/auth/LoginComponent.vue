@@ -31,9 +31,7 @@
 
                     <button class="login__button">Inloggen</button>
                 </form>
-
-                <pre>{{ password }}</pre>
-
+                
                 <div class="login__links">
                     <img class="login__link-icon" src="/assets/padlock.png">
                     <span class="login__link login__link--forget">
@@ -65,12 +63,11 @@ export default {
         return {
             username: '',
             password: ''
-
         }
     },
 
     methods: {
-        ...mapActions(['login']),
+        ...mapActions('auth', ['login']),
 
         async submitLogin() {
             try {

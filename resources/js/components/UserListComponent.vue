@@ -23,7 +23,7 @@ export default {
     mixins: [AuthMixin],
 
     computed: {
-        ...mapGetters(['allUsers']),
+        ...mapGetters('user', ['allUsers']),
         users() {
             return this.allUsers
         }
@@ -34,7 +34,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(['setUsers']),
+        ...mapActions('user', ['setUsers']),
         fetchUsers() {
             this.setUsers()
         }
