@@ -1,7 +1,13 @@
 @forward "components/auth/LoginComponent";
 @forward "components/forms/BaseInputComponent";
+
+//general
 @forward "components/general/HeaderComponent";
 @forward "components/general/FooterComponent";
+
+//blogs
+@forward "components/blogs/BlogListComponent";
+@forward "components/blogs/BlogCardComponent";
 
 * {
     box-sizing: border-box;

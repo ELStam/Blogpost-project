@@ -24,28 +24,36 @@
             <!-- Blog invoerveld (avatar + input + knop) -->
             <section class="blog-input">
                 <img
+                    alt="user avatar"
                     class="avatar"
                     src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
-                    alt="user avatar"
                 />
                 <input
-                    type="text"
-                    placeholder="Schrijf een blog..."
                     v-model="newBlog"
+                    placeholder="Schrijf een blog..."
+                    type="text"
                     @keyup.enter="postBlog"
                 />
             </section>
+
+            <blog-list-component/>
+
+
         </main>
 
         <!-- RECHTS: ruimte voor extra content -->
         <aside class="rightbar"></aside>
     </div>
 </template>
-
 <script>
+
+import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
 
 export default {
     name: "HomeComponent",
+
+    components: {BlogListComponent},
+
     data() {
         return {
             categories: [
@@ -61,6 +69,7 @@ export default {
             posts: [],
         };
     },
+    
     methods: {
         postBlog() {
             const text = this.newBlog && this.newBlog.trim();
