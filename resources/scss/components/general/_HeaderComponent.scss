@@ -10,6 +10,7 @@
     padding: 20px 20px;
     position: relative;
     width: 100%;
+    z-index: 20;
 
     &__logo {
         height: 30px;
@@ -46,6 +47,7 @@
         position: absolute;
         right: 0;
         top: 100%;
+        z-index: 9999;
     }
 
     &__dropdown-list {

@@ -21,7 +21,8 @@
                 >
                     <ul class="app-blog-header__dropdown-list">
                         <li class="app-blog-header__dropdown-item">
-                            <router-link class="app-blog-header__dropdown-link" to="/">Profiel</router-link>
+                            <router-link :to="{name:'Profiel'}" class="app-blog-header__dropdown-link">Profiel
+                            </router-link>
                         </li>
                         <li class="app-blog-header__dropdown-item">
                             <a class="app-blog-header__dropdown-link app-blog-header__dropdown-link--logout"
