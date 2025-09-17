@@ -15,10 +15,13 @@
                     src="/assets/img.png"
                     @click="toggleDropdown"
                 >
-                <div v-if="open" class="app-blog-header__dropdown-menu">
+                <div
+                    v-if="open"
+                    class="app-blog-header__dropdown-menu"
+                >
                     <ul class="app-blog-header__dropdown-list">
                         <li class="app-blog-header__dropdown-item">
-                            <router-link class="app-blog-header__dropdown-link" to="/profiel">Profiel</router-link>
+                            <router-link class="app-blog-header__dropdown-link" to="/">Profiel</router-link>
                         </li>
                         <li class="app-blog-header__dropdown-item">
                             <a class="app-blog-header__dropdown-link app-blog-header__dropdown-link--logout"
@@ -35,27 +38,35 @@
         </nav>
     </div>
 </template>
-
 <script>
+
 import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: 'HeaderComponent',
+
     data() {
-        return {open: false}
+        return {
+            open: false
+        }
     },
+
     computed: {
         ...mapGetters('auth', ['isAuthenticated'])
     },
+
     methods: {
         ...mapActions('auth', ['logout']),
+
         toggleDropdown() {
-            this.open = !this.open;
+            console.log('open')
+            this.open = !this.open
         },
+
         async handleLogout() {
-            this.open = false;
-            await this.logout();
-            this.$router.push({name: 'Login'});
+            this.open = false
+            await this.logout()
+            this.$router.push({name: 'Login'})
         }
     }
 }

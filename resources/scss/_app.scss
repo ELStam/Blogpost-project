@@ -8,7 +8,7 @@
     padding: 0;
 }
 
-/* Basis styling van main branch */
+/* Basis styling */
 .app {
     height: 100vh;
 }
@@ -24,67 +24,11 @@
     height: calc(100% - 4.5rem);
 }
 
-/* Styling van feature/profiel branch */
-body {
-    background: #f4f4f4;
-    color: #333;
-    font-family: Arial, sans-serif;
-}
-
-header {
-    align-items: center;
-    background-color: #111a51;
-    border: none;
-    color: white;
-    display: flex;
-    font-family: "Rockwell Extra Bold", Rockwell, serif;
-    padding: 20px 20px;
-    width: 100%;
-
-    h1 {
-        margin-left: 10px;
-    }
-
-    img {
-        margin-left: 50px;
-    }
-
-    nav {
-        margin-left: auto;
-        margin-right: 100px;
-
-        a {
-            color: white;
-            margin-left: 15px;
-            text-decoration: none;
-            transition: color 0.2s ease-in-out;
-
-            &:hover {
-                color: #90d5ff;
-            }
-        }
-    }
-}
-
-.hero {
-    height: 400px;
-    overflow: hidden;
-    width: 100%;
-
-    img {
-        display: block;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 60%;
-        width: 100%;
-    }
-}
-
 /* Home layout */
 .home {
     display: grid;
     gap: 20px;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr; /* Links - Midden - Rechts */
     min-height: 100vh;
     padding: 20px;
 }
@@ -180,21 +124,35 @@ header {
     margin-top: 30px;
 }
 
-/* Blog input styling */
-.blog-input, .writing, .profile-input {
+/* Blog input & writing & profile input */
+.blog-input,
+.writing,
+.profile-input {
     align-items: center;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     display: flex;
     min-height: 100px;
     padding: 20px;
     width: 100%;
-}
 
-.blog-input img, .writing img {
-    border-radius: 50%;
-    margin-right: 15px;
+    img {
+        border-radius: 50%;
+        margin-right: 15px;
+        height: 50px;
+        width: 50px;
+    }
+
+    input {
+        background: #f4f4f4;
+        border: none;
+        border-radius: 25px;
+        flex: 1;
+        font-size: 1rem;
+        outline: none;
+        padding: 20px 20px;
+    }
 }
 
 /* Profile page */
@@ -204,14 +162,14 @@ header {
     grid-template-columns: 300px 1fr;
     min-height: 100vh;
     position: relative;
-}
 
-.profile-page .hero {
-    grid-column: 1 / -1;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
+    .hero {
+        grid-column: 1 / -1;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
 }
 
 .profile-card {
@@ -224,11 +182,11 @@ header {
     .profile-picture img {
         border: 5px solid #fff;
         border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         height: 250px;
-        margin-bottom: 15px;
-        object-fit: cover;
         width: 250px;
+        object-fit: cover;
+        margin-bottom: 15px;
     }
 
     h2 {

@@ -1,0 +1,111 @@
+
+.login {
+    align-items: center;
+    background-color: #111A51;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+    position: relative;
+
+    &__background {
+        inset: 0;
+        max-height: 1080px;
+        position: absolute;
+        z-index: 0;
+    }
+
+    &__img {
+        height: 800px;
+        margin-left: 70px;
+        object-fit: cover;
+        width: 800px;
+    }
+
+    &__box {
+        background-color: #ffffff;
+        border-radius: 40px 40px 0 0;
+        display: flex;
+        flex-direction: column;
+        height: 800px;
+        margin: 76px 0 0 0;
+        max-width: 700px;
+        padding: 50px;
+        width: 100%;
+        z-index: 1;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+    }
+
+
+    &__title {
+        font-family: "Rockwell Extra Bold", Rockwell, serif;
+        margin-bottom: 20px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__input {
+        width: 600px;
+    }
+
+    &__button {
+        background-color: #E56620;
+        border: none;
+        border-radius: 20px;
+        color: #ffffff;
+        font-size: 16px;
+        padding: 10px;
+        width: 150px;
+
+        &:hover {
+            background-color: #c04e1a;
+            cursor: pointer;
+        }
+    }
+
+    &__privacy-label {
+        color: #C0C0C0;
+    }
+
+    &__links {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &__link {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+
+        &--register {
+            color: #E56620;
+            margin-left: auto;
+        }
+    }
+
+    &__link--register {
+        margin-left: auto;
+    }
+
+    &__link-icon {
+        color: #cccccc;
+        flex-shrink: 0;
+        height: 16px;
+        margin-right: 10px;
+        width: 16px;
+    }
+}
+
+
