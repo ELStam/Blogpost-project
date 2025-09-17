@@ -8,7 +8,7 @@ export default {
     },
 
     async getCurrentUser() {
-        const response = await apiClient.get('/api/user'); // Laravel Sanctum endpoint
-        return response.data;
+        const response = await apiClient.get(route('user.current')) // ✅ via Ziggy
+        return response.data
     }
 }
