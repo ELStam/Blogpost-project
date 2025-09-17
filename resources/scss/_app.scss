@@ -8,6 +8,7 @@
     padding: 0;
 }
 
+/* Basis styling */
 .app {
     height: 100vh;
 }
@@ -23,7 +24,7 @@
     height: calc(100% - 4.5rem);
 }
 
-
+/* Home layout */
 .home {
     display: grid;
     gap: 20px;
@@ -32,7 +33,7 @@
     padding: 20px;
 }
 
-// sidebar
+/* Sidebar */
 .sidebar {
     background: #fff;
     border-radius: 8px;
@@ -114,6 +115,7 @@
     }
 }
 
+/* Main content */
 .main-content {
     display: flex;
     flex-direction: column;
@@ -122,11 +124,14 @@
     margin-top: 30px;
 }
 
-.blog-input {
+/* Blog input & writing & profile input */
+.blog-input,
+.writing,
+.profile-input {
     align-items: center;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     display: flex;
     min-height: 100px;
     padding: 20px;
@@ -134,8 +139,8 @@
 
     img {
         border-radius: 50%;
-        height: 50px;
         margin-right: 15px;
+        height: 50px;
         width: 50px;
     }
 
@@ -147,5 +152,72 @@
         font-size: 1rem;
         outline: none;
         padding: 20px 20px;
+    }
+}
+
+/* Profile page */
+.profile-page {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+    position: relative;
+
+    .hero {
+        grid-column: 1 / -1;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+}
+
+.profile-card {
+    border-radius: 12px;
+    left: 30%;
+    position: absolute;
+    top: 150px;
+    transform: translateX(-50%);
+
+    .profile-picture img {
+        border: 5px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        height: 250px;
+        width: 250px;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        color: #D66D35;
+        font-family: "Rockwell Extra Bold", Rockwell, serif;
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+
+    .username {
+        color: #111B4E;
+        display: block;
+        font-family: "Rockwell Extra Bold", Rockwell, serif;
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+
+    .stats {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+
+        div {
+            font-size: 1rem;
+
+            strong {
+                color: #111a51;
+                display: block;
+                font-size: 1.2rem;
+            }
+        }
     }
 }

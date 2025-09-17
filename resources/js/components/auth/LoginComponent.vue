@@ -31,7 +31,7 @@
 
                     <button class="login__button">Inloggen</button>
                 </form>
-                
+
                 <div class="login__links">
                     <img class="login__link-icon" src="/assets/padlock.png">
                     <span class="login__link login__link--forget">

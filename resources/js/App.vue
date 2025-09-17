@@ -1,7 +1,6 @@
 <template>
     <div class="app-blog">
         <header-component/>
-
         <div class="app-blog-body">
             <router-view></router-view>
         </div>
@@ -18,4 +17,3 @@ export default {
 </script>
 
 <style lang="scss" src="../scss/_app.scss"></style>
-
