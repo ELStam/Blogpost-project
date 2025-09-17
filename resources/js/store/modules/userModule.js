@@ -5,50 +5,42 @@ export default {
 
     state() {
         return {
+            currentUser: null,
             users: []
         }
     },
 
     mutations: {
-        /**
-         * Sets the users array in the state.
-         *
-         * @param {Object} state - VueX state
-         * @param {Array<Object>} users - Array of user objects
-         */
+        SET_CURRENT_USER(state, user) {
+            state.currentUser = user;
+        },
         SET_USERS(state, users) {
-            state.users = users
+            state.users = users;
         }
     },
 
     actions: {
-        /**
-         * Fetches all users from the API via UserService
-         * and commits them to the state.
-         * @param {Object} context
-         * @param {Function} context.commit
-         * @returns {Promise<void>}
-         */
+        async fetchCurrentUser({commit}) {
+            try {
+                const user = await UserService.getCurrentUser();
+                commit('SET_CURRENT_USER', user);
+            } catch (error) {
+                console.error('Failed to fetch current user:', error);
+            }
+        },
+
         async setUsers({commit}) {
             try {
-                const users = await UserService.getAllUsers()
-                commit('SET_USERS', users)
+                const users = await UserService.getAllUsers();
+                commit('SET_USERS', users);
             } catch (error) {
-                console.log('Failed to fetch users:', error)
+                console.log('Failed to fetch users:', error);
             }
         }
     },
 
     getters: {
-        /**
-         * Returns all users from state.
-         *
-         * @param {Object} state
-         * @returns {Array<Object>} Users Array
-         */
-        allUsers(state) {
-            return state.users
-        },
+        currentUser: (state) => state.currentUser,
+        allUsers: (state) => state.users
     }
 }
-
