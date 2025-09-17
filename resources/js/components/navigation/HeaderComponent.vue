@@ -21,7 +21,8 @@
                 >
                     <ul class="app-blog-header__dropdown-list">
                         <li class="app-blog-header__dropdown-item">
-                            <router-link :to="{name:'Profiel'}" class="app-blog-header__dropdown-link">Profiel
+                            <router-link :to="{name: 'Profiel'}" class="app-blog-header__dropdown-link">
+                                Profiel
                             </router-link>
                         </li>
                         <li class="app-blog-header__dropdown-item">
@@ -39,9 +40,9 @@
         </nav>
     </div>
 </template>
-<script>
 
-import {mapActions, mapGetters} from "vuex";
+<script>
+import { mapActions, mapGetters } from "vuex";
 
 export default {
     name: 'HeaderComponent',
@@ -60,14 +61,13 @@ export default {
         ...mapActions('auth', ['logout']),
 
         toggleDropdown() {
-            console.log('open')
             this.open = !this.open
         },
 
         async handleLogout() {
             this.open = false
             await this.logout()
-            this.$router.push({name: 'Login'})
+            this.$router.push({ name: 'Login' })
         }
     }
 }
