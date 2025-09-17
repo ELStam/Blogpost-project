@@ -15,6 +15,11 @@ export default {
     mutations: {
         SET_TOKEN(state, token) {
             state.token = token
+            if (token) {
+                Cookies.set('auth_token', token)
+            } else {
+                Cookies.remove('auth_token')
+            }
         },
     },
 
@@ -28,6 +33,25 @@ export default {
                 console.log('Login failed', error)
             }
         },
+
+        async logout({commit}) {
+            try {
+                await AuthService.logout()
+                commit('SET_TOKEN', null)
+            } catch (error) {
+                console.log('Logout failed', error)
+            }
+        }
+    },
+
+    getters: {
+        isAuthenticated(state) {
+            return !!state.token
+        },
+
+        getToken(state) {
+            return state.token
+        }
     }
 }
 

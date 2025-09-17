@@ -19,5 +19,15 @@ export default {
         } catch (error) {
             console.log(error)
         }
+    },
+
+    async logout() {
+        try {
+            const response = await apiClient.post(route('logout'))
+            Cookies.remove('auth_token')
+            return response.data
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
