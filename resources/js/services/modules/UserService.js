@@ -8,7 +8,7 @@ export default {
     },
 
     async getCurrentUser() {
-        const response = await apiClient.get(route('user.current')) // ✅ via Ziggy
+        const response = await apiClient.get(route('user.current'))
         return response.data
     }
 }
