@@ -40,6 +40,7 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     margin-left: 30px;
     margin-top: 30px;
+    max-height: 75%;
     max-width: 320px;
     padding: 15px;
 
@@ -124,14 +125,12 @@
     margin-top: 30px;
 }
 
-/* Blog input & writing & profile input */
 .blog-input,
-.writing,
 .profile-input {
     align-items: center;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     min-height: 100px;
     padding: 20px;
@@ -139,8 +138,8 @@
 
     img {
         border-radius: 50%;
-        margin-right: 15px;
         height: 50px;
+        margin-right: 20px;
         width: 50px;
     }
 
@@ -155,7 +154,6 @@
     }
 }
 
-/* Profile page */
 .profile-page {
     display: grid;
     gap: 20px;
@@ -167,26 +165,36 @@
         grid-column: 1 / -1;
         height: 300px;
         overflow: hidden;
-        position: relative;
         width: 100%;
     }
 }
 
+.profile-page .hero img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    width: 100%;
+    z-index: 1;
+}
+
+
 .profile-card {
     border-radius: 12px;
-    left: 30%;
+    left: 10%;
     position: absolute;
     top: 150px;
-    transform: translateX(-50%);
+    transform: none;
+    z-index: 10;
 
     .profile-picture img {
         border: 5px solid #fff;
         border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         height: 250px;
-        width: 250px;
-        object-fit: cover;
         margin-bottom: 15px;
+        object-fit: cover;
+        width: 250px;
     }
 
     h2 {
@@ -199,7 +207,7 @@
     .username {
         color: #111B4E;
         display: block;
-        font-family: "Rockwell Extra Bold", Rockwell, serif;
+        font-family: "Arial Black", Arial, sans-serif;
         font-size: 25px;
         margin-bottom: 15px;
     }
@@ -221,3 +229,4 @@
         }
     }
 }
+
