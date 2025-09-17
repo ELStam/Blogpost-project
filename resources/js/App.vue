@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <header>
-            <img src="/assets/writing-wit.png" height="30" width="30"/>
+            <img height="30" src="/assets/writing-wit.png" width="30"/>
             <h1>BLOG.</h1>
             <nav>
                 <router-link to="/">Home</router-link>
@@ -10,7 +10,7 @@
                 <router-link to="/volgend">Volgend</router-link>
                 <router-link to="/categorieen">Categorieën</router-link>
                 <router-link to="/TopPosts">Top Posts</router-link>
-                <router-link to="/profiel">Profiel</router-link> <!-- wordt later aangepast met profielfoto -->
+                <router-link to="/profiel">Profiel</router-link> <!-- wordt later aangepast met eigen profielfoto -->
             </nav>
         </header>
         <main>

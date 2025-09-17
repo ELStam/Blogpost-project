@@ -26,5 +26,21 @@
                 </div>
             </div>
         </section>
+
+        <main class="profile-input">
+            <section class="writing">
+                <img
+                    alt="writing"
+                    class="writing"
+                    src="/assets/writing.png"
+                />
+                <input
+                    v-model="newBlog"
+                    placeholder="Schrijf een blog..."
+                    type="text"
+                    @keyup.enter="postBlog"
+                />
+            </section>
+        </main>
     </div>
 </template>
