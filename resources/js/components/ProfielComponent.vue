@@ -26,7 +26,6 @@
                 </div>
             </div>
         </section>
-
         <main class="profile-input">
             <section class="writing">
                 <img
@@ -44,3 +43,21 @@
         </main>
     </div>
 </template>
+
+<script>
+export default {
+    name: 'ProfilePage',
+    data() {
+        return {
+            newBlog: '',
+        };
+    },
+    methods: {
+        postBlog() {
+            if (!this.newBlog.trim()) return; // voorkomt lege blogs
+            console.log('Nieuwe blog:', this.newBlog);
+            this.newBlog = '';
+        },
+    },
+};
+</script>
