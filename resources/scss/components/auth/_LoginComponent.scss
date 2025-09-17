@@ -3,8 +3,9 @@
     align-items: center;
     background-color: #111A51;
     display: flex;
-    justify-content: center;
-    max-height: 91.9vh;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
     position: relative;
 
     &__background {
@@ -24,6 +25,8 @@
     &__box {
         background-color: #ffffff;
         border-radius: 40px 40px 0 0;
+        display: flex;
+        flex-direction: column;
         height: 800px;
         margin: 76px 0 0 0;
         max-width: 700px;
@@ -32,11 +35,17 @@
         z-index: 1;
     }
 
+    &__content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+    }
+
 
     &__title {
         font-family: "Rockwell Extra Bold", Rockwell, serif;
         margin-bottom: 20px;
-
     }
 
     &__form {
@@ -47,7 +56,6 @@
 
     &__input {
         width: 600px;
-
     }
 
     &__button {
@@ -61,14 +69,18 @@
 
         &:hover {
             background-color: #c04e1a;
+            cursor: pointer;
         }
+    }
+
+    &__privacy-label {
+        color: #C0C0C0;
     }
 
     &__links {
         align-items: center;
         display: flex;
         justify-content: space-between;
-        margin-top: 375px;
         width: 100%;
     }
 
@@ -93,7 +105,6 @@
         height: 16px;
         margin-right: 10px;
         width: 16px;
-
     }
 }
 
