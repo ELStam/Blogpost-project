@@ -214,19 +214,24 @@
 
     .stats {
         display: flex;
-        flex-direction: column;
         gap: 10px;
         margin-top: 15px;
 
-        div {
-            font-size: 1rem;
+        .stat-badge {
+            background-color: #111A51;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            color: #fff;
+            cursor: default;
+
+            font-size: 0.95rem;
+            padding: 10px 18px;
 
             strong {
-                color: #111a51;
-                display: block;
+                color: #fff;
+                display: inline;
                 font-size: 1.2rem;
             }
         }
     }
 }
-

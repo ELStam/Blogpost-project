@@ -14,8 +14,12 @@
                     <p class="username">@{{ currentUser.username }}</p>
                     <p class="bio">{{ currentUser.bio }}</p>
                     <div class="stats">
-                        <div><strong>{{ currentUser.followers || 0 }}</strong> volgers</div>
-                        <div><strong>{{ currentUser.following || 0 }}</strong> volgend</div>
+                        <div class="stat-badge">
+                            <strong>{{ currentUser.followers || 0 }}</strong> volgers
+                        </div>
+                        <div class="stat-badge">
+                            <strong>{{ currentUser.following || 0 }}</strong> volgend
+                        </div>
                     </div>
                 </div>
             </div>
