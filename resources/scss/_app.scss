@@ -235,3 +235,43 @@
         }
     }
 }
+
+.profile-blog {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    left: 55%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    z-index: 5;
+}
+
+.profile-blog img {
+    border-radius: 0;
+    height: auto;
+    width: 60px;
+}
+
+.profile-input {
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    padding: 20px;
+    width: 100%;
+}
+
+.profile-input input {
+    background: #f4f4f4;
+    border: none;
+    border-radius: 25px;
+    flex: 1;
+    font-size: 1rem;
+    outline: none;
+    padding: 20px;
+}
+
+
