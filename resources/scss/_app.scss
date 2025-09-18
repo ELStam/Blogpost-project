@@ -166,6 +166,18 @@
             margin-bottom: 5px;
         }
 
+        &__username {
+            color: #111B4E;
+            display: block;
+            font-family: "Arial Black", Arial, sans-serif;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        &__bio {
+            font-family: "Arial Black", Arial, sans-serif;
+        }
+
         &__picture {
             img {
                 border: 5px solid #fff;
@@ -179,16 +191,6 @@
 
             &--rounded {
                 border-radius: 50%;
-            }
-        }
-
-        &__info {
-            &__username {
-                color: #111B4E;
-                display: block;
-                font-family: "Arial Black", Arial, sans-serif;
-                font-size: 25px;
-                margin-bottom: 15px;
             }
         }
 
@@ -213,11 +215,11 @@
                 }
 
                 &--followers {
-                    background-color: #1E3A8A;
+                    background-color: #111B4E;
                 }
 
                 &--following {
-                    background-color: #047857;
+                    background-color: #111B4E;
                 }
             }
         }

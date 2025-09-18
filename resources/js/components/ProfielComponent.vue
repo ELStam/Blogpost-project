@@ -1,24 +1,31 @@
 <template>
     <div v-if="currentUser" class="profile">
         <div class="profile__hero">
-            <img alt="Header" src="/assets/luca-bravo-O453M2Liufs-unsplash.jpg"/>
+            <img
+                src="/assets/luca-bravo-O453M2Liufs-unsplash.jpg"
+            />
         </div>
 
         <section class="profile__card">
             <div class="profile__card__header">
                 <div class="profile__card__picture profile__card__picture--rounded">
-                    <img alt="profile-picture" class=profile-card__picture-image
-                         src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"/>
+                    <img
+                        alt="profile-picture"
+                        class="profile__card__picture-image"
+                        src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
+                    />
                 </div>
                 <div class="profile__card__info">
                     <h2 class="profile__card__name">{{ currentUser.name }}</h2>
                     <p class="profile__card__username">@{{ currentUser.username }}</p>
-                    <p class="profile__card__bio">{{ currentUser.bio }}</p>
+                    <p class="profile__card__bio">
+                        {{ currentUser.bio || 'Geen bio beschikbaar' }}
+                    </p>
                     <div class="profile__card__stats">
-                        <div class="profile__card__badge profile__card__badge--followers">
+                        <div class="profile__card__stats__badge profile__card__stats__badge--followers">
                             <span>{{ currentUser.followers || 0 }} volgers</span>
                         </div>
-                        <div class="profile__card__badge profile__card__badge--following">
+                        <div class="profile__card__stats__badge profile__card__stats__badge--following">
                             <span>{{ currentUser.following || 0 }} volgend</span>
                         </div>
                     </div>
@@ -28,7 +35,7 @@
     </div>
 
     <main class="profile-blog">
-        <section class="profile-blog__input profile-blog__input--large">
+        <section class="profile-blog__input">
             <img alt="writing" src="/assets/writing.png"/>
             <input
                 v-model="newBlog"
