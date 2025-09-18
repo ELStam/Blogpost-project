@@ -1,39 +1,38 @@
 <template>
-    <div v-if="currentUser" class="profile-page">
-        <div class="profile-page-hero">
+    <div v-if="currentUser" class="profile">
+        <div class="profile__hero">
             <img alt="Header" src="/assets/luca-bravo-O453M2Liufs-unsplash.jpg"/>
         </div>
 
-        <section class="profile-card">
-            <div class="profile-card-header">
-                <div class="profile-picture">
-                    <img alt="profile-picture" src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"/>
+        <section class="profile__card">
+            <div class="profile__card__header">
+                <div class="profile__card__picture profile__card__picture--rounded">
+                    <img alt="profile-picture" class=profile-card__picture-image
+                         src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"/>
                 </div>
-                <div class="profile-info">
-                    <h2>{{ currentUser.name }}</h2>
-                    <p class="profile-info_username">@{{ currentUser.username }}</p>
-                    <p class="profile-info_bio">{{ currentUser.bio }}</p>
-                    <div class="profile-stats">
-                        <div class="profile-stats_badge">
-                            <span>{{ currentUser.followers || 0 }}</span> volgers
+                <div class="profile__card__info">
+                    <h2 class="profile__card__name">{{ currentUser.name }}</h2>
+                    <p class="profile__card__username">@{{ currentUser.username }}</p>
+                    <p class="profile__card__bio">{{ currentUser.bio }}</p>
+                    <div class="profile__card__stats">
+                        <div class="profile__card__badge profile__card__badge--followers">
+                            <span>{{ currentUser.followers || 0 }} volgers</span>
                         </div>
-                        <div class="profile-stats_badge">
-                            <span>{{ currentUser.following || 0 }}</span> volgend
+                        <div class="profile__card__badge profile__card__badge--following">
+                            <span>{{ currentUser.following || 0 }} volgend</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
+
     <main class="profile-blog">
-        <section class="profile-blog_input">
-            <img
-                alt="writing"
-                src="/assets/writing.png"
-            />
+        <section class="profile-blog__input profile-blog__input--large">
+            <img alt="writing" src="/assets/writing.png"/>
             <input
                 v-model="newBlog"
-                class="profile-blog-input_input"
+                class="profile-blog__input__field"
                 placeholder="Schrijf een blog..."
                 type="text"
                 @keyup.enter="postBlog"
@@ -66,7 +65,7 @@ export default {
 
     methods: {
         postBlog() {
-            if (!this.newBlog.trim()) return; // voorkomt lege blogs
+            if (!this.newBlog.trim()) return;
             console.log('Nieuwe blog:', this.newBlog);
             this.newBlog = '';
         },
