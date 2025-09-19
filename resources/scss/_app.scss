@@ -120,13 +120,32 @@
     }
 }
 
-.main-content {
+.blog {
     display: flex;
     flex-direction: column;
     gap: 20px;
     grid-column: 2;
     margin-top: 30px;
 }
+
+.blog__input {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+.blog__avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.blog__text-input {
+    flex: 1;
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
 
 .profile {
     display: grid;

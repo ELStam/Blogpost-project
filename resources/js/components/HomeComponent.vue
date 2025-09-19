@@ -20,16 +20,17 @@
             <div class="top-posts">Top Posts</div>
         </aside>
 
-        <main class="main-content">
+        <main class="blog">
             <!-- Blog invoerveld (avatar + input) -->
-            <section class="blog-input">
+            <section class="blog__input">
                 <img
                     alt="user avatar"
-                    class="avatar"
+                    class="blog__avatar"
                     src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
                 />
                 <input
                     v-model="newBlog"
+                    class="blog__text-input"
                     placeholder="Schrijf een blog..."
                     type="text"
                     @keyup.enter="postBlog"
