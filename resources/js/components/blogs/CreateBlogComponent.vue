@@ -31,7 +31,6 @@ export default {
             title: '',
             body: ''
         }
-
     },
 
     computed: {

@@ -31,14 +31,15 @@ class BlogController extends Controller
             'blog' => $blog
         ], 201);
     }
-
-
+    
     /**
      * Display the specified resource.
      */
     public function show(Blog $blog)
     {
-        //
+        return response()->json([
+            'blog' => $blog->load('user')
+        ]);
     }
 
     /**

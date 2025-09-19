@@ -23,21 +23,3 @@ export default {
     },
 }
 
-
-// async login(username, password) {
-//     try {
-//         const response = await apiClient.post(route('login'), {
-//             username,
-//             password
-//         })
-//
-//         if (response.data.auth_token) {
-//             Cookies.set('auth_token', response.data.auth_token)
-//         }
-//
-//         return response.data
-//
-//     } catch (error) {
-//         console.log(error)
-//     }
-// },

@@ -13,9 +13,9 @@
 
             <p class="blog-card__text">{{ blog.body }}</p>
 
-            <button class="blog-card__button">Lees verder</button>
-
-
+            <router-link :to="{ name: 'BlogDetail', params: {id: blog.id}}">
+                <button class="blog-card__button">Lees verder</button>
+            </router-link>
         </div>
     </div>
 </template>

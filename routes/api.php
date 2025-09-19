@@ -18,6 +18,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 
