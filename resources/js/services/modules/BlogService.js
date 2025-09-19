@@ -21,5 +21,14 @@ export default {
         const response = await apiClient.get(route('blogs.index'))
         return response.data
     },
+
+    async getBlog(id) {
+        try {
+            const response = await apiClient.get(route('blogs.show', { blog: id}))
+            return response.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 

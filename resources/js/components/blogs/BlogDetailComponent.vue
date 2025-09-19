@@ -1,26 +1,31 @@
 <template>
     <div>
         <h1>Blog detail van ID: {{ id }}</h1>
-        <div v-if="blog">
-            <h2>{{ blog.title }}</h2>
-            <p>{{ blog.body }}</p>
+        <div v-if="getBlog">
+            <h2>{{ getBlog.title }}</h2>
+            <p>{{ getBlog.body }}</p>
         </div>
     </div>
 </template>
 
+
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
     name: 'BlogDetailComponent',
     props: ['id'],
 
-    data() {
-        return {
-            blog: null
-        }
+    computed: {
+        ...mapGetters('blog', ['getBlog'])
     },
 
     created() {
-        // Blog ophalen
+        this.fetchBlog(this.id)
+    },
+
+    methods: {
+        ...mapActions('blog', ['fetchBlog']),
     }
 }
 </script>

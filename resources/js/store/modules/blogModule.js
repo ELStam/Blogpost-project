@@ -8,6 +8,7 @@ export default {
         return {
             blogs: [],
             categories: [],
+            blog: ''
         }
     },
 
@@ -18,6 +19,10 @@ export default {
 
         SET_BLOGS(state, blogs) {
             state.blogs = blogs
+        },
+
+        SET_BLOG(state, blog) {
+            state.blog = blog
         },
 
         SET_CATEGORIES(state, categories) {
@@ -47,6 +52,16 @@ export default {
                 })
         },
 
+        fetchBlog({commit}, id) {
+            return BlogService.getBlog(id)
+                .then(response => {
+                    console.log('blog', response)
+                    commit('SET_BLOG', response)
+                }).catch(error => {
+                    throw error
+                })
+        },
+
         fetchCategories({commit}) {
             return CategoryService.getAllCategories()
                 .then(response => {
@@ -63,6 +78,10 @@ export default {
         getBlogs(state) {
             console.log(state.blogs)
             return state.blogs
+        },
+
+        getBlog(state) {
+            return state.blog
         },
 
         getCategories(state) {
