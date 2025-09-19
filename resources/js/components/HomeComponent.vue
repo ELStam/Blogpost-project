@@ -1,9 +1,9 @@
 <template>
     <div class="home">
         <!-- LINKS: Sidebar -->
-        <aside class="sidebar">
+        <aside class="home-sidebar">
             <h3>Categorieën</h3>
-            <ul class="categories">
+            <ul class="home-sidebar_categories">
                 <li
                     v-for="cat in categories"
                     :key="cat.id"
@@ -20,18 +20,19 @@
             <div class="top-posts">Top Posts</div>
         </aside>
 
-        <main class="main-content">
-            <!-- Blog invoerveld (avatar + input + knop) -->
-            <section class="blog-input">
+        <main class="blog">
+            <!-- Blog invoerveld (avatar + input) -->
+            <section class="blog__input">
                 <img
-                    class="avatar"
-                    src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
                     alt="user avatar"
+                    class="blog__avatar"
+                    src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
                 />
                 <input
-                    type="text"
-                    placeholder="Schrijf een blog..."
                     v-model="newBlog"
+                    class="blog__text-input"
+                    placeholder="Schrijf een blog..."
+                    type="text"
                     @keyup.enter="postBlog"
                 />
             </section>

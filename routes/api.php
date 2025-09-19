@@ -9,6 +9,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/user', [UserController::class, 'current'])->name('user.current'); // ✅ named route
+    Route::get('/user', [UserController::class, 'current'])->name('user.current');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
