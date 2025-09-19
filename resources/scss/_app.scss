@@ -46,8 +46,6 @@
 
 /* Sidebar */
 .home-sidebar {
-
-
     h3 {
         border-bottom: 1px solid #eee;
         font-size: 1.1rem;
@@ -126,24 +124,25 @@
     gap: 20px;
     grid-column: 2;
     margin-top: 30px;
-}
 
-.blog__input {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-}
+    &__input {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+    }
 
-.blog__avatar {
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-}
+    &__avatar {
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+    }
 
-.blog__text-input {
-    flex: 1;
-    font-size: 14px;
-    padding: 8px 12px;
+    &__text-input {
+        flex: 1;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
 }
 
 
@@ -160,7 +159,7 @@
         overflow: hidden;
         width: 100%;
 
-        img {
+        &__image {
             display: block;
             height: 100%;
             object-fit: cover;
@@ -255,7 +254,7 @@
         width: 50%;
         z-index: 5;
 
-        img {
+        &__img {
             border-radius: 0;
             height: auto;
             width: 60px;

@@ -2,6 +2,7 @@
     <div v-if="currentUser" class="profile">
         <div class="profile__hero">
             <img
+                class="profile__hero__image"
                 src="/assets/luca-bravo-O453M2Liufs-unsplash.jpg"
             />
         </div>
@@ -36,7 +37,11 @@
 
     <main class="profile-blog">
         <section class="profile-blog__input">
-            <img alt="writing" src="/assets/writing.png"/>
+            <img
+                alt="writing"
+                class="profile-blog__img"
+                src="/assets/writing.png"
+            />
             <input
                 v-model="newBlog"
                 class="profile-blog__input__field"
