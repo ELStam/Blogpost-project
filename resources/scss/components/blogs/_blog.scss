@@ -1,9 +1,11 @@
 .blog {
     // List Styling
     &-list {
-        display: grid;
-        gap: 2rem;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: flex-start;
+        padding-top: 20px;
     }
 
     // Card Styling

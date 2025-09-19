@@ -1,17 +1,23 @@
 import BlogService from "@/services/modules/BlogService.js";
+import CategoryService from "@/services/modules/CategoryService.js";
 
 export default {
     namespaced: true,
 
     state() {
         return {
-            blogs: []
+            blogs: [],
+            categories: [],
         }
     },
 
     mutations: {
         SET_BLOGS(state, blogs) {
             state.blogs = blogs
+        },
+
+        SET_CATEGORIES(state, categories) {
+            state.categories = categories
         }
     },
 
@@ -25,6 +31,17 @@ export default {
                 .catch(error => {
                     throw error
                 })
+        },
+
+        fetchCategories({commit}) {
+            return CategoryService.getAllCategories()
+                .then(response => {
+                    console.log('categories', response)
+                    commit('SET_CATEGORIES', response)
+                })
+                .catch(error => {
+                    throw error
+                })
         }
     },
 
@@ -32,6 +49,10 @@ export default {
         getBlogs(state) {
             console.log(state.blogs)
             return state.blogs
+        },
+
+        getCategories(state) {
+            return state.categories
         }
     }
 }

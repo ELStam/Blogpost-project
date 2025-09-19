@@ -1,82 +1,86 @@
 <template>
     <div class="home">
-        <!-- LINKS: Sidebar -->
-        <aside class="sidebar">
-            <h3>Categorieën</h3>
-            <ul class="categories">
-                <li
-                    v-for="cat in categories"
-                    :key="cat.id"
-                    :class="cat.class"
-                >
-                    <button :class="{
-            'btn-primary': cat.name === 'Alle blogs',
-            'btn-secondary': cat.name !== 'Alle blogs' && cat.name !== 'Bekijk alle categorieën',
-            'btn-tertiary': cat.name === 'Bekijk alle categorieën'}">
-                        {{ cat.name }}
-                    </button>
-                </li>
-            </ul>
-            <div class="top-posts">Top Posts</div>
+        <aside class="home__sidebar">
+
+            <category-component
+                label="Categorieën"
+            />
         </aside>
 
-        <main class="main-content">
-            <!-- Blog invoerveld (avatar + input + knop) -->
-            <section class="blog-input">
-                <img
-                    alt="user avatar"
-                    class="avatar"
-                    src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
-                />
-                <input
-                    v-model="newBlog"
-                    placeholder="Schrijf een blog..."
-                    type="text"
-                    @keyup.enter="postBlog"
-                />
-            </section>
+        <main class="home__content">
+            <base-input-component/>
 
             <blog-list-component/>
-
-
         </main>
+<!--        <aside class="sidebar">-->
+<!--            <h3>Categorieën</h3>-->
+<!--            <ul class="categories">-->
+<!--                <li-->
+<!--                    v-for="cat in getCategories"-->
+<!--                    :key="cat.id"-->
+<!--                    :class="cat.class"-->
+<!--                >-->
+<!--                    <button :class="{-->
+<!--            'btn-primary': cat.name === 'Alle blogs',-->
+<!--            'btn-secondary': cat.name !== 'Alle blogs' && cat.name !== 'Bekijk alle categorieën',-->
+<!--            'btn-tertiary': cat.name === 'Bekijk alle categorieën'}">-->
+<!--                        {{ cat.name }}-->
+<!--                    </button>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            <div class="top-posts">Top Posts</div>-->
+<!--        </aside>-->
 
-        <!-- RECHTS: ruimte voor extra content -->
-        <aside class="rightbar"></aside>
+<!--        <main class="main-content">-->
+<!--            &lt;!&ndash; Blog invoerveld (avatar + input + knop) &ndash;&gt;-->
+<!--            <section class="blog-input">-->
+<!--                <img-->
+<!--                    alt="user avatar"-->
+<!--                    class="avatar"-->
+<!--                    src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"-->
+<!--                />-->
+<!--                <input-->
+<!--                    v-model="newBlog"-->
+<!--                    placeholder="Schrijf een blog..."-->
+<!--                    type="text"-->
+<!--                    @keyup.enter="postBlog"-->
+<!--                />-->
+<!--            </section>-->
+
+<!--            <blog-list-component/>-->
+
+
+<!--        </main>-->
+
+<!--        <aside class="rightbar"></aside>-->
     </div>
 </template>
 <script>
 
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
+import {mapActions, mapGetters} from "vuex";
+import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
+import CategoryComponent from "@/components/navigation/CategoryComponent.vue";
 
 export default {
     name: "HomeComponent",
 
-    components: {BlogListComponent},
+    components: {
+        CategoryComponent,
+        BlogListComponent,
+        BaseInputComponent,
+    },
 
-    data() {
-        return {
-            categories: [
-                {id: 1, name: "Alle blogs", class: "alle"},
-                {id: 2, name: "Creativiteit", class: "creativiteit"},
-                {id: 3, name: "Cultuur", class: "cultuur"},
-                {id: 4, name: "Eten", class: "eten"},
-                {id: 5, name: "Lifestyle", class: "lifestyle"},
-                {id: 6, name: "Muziek", class: "muziek"},
-                {id: 7, name: "Bekijk alle categorieën", class: "bekijk"},
-            ],
-            newBlog: "",
-            posts: [],
-        };
+    computed: {
+        ...mapGetters('blog', ['getCategories'])
     },
-    
+
+    created() {
+        this.fetchCategories()
+    },
+
     methods: {
-        postBlog() {
-            const text = this.newBlog && this.newBlog.trim();
-            if (!text) return;
-            this.posts.unshift(text);
-            this.newBlog = "";
-        },
-    },
+        ...mapActions('blog', ['fetchCategories']),
+    }
 };
 </script>
