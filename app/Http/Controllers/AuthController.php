@@ -28,6 +28,7 @@ class AuthController extends Controller
             'name' =>  $request->name,
             'username' => $request->username,
             'email' => $request->email,
+            'bio' => $request->bio,
             'password' => Hash::make($request->password),
             'confirm_password' => Hash::make($request->confirm_password)
         ]);
