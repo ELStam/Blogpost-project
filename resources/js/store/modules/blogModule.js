@@ -12,6 +12,10 @@ export default {
     },
 
     mutations: {
+        ADD_BLOG(state, blog) {
+            state.blogs.push(blog)
+        },
+
         SET_BLOGS(state, blogs) {
             state.blogs = blogs
         },
@@ -22,6 +26,16 @@ export default {
     },
 
     actions: {
+        async createBlog({commit}, {title, body}) {
+            try {
+                const blog = await BlogService.createBlog(title, body)
+                commit('ADD_BLOG', blog)
+                return blog
+            } catch (error) {
+                console.log('Failed to add blog', blog)
+            }
+        },
+
         fetchBlogs({commit}) {
             return BlogService.getAllBlogs()
                 .then(response => {

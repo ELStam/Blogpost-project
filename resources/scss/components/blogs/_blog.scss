@@ -6,6 +6,31 @@
         gap: 30px;
         justify-content: flex-start;
         padding-top: 20px;
+        max-width: 81.5%;
+    }
+    // Create blog Styling
+    &-create {
+        align-items: center;
+        background-color: #fff;
+        display: flex;
+        padding: 20px;
+        width: 81.5%;
+
+        &__image {
+            border-radius: 60px;
+            height: 80px;
+            margin-right: 20px;
+            width: 80px;
+        }
+
+        &__input {
+            height: 70px;
+            width: 100%;
+
+            &:focus-visible {
+                outline: none;
+            }
+        }
     }
 
     // Card Styling
