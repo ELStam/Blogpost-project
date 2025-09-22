@@ -1,9 +1,8 @@
-import {createRouter, createWebHistory} from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import HomeComponent from '@/components/HomeComponent.vue';
-import ProfielComponent from "@/components/ProfileComponent.vue";
+import ProfileComponent from "@/components/ProfileComponent.vue"; // juiste naam
 import LoginComponent from "@/components/auth/LoginComponent.vue";
 import BlogDetailComponent from "@/components/blogs/BlogDetailComponent.vue";
-import ProfileComponent from "@/components/ProfileComponent.vue";
 
 const routes = [
     {
