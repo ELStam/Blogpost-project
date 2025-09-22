@@ -10,11 +10,13 @@
             <router-link class="app-blog-header__link" to="/TopPosts">Top Posts</router-link>
 
             <div v-if="isAuthenticated" class="app-blog-header__dropdown">
-                <img
+                <profile-photo-component
+                    alt="Profile photo of the user"
                     class="app-blog-header__profile"
                     src="/assets/img.png"
-                    @click="toggleDropdown"
-                >
+                    @profile-clicked="toggleDropdown"
+                />
+
                 <div
                     v-if="open"
                     class="app-blog-header__dropdown-menu"
@@ -42,10 +44,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
+import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 
 export default {
     name: 'HeaderComponent',
+    components: {ProfilePhotoComponent},
 
     data() {
         return {
@@ -67,7 +71,7 @@ export default {
         async handleLogout() {
             this.open = false
             await this.logout()
-            this.$router.push({ name: 'Login' })
+            this.$router.push({name: 'Login'})
         }
     }
 }

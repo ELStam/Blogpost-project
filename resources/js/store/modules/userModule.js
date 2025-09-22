@@ -28,19 +28,9 @@ export default {
                 console.error('Failed to fetch current user:', error);
             }
         },
-
-        async setUsers({commit}) {
-            try {
-                const users = await UserService.getAllUsers();
-                commit('SET_USERS', users);
-            } catch (error) {
-                console.log('Failed to fetch users:', error);
-            }
-        }
     },
 
     getters: {
         currentUser: (state) => state.currentUser,
-        allUsers: (state) => state.users
     }
 }

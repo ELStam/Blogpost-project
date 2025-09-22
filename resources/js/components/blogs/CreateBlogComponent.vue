@@ -1,10 +1,14 @@
 <template>
-    <div class="blog-create" v-if="isAuthenticated">
-        <img class="blog-create__image" :src="image"/>
+    <div v-if="isAuthenticated" class="blog-create">
+        <profile-photo-component
+            alt="Profile photo of the user"
+            class="blog-create__image"
+            src="/assets/img.png"
+        />
 
         <base-input-component
             class="blog-create__input"
-            label="Schrijf een blog..."
+            label="Titel van de blog..."
             type="text"
         />
     </div>
@@ -13,18 +17,12 @@
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import {mapActions, mapGetters} from "vuex";
+import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 
 export default {
     name: 'CreateBlogComponent',
 
-    components: {BaseInputComponent},
-
-    props: {
-        image: {
-            type: String,
-            required: true
-        }
-    },
+    components: {ProfilePhotoComponent, BaseInputComponent},
 
     data() {
         return {
@@ -38,7 +36,7 @@ export default {
     },
 
     methods: {
-        ...mapActions('blog',['createBlog'])
+        ...mapActions('blog', ['createBlog'])
     }
 }
 </script>
