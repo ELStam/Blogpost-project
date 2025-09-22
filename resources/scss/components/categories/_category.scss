@@ -1,7 +1,7 @@
 .category {
     background-color: #fff;
-    padding: 30px;
     max-width: 500px;
+    padding: 30px;
 
     &__label {
         color: #111B4E;
@@ -9,18 +9,21 @@
     }
 
     &__list {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+
+        &-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
     }
 
     &__button {
         background-color: #fff;
         border: 1px solid #111B4E;
         border-radius: 25px;
-        cursor: pointer;
         color: #111A51;
+        cursor: pointer;
         font-size: 0.95rem;
         padding: 10px 18px;
         transition: all 0.2s;

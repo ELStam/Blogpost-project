@@ -1,20 +1,26 @@
 .blog {
+
     // List Styling
     &-list {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
         gap: 30px;
-        justify-content: flex-start;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
         padding-top: 20px;
-        max-width: 81.5%;
+        
+        @media screen and (max-width: 1024px) {
+            grid-template-columns: 1fr;
+        }
+
     }
+
     // Create blog Styling
     &-create {
         align-items: center;
         background-color: #fff;
         display: flex;
         padding: 20px;
-        width: 81.5%;
+
 
         &__image {
             border-radius: 60px;

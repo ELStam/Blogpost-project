@@ -6,10 +6,10 @@
             <span class="blog-card__date">{{ dateFormat }}</span>
         </div>
 
-        <img class="blog-card__image" src="/assets/luca-bravo-O453M2Liufs-unsplash.jpg">
+        <img class="blog-card__image" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg" alt="">
 
         <div class="blog-card__body">
-            <h1 class="blog-card__title">{{ blog.title }}</h1>
+            <h2 class="blog-card__title">{{ blog.title }}</h2>
 
             <p class="blog-card__text">{{ blog.body }}</p>
 

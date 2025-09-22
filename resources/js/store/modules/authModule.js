@@ -29,8 +29,8 @@ export default {
                 const data = await AuthService.login(username, password)
                 commit('SET_TOKEN', data.auth_token)
                 return data
-            } catch {
-                console.log('Login failed', error)
+            } catch (error) {
+                console.error('Login failed', error)
             }
         },
 
@@ -39,7 +39,7 @@ export default {
                 await AuthService.logout()
                 commit('SET_TOKEN', null)
             } catch (error) {
-                console.log('Logout failed', error)
+                throw error
             }
         }
     },
