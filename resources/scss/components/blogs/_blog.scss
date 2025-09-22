@@ -7,7 +7,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         justify-content: center;
         padding-top: 20px;
-        
+
         @media screen and (max-width: 1024px) {
             grid-template-columns: 1fr;
         }
@@ -23,7 +23,6 @@
 
 
         &__image {
-            border-radius: 60px;
             height: 80px;
             margin-right: 20px;
             width: 80px;
@@ -55,7 +54,6 @@
         }
 
         &__profile {
-            border-radius: 50%;
             height: 40px;
             margin-right: 15px;
             width: 40px;

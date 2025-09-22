@@ -1,12 +1,16 @@
 <template>
     <div class="blog-card">
         <div class="blog-card__header">
-            <img class="blog-card__profile" src="/assets/img.png">
+            <profile-photo-component
+                alt="Profile photo"
+                class="blog-card__profile"
+                src="/assets/img.png"
+            />
             <span class="blog-card__username">@{{ blog.user.username }}</span>
             <span class="blog-card__date">{{ dateFormat }}</span>
         </div>
 
-        <img class="blog-card__image" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg" alt="">
+        <img alt="" class="blog-card__image" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg">
 
         <div class="blog-card__body">
             <h2 class="blog-card__title">{{ blog.title }}</h2>
@@ -21,8 +25,11 @@
 </template>
 
 <script>
+import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
+
 export default {
     name: 'BlogCardComponent',
+    components: {ProfilePhotoComponent},
 
     props: {
         blog: {
