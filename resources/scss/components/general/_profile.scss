@@ -1,0 +1,139 @@
+.profile {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+    position: relative;
+
+    &__hero {
+        grid-column: 1 / -1;
+        height: 300px;
+        overflow: hidden;
+        width: 100%;
+
+        &__image {
+            display: block;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 60%;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+
+    &__card {
+        border-radius: 12px;
+        left: 10%;
+        position: absolute;
+        top: 150px;
+        transform: none;
+        z-index: 10;
+
+        &__name {
+            color: #D66D35;
+            font-family: "Rockwell Extra Bold", Rockwell, serif;
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        &__username {
+            color: #111B4E;
+            display: block;
+            font-family: "Arial Black", Arial, sans-serif;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        &__bio {
+            font-family: "Arial Black", Arial, sans-serif;
+        }
+
+        &__picture {
+            img {
+                border: 5px solid #fff;
+                border-radius: 50%;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                height: 250px;
+                margin-bottom: 15px;
+                object-fit: cover;
+                width: 250px;
+            }
+
+            &--rounded {
+                border-radius: 50%;
+            }
+        }
+
+        &__stats {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+
+            &__badge {
+                background-color: #111A51;
+                border: 1px solid #ccc;
+                border-radius: 25px;
+                color: #fff;
+                cursor: default;
+                font-size: 0.95rem;
+                padding: 10px 18px;
+
+                span {
+                    color: #fff;
+                    display: inline;
+                    font-size: 1.2rem;
+                }
+
+                &--followers {
+                    background-color: #111B4E;
+                }
+
+                &--following {
+                    background-color: #111B4E;
+                }
+            }
+        }
+    }
+
+    &-blog {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        left: 55%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        z-index: 5;
+
+        &__img {
+            border-radius: 0;
+            height: auto;
+            width: 60px;
+        }
+
+        &__input {
+            align-items: center;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            padding: 20px;
+            width: 100%;
+
+            &__field {
+                background: #f4f4f4;
+                border: none;
+                border-radius: 25px;
+                flex: 10;
+                font-size: 1rem;
+                outline: none;
+                padding: 20px;
+            }
+
+            &--large {
+                padding: 25px;
+            }
+        }
+    }
+}
