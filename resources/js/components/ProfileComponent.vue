@@ -16,17 +16,17 @@
                         src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
                     />
                 </div>
-                <div class="profile__card__info">
-                    <h2 class="profile__card__name">{{ currentUser.name }}</h2>
-                    <p class="profile__card__username">@{{ currentUser.username }}</p>
-                    <p class="profile__card__bio">
+                <div class="profile__card--info">
+                    <h2 class="profile__card--name">{{ currentUser.name }}</h2>
+                    <p class="profile__card--username">@{{ currentUser.username }}</p>
+                    <p class="profile__card--bio">
                         {{ currentUser.bio || 'Geen bio beschikbaar' }}
                     </p>
                     <div class="profile__card__stats">
-                        <div class="profile__card__stats__badge profile__card__stats__badge--followers">
+                        <div class="profile__card__stats--badge profile__card__stats--badge--followers">
                             <span>{{ currentUser.followers || 0 }} volgers</span>
                         </div>
-                        <div class="profile__card__stats__badge profile__card__stats__badge--following">
+                        <div class="profile__card__stats--badge profile__card__stats--badge--following">
                             <span>{{ currentUser.following || 0 }} volgend</span>
                         </div>
                     </div>
