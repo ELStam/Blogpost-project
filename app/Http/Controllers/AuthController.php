@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -23,11 +24,13 @@ class AuthController extends Controller
      *      - 'auth_token' => the generated Sanctum token for API authentication
      *      - 'user' => the created user object
      */
-    public function register(RegisterRequest $request) {
+    public function register(RegisterRequest $request): JsonResponse
+    {
         $user = User::create([
             'name' =>  $request->name,
             'username' => $request->username,
             'email' => $request->email,
+            'bio' => $request->bio,
             'password' => Hash::make($request->password),
             'confirm_password' => Hash::make($request->confirm_password)
         ]);
@@ -56,7 +59,8 @@ class AuthController extends Controller
      *      - 'auth_token' => the generated Sanctum token for the API authentication
      *      - 'user' => the created user object
      */
-    public function login(LoginRequest $request) {
+    public function login(LoginRequest $request): JsonResponse
+    {
         $user = User::where('username', $request->username)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -79,7 +83,8 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function logout(Request $request) {
+    public function logout(Request $request): JsonResponse
+    {
         $request->user()->currentAccessToken()->delete();
 
         return response()->json([
