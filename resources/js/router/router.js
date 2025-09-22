@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import HomeComponent from '@/components/HomeComponent.vue';
 import ProfielComponent from "@/components/ProfielComponent.vue";
 import LoginComponent from "@/components/auth/LoginComponent.vue";

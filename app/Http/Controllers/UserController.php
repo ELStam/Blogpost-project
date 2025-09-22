@@ -8,43 +8,18 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource in JSON format.
+     * Display all users in JSON.
      */
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        return response()->json(User::all());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Return the currently authenticated user.
      */
-    public function store(Request $request)
+    public function current(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
+        return response()->json($request->user());
     }
 }

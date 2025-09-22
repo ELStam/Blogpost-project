@@ -1,60 +1,83 @@
 <template>
-    <div class="profile-page">
-        <div class="hero">
-            <img alt="Header" src="/assets/luca-bravo-O453M2Liufs-unsplash.jpg"/>
+    <div v-if="currentUser" class="profile">
+        <div class="profile__hero">
+            <img
+                class="profile__hero__image"
+                src="/assets/luca-bravo-O453M2Liufs-unsplash.jpg"
+            />
         </div>
 
-        <section class="profile-card">
-            <div class="profile-header">
-                <div class="profile-picture">
+        <section class="profile__card">
+            <div class="profile__card__header">
+                <div class="profile__card__picture profile__card__picture--rounded">
                     <img
                         alt="profile-picture"
+                        class="profile__card__picture-image"
                         src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
                     />
                 </div>
-                <div class="profile-info">
-                    <h2>TYLER</h2>
-                    <p class="username">@Gebruikersnaam</p>
-                    <p class="bio">
-                        Dit is de korte omschrijving die op het profiel komt te staan. Lorem
-                        ipsum dolor sit amet, consectetur adipiscing elit, aenean.
+                <div class="profile__card__info">
+                    <h2 class="profile__card__name">{{ currentUser.name }}</h2>
+                    <p class="profile__card__username">@{{ currentUser.username }}</p>
+                    <p class="profile__card__bio">
+                        {{ currentUser.bio || 'Geen bio beschikbaar' }}
                     </p>
-                    <div class="stats">
-                        <div><strong>10.504</strong> volgers</div>
-                        <div><strong>127</strong> volgend</div>
+                    <div class="profile__card__stats">
+                        <div class="profile__card__stats__badge profile__card__stats__badge--followers">
+                            <span>{{ currentUser.followers || 0 }} volgers</span>
+                        </div>
+                        <div class="profile__card__stats__badge profile__card__stats__badge--following">
+                            <span>{{ currentUser.following || 0 }} volgend</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <main class="profile-input">
-            <section class="writing">
-                <img
-                    alt="writing"
-                    class="writing"
-                    src="/assets/writing.png"
-                />
-                <input
-                    v-model="newBlog"
-                    placeholder="Schrijf een blog..."
-                    type="text"
-                    @keyup.enter="postBlog"
-                />
-            </section>
-        </main>
     </div>
+
+    <main class="profile-blog">
+        <section class="profile-blog__input">
+            <img
+                alt="writing"
+                class="profile-blog__img"
+                src="/assets/writing.png"
+            />
+            <input
+                v-model="newBlog"
+                class="profile-blog__input__field"
+                placeholder="Schrijf een blog..."
+                type="text"
+                @keyup.enter="postBlog"
+            />
+        </section>
+    </main>
 </template>
 
 <script>
 export default {
-    name: 'ProfilePage',
+    name: 'ProfielComponent',
+
     data() {
         return {
-            newBlog: '',
-        };
+            newBlog: ''
+        }
     },
+
+    computed: {
+        currentUser() {
+            return this.$store.getters['user/currentUser'];
+        }
+    },
+
+    mounted() {
+        this.$store.dispatch('user/fetchCurrentUser')
+            .then(() => console.log('currentUser loaded:', this.currentUser))
+            .catch(err => console.error(err));
+    },
+
     methods: {
         postBlog() {
-            if (!this.newBlog.trim()) return; // voorkomt lege blogs
+            if (!this.newBlog.trim()) return;
             console.log('Nieuwe blog:', this.newBlog);
             this.newBlog = '';
         },
