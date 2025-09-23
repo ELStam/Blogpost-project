@@ -1,7 +1,11 @@
 <template>
     <div class="app-blog-header">
-        <img class="app-blog-header__logo" height="30" src="/assets/writing-wit.png" width="30"/>
-        <h1 class="app-blog-header__title">BLOG.</h1>
+        <img
+            alt="Blog Logo"
+            class="app-blog-header__logo" height="30"
+            src="/assets/writing-wit.png" width="30"
+        />
+        <h1 class="app-blog-header__title">blog.</h1>
         <nav class="app-blog-header__nav">
             <router-link class="app-blog-header__link" to="/">Home</router-link>
             <router-link class="app-blog-header__link" to="/ontdek">Ontdek</router-link>
@@ -11,6 +15,7 @@
 
             <div v-if="isAuthenticated" class="app-blog-header__dropdown">
                 <img
+                    alt="Profile-image"
                     class="app-blog-header__profile"
                     src="/assets/img.png"
                     @click="toggleDropdown"
@@ -26,8 +31,11 @@
                             </router-link>
                         </li>
                         <li class="app-blog-header__dropdown-item">
-                            <a class="app-blog-header__dropdown-link app-blog-header__dropdown-link--logout"
-                               @click="handleLogout">Uitloggen
+                            <a
+                                class="app-blog-header__dropdown-link app-blog-header__dropdown-link--logout"
+                                @click="handleLogout"
+                            >
+                                Uitloggen
                             </a>
                         </li>
                     </ul>
@@ -42,7 +50,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: 'HeaderComponent',
@@ -67,7 +75,7 @@ export default {
         async handleLogout() {
             this.open = false
             await this.logout()
-            this.$router.push({ name: 'Login' })
+            this.$router.push({name: 'Login'})
         }
     }
 }

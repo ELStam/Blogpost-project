@@ -1,9 +1,12 @@
 <template>
     <div class="login">
         <div class="login__background">
-            <img class="login__img" src="/assets/writing.png"/>
+            <img
+                alt="Writing"
+                class="login__img" src="/assets/writing.png"
+            />
         </div>
-        <div class="login__box">
+        <div class="login__container">
             <h1 class="login__title">INLOGGEN</h1>
 
             <div class="login__content">
@@ -33,7 +36,10 @@
                 </form>
 
                 <div class="login__links">
-                    <img class="login__link-icon" src="/assets/padlock.png">
+                    <img
+                        alt="Padlock"
+                        class="login__link-icon" src="/assets/padlock.png"
+                    >
                     <span class="login__link login__link--forget">
                         Wachtwoord vergeten
                     </span>

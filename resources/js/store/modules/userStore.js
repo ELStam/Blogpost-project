@@ -22,8 +22,7 @@ export default {
     actions: {
         async fetchCurrentUser({commit}) {
             try {
-                const user = await UserService.getCurrentUser();
-                commit('SET_CURRENT_USER', user);
+                commit('SET_CURRENT_USER', await UserService.getCurrentUser())
             } catch (error) {
                 console.error('Failed to fetch current user:', error);
             }

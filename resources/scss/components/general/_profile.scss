@@ -5,7 +5,7 @@
     min-height: 100vh;
     position: relative;
 
-    &__hero {
+    &-hero {
         grid-column: 1 / -1;
         height: 300px;
         overflow: hidden;
@@ -21,7 +21,7 @@
         }
     }
 
-    &__card {
+    &-card {
         border-radius: 12px;
         left: 10%;
         position: absolute;
@@ -29,14 +29,14 @@
         transform: none;
         z-index: 10;
 
-        &--name {
+        &__name {
             color: #D66D35;
             font-family: "Rockwell Extra Bold", Rockwell, serif;
             font-size: 30px;
             margin-bottom: 5px;
         }
 
-        &--username {
+        &__username {
             color: #111B4E;
             display: block;
             font-family: "Arial Black", Arial, sans-serif;
@@ -44,7 +44,7 @@
             margin-bottom: 15px;
         }
 
-        &--bio {
+        &__bio {
             font-family: "Arial Black", Arial, sans-serif;
         }
 

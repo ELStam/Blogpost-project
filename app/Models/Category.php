@@ -9,8 +9,9 @@ class Category extends Model
 {
     protected $fillable = ['name'];
 
-    public function blogs(): BelongsToMany
+    public function blogs(): BelongsToMany // Relatie: een categorie hoort bij veel blogs (many-to-many)
     {
-        return $this->belongsToMany(Blog::class);
+        return $this->belongsToMany(Blog::class); // verbindt dit model aan het Blog-model
     }
+
 }
