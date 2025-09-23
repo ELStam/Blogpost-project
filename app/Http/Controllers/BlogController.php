@@ -23,7 +23,7 @@ class BlogController extends Controller
             return response()->json([
                 'message' => 'Blogs retrieved successfully.',
                 'blogs' => $blogs
-            ]);
+            ], 200);
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
@@ -45,10 +45,12 @@ class BlogController extends Controller
 
             $blog->categories()->attach($validated['categories_id']);
 
+            $blog->load('categories');
+
             return response()->json([
                 'message' => 'Blog created successfully',
                 'blog' => $blog
-            ]);
+            ], 201);
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
@@ -66,7 +68,7 @@ class BlogController extends Controller
             return response()->json([
                 'message' => 'Blog retrieved successfully',
                 'blog' => $blog
-            ]);
+            ], 200);
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
@@ -81,8 +83,8 @@ class BlogController extends Controller
     {
         try {
             $blog->update($request->validated());
-            $blog->categories()->attach($request['categories_id']);
-
+            $blog->categories()->sync($request['categories_id']);
+            $blog->load('categories');
 
             return response()->json([
                 'message' => 'Blog updated succesfully',
