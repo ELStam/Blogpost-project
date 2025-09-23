@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
  * in the frontend (e.g. route('users.index)).
  */
 
-//Route::get('/', [HomeController::class, 'index']);
-
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
@@ -25,6 +23,9 @@ Route::get('categories', [CategoryController::class, 'index'])->name('categories
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');
+    Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
     Route::get('/user', [UserController::class, 'current'])->name('user.current');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

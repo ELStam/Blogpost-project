@@ -3,23 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
-     * Display all users in JSON.
-     */
-    public function index()
-    {
-        return response()->json(User::all());
-    }
-
-    /**
      * Return the currently authenticated user.
+     *
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function current(Request $request)
+    public function current(Request $request): JsonResponse
     {
-        return response()->json($request->user());
+        try {
+            $user = $request->user();
+            return response()->json($user);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ]);
+        }
     }
 }

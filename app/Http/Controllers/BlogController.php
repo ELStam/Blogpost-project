@@ -3,56 +3,133 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Blog\CreateBlogRequest;
+use App\Http\Requests\Blog\DeleteBlogRequest;
+use App\Http\Requests\Blog\UpdateBlogRequest;
 use App\Models\Blog;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BlogController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the blogs.
+     *
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()
-            ->json(Blog::with('user')->latest()->get());
+        try {
+            $blogs = Blog::with(['user', 'categories'])->get();
+
+            return response()->json([
+                'message' => 'Blogs retrieved successfully.',
+                'blogs' => $blogs
+            ], 200);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ]);
+        }
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created blog with categories.
+     * The categories can be added based on the id.
+     *
+     * @param CreateBlogRequest $request
+     * @return JsonResponse
      */
-    public function store(CreateBlogRequest $request)
+    public function store(CreateBlogRequest $request): JsonResponse
     {
-        $blog = $request->user()
-            ->blogs()
-            ->create($request->only('title', 'body'));
+        try {
+            $validated = $request->validated();
 
-        return response()->json([
-            'message' => 'Blog created',
-            'blog' => $blog
-        ], 201);
+            $validated['user_id'] = auth()->id();
+
+            $blog = Blog::create($validated);
+
+            $blog->categories()->attach($validated['categories_id']);
+
+            $blog->load('categories');
+
+            return response()->json([
+                'message' => 'Blog created successfully',
+                'blog' => $blog
+            ], 201);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified blog.
+     *
+     * @param Blog $blog
+     * @return JsonResponse
      */
-    public function show(Blog $blog)
+    public function show(Blog $blog): JsonResponse
     {
-        return response()->json($blog->load('user'));
+        try {
+            $blog->load(['user', 'categories']);
+            return response()->json([
+                'message' => 'Blog retrieved successfully',
+                'blog' => $blog
+            ], 200);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified blog wit the categories.
+     * Categories can be updated based on the id.
+     *
+     * @param UpdateBlogRequest $request
+     * @param Blog $blog
+     * @return JsonResponse
      */
-    public function update(Request $request, Blog $blog)
+    public function update(UpdateBlogRequest $request, Blog $blog): JsonResponse
     {
-        //
+        try {
+            $blog->update($request->validated());
+            $blog->categories()->sync($request['categories_id']);
+            $blog->load('categories');
+
+            return response()->json([
+                'message' => 'Blog updated succesfully',
+                'blog' => $blog
+            ], 201);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified blog.
+     *
+     * @param DeleteBlogRequest $request
+     * @param Blog $blog
+     * @return JsonResponse
      */
-    public function destroy(Blog $blog)
+    public function destroy(DeleteBlogRequest $request, Blog $blog): JsonResponse
     {
-        //
+        try {
+            $blog->delete();
+
+            return response()->json([
+                'message' => 'Blog deleted'
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 }
