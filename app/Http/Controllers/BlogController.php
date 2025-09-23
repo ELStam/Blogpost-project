@@ -24,9 +24,9 @@ class BlogController extends Controller
                 'message' => 'Blogs retrieved successfully.',
                 'blogs' => $blogs
             ]);
-        } catch (\Exception $error) {
+        } catch (\Exception $exception) {
             return response()->json([
-                'message' => $error->getMessage()
+                'message' => $exception->getMessage()
             ]);
         }
     }
@@ -65,9 +65,9 @@ class BlogController extends Controller
                 'message' => 'Blog retrieved successfully',
                 'blog' => $blog
             ]);
-        } catch (\Exception $error) {
+        } catch (\Exception $exception) {
             return response()->json([
-                'message' => $error->getMessage()
+                'message' => $exception->getMessage()
             ], 500);
         }
     }
@@ -84,9 +84,9 @@ class BlogController extends Controller
                 'message' => 'Blog updated succesfully',
                 'blog' => $blog
             ], 201);
-        } catch (\Exception $error) {
+        } catch (\Exception $exception) {
             return response()->json([
-                'message' => $error->getMessage()
+                'message' => $exception->getMessage()
             ], 500);
         }
     }
@@ -102,9 +102,9 @@ class BlogController extends Controller
             return response()->json([
                 'message' => 'Blog deleted'
             ]);
-        } catch (\Exception $error) {
+        } catch (\Exception $exception) {
             return response()->json([
-                'message' => $error->getMessage()
+                'message' => $exception->getMessage()
             ], 500);
         }
     }
