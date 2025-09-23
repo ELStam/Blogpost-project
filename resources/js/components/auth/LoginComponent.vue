@@ -28,6 +28,12 @@
                             Ja, Ik ga akkoord met de privacyverklaring
                         </label>
                     </div>
+                    
+                    <div v-if="scriptLoaded"
+                         :data-sitekey="siteKey"
+                         class="g-recaptcha"
+                         data-callback="onRecaptchaSuccess">
+                    </div>
 
                     <button class="login__button">Inloggen</button>
                 </form>
@@ -62,7 +68,10 @@ export default {
     data() {
         return {
             username: '',
-            password: ''
+            password: '',
+            siteKey: '6LfEQtIrAAAAAAQgDK-dTsBQM0DAfFQ8NaU0QlQq',
+            recaptchaToken: null,
+            scriptLoaded: false
         }
     },
 
@@ -70,13 +79,50 @@ export default {
         ...mapActions('auth', ['login']),
 
         async submitLogin() {
+            if (!this.recaptchaToken) {
+                alert("Bevestig de reCAPTCHA.");
+                return;
+            }
+
             try {
-                await this.login({username: this.username, password: this.password})
+                await this.login({
+                    username: this.username,
+                    password: this.password,
+                    recaptcha: this.recaptchaToken
+                })
                 this.$router.push('/')
             } catch (error) {
                 console.log(error)
             }
+        },
+
+        onRecaptchaSuccess(token) {
+            this.recaptchaToken = token;
+        },
+
+        loadRecaptcha() {
+            return new Promise((resolve) => {
+                if (document.getElementById("recaptcha-script")) {
+                    resolve();
+                    return;
+                }
+                const script = document.createElement("script");
+                script.id = "recaptcha-script";
+                script.src = "https://www.google.com/recaptcha/api.js";
+                script.async = true;
+                script.defer = true;
+                script.onload = resolve;
+                document.head.appendChild(script);
+            });
         }
+    },
+
+    async mounted() {
+        // maak callback globaal
+        window.onRecaptchaSuccess = this.onRecaptchaSuccess;
+
+        await this.loadRecaptcha();
+        this.scriptLoaded = true;
     }
 }
 </script>
