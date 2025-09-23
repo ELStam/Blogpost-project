@@ -4,10 +4,10 @@ import apiClient from "@/services/apiClient.js";
 export default {
     async getAllCategories() {
         try {
-            const reponse = await apiClient.get(route('categories.index'))
-            return reponse.data
+            const response = await apiClient.get(route('categories.index'))
+            return response.data
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 }

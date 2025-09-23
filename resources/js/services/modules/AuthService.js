@@ -17,7 +17,7 @@ export default {
             return response.data
 
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     },
 
@@ -27,7 +27,7 @@ export default {
             Cookies.remove('auth_token')
             return response.data
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 }

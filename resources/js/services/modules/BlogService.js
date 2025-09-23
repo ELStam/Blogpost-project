@@ -13,21 +13,26 @@ export default {
 
             return response.data
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     },
 
     async getAllBlogs() {
-        const response = await apiClient.get(route('blogs.index'))
-        return response.data
+        try {
+            const response = await apiClient.get(route('blogs.index'))
+            return response.data
+        } catch (error) {
+            alert(error)
+        }
+
     },
 
     async getBlog(id) {
         try {
-            const response = await apiClient.get(route('blogs.show', { blog: id}))
+            const response = await apiClient.get(route('blogs.show', {blog: id}))
             return response.data
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 }

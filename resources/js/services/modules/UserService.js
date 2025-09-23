@@ -3,12 +3,22 @@ import {route} from 'ziggy-js'
 
 export default {
     async getAllUsers() {
-        const response = await apiClient.get(route('users.index'))
-        return response.data
+        try {
+            const response = await apiClient.get(route('users.index'))
+            return response.data
+        } catch (error) {
+            alert(error)
+        }
+
     },
 
     async getCurrentUser() {
-        const response = await apiClient.get(route('user.current'))
-        return response.data
+        try {
+            const response = await apiClient.get(route('user.current'))
+            return response.data
+        } catch (error) {
+            alert(error)
+        }
+
     }
 }
