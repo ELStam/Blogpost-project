@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Blog\CreateBlogRequest;
 use App\Http\Requests\Blog\DeleteBlogRequest;
+use App\Http\Requests\Blog\UpdateBlogRequest;
 use App\Models\Blog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -16,8 +17,18 @@ class BlogController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()
-            ->json(Blog::with('user')->latest()->get());
+        try {
+            $blogs = Blog::with('user')->get();
+
+            return response()->json([
+                'message' => 'Blogs retrieved successfully.',
+                'blogs' => $blogs
+            ]);
+        } catch (\Exception $error) {
+            return response()->json([
+                'message' => $error->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -25,16 +36,22 @@ class BlogController extends Controller
      */
     public function store(CreateBlogRequest $request): JsonResponse
     {
-        $validated = $request->validated();
+        try {
+            $validated = $request->validated();
 
-        $validated['user_id'] = auth()->id();
+            $validated['user_id'] = auth()->id();
 
-        $blog = Blog::create($validated);
+            $blog = Blog::create($validated);
 
-        return response()->json([
-            'message' => 'Blog created successfully',
-            'blog' => $blog
-        ]);
+            return response()->json([
+                'message' => 'Blog created successfully',
+                'blog' => $blog
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -42,15 +59,36 @@ class BlogController extends Controller
      */
     public function show(Blog $blog): JsonResponse
     {
-        return response()->json($blog->load('user'));
+        try {
+            $blog->load('user');
+            return response()->json([
+                'message' => 'Blog retrieved successfully',
+                'blog' => $blog
+            ]);
+        } catch (\Exception $error) {
+            return response()->json([
+                'message' => $error->getMessage()
+            ], 500);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blog $blog): JsonResponse
+    public function update(UpdateBlogRequest $request, Blog $blog): JsonResponse
     {
-        //
+        try {
+            $blog->update($request->validated());
+
+            return response()->json([
+                'message' => 'Blog updated succesfully',
+                'blog' => $blog
+            ], 201);
+        } catch (\Exception $error) {
+            return response()->json([
+                'message' => $error->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -58,10 +96,16 @@ class BlogController extends Controller
      */
     public function destroy(DeleteBlogRequest $request, Blog $blog): JsonResponse
     {
-        $blog->delete();
+        try {
+            $blog->delete();
 
-        return response()->json([
-            'message' => 'Blog deleted'
-        ]);
+            return response()->json([
+                'message' => 'Blog deleted'
+            ]);
+        } catch (\Exception $error) {
+            return response()->json([
+                'message' => $error->getMessage()
+            ], 500);
+        }
     }
 }
