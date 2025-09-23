@@ -28,6 +28,8 @@ class CreateBlogRequest extends FormRequest
             'introduction' => 'required|string|max:255',
             'paragraph_title' => 'required|string|max:255',
             'paragraph_body' => 'required|string',
+            'categories_id' => 'required|array|min:1',
+            'categories_id.*' => 'required|exists:categories,id',
         ];
     }
 }

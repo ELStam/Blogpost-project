@@ -18,7 +18,7 @@ class BlogController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $blogs = Blog::with('user')->get();
+            $blogs = Blog::with(['user', 'categories'])->get();
 
             return response()->json([
                 'message' => 'Blogs retrieved successfully.',
@@ -43,6 +43,8 @@ class BlogController extends Controller
 
             $blog = Blog::create($validated);
 
+            $blog->categories()->attach($validated['categories_id']);
+
             return response()->json([
                 'message' => 'Blog created successfully',
                 'blog' => $blog
@@ -60,7 +62,7 @@ class BlogController extends Controller
     public function show(Blog $blog): JsonResponse
     {
         try {
-            $blog->load('user');
+            $blog->load(['user', 'categories']);
             return response()->json([
                 'message' => 'Blog retrieved successfully',
                 'blog' => $blog
@@ -79,6 +81,8 @@ class BlogController extends Controller
     {
         try {
             $blog->update($request->validated());
+            $blog->categories()->attach($request['categories_id']);
+
 
             return response()->json([
                 'message' => 'Blog updated succesfully',

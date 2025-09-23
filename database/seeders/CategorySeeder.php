@@ -18,10 +18,12 @@ class CategorySeeder extends Seeder
             'Cultuur',
             'Eten',
             'Lifestyle',
-            'Muziek'
+            'Muziek',
+            'Sport',
+            'Films'
         ];
 
-        foreach($categories as $category) {
+        foreach ($categories as $category) {
             Category::create(['name' => $category]);
         }
     }
