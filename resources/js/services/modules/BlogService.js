@@ -20,7 +20,7 @@ export default {
     async getAllBlogs() {
         try {
             const response = await apiClient.get(route('blogs.index'))
-            return response.data
+            return response.data.blogs
         } catch (error) {
             alert(error)
         }
@@ -30,7 +30,7 @@ export default {
     async getBlog(id) {
         try {
             const response = await apiClient.get(route('blogs.show', {blog: id}))
-            return response.data
+            return response.data.blog
         } catch (error) {
             alert(error)
         }
