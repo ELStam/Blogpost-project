@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Blog;
 
+use App\Models\Blog;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class CreateBlogRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class CreateBlogRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check();
+        return Gate::allows('create', Blog::class);
     }
 
     /**
@@ -23,7 +25,9 @@ class CreateBlogRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'body' => 'required|string'
+            'introduction' => 'required|string|max:255',
+            'paragraph_title' => 'required|string|max:255',
+            'paragraph_body' => 'required|string',
         ];
     }
 }

@@ -25,6 +25,8 @@ Route::get('categories', [CategoryController::class, 'index'])->name('categories
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');
+    Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
     Route::get('/user', [UserController::class, 'current'])->name('user.current');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

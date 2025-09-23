@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Blog\CreateBlogRequest;
+use App\Http\Requests\Blog\DeleteBlogRequest;
 use App\Models\Blog;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()
             ->json(Blog::with('user')->latest()->get());
@@ -20,22 +23,24 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateBlogRequest $request)
+    public function store(CreateBlogRequest $request): JsonResponse
     {
-        $blog = $request->user()
-            ->blogs()
-            ->create($request->only('title', 'body'));
+        $validated = $request->validated();
+
+        $validated['user_id'] = auth()->id();
+
+        $blog = Blog::create($validated);
 
         return response()->json([
-            'message' => 'Blog created',
+            'message' => 'Blog created successfully',
             'blog' => $blog
-        ], 201);
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Blog $blog)
+    public function show(Blog $blog): JsonResponse
     {
         return response()->json($blog->load('user'));
     }
@@ -43,7 +48,7 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, Blog $blog): JsonResponse
     {
         //
     }
@@ -51,8 +56,12 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog)
+    public function destroy(DeleteBlogRequest $request, Blog $blog): JsonResponse
     {
-        //
+        $blog->delete();
+
+        return response()->json([
+            'message' => 'Blog deleted'
+        ]);
     }
 }
