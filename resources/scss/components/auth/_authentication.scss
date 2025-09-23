@@ -22,7 +22,7 @@
         width: 800px;
     }
 
-    &__box {
+    &__container {
         background-color: #fff;
         border-radius: 40px 40px 0 0;
         display: flex;
@@ -94,7 +94,7 @@
             margin-left: auto;
         }
     }
-    
+
     &__link-icon {
         color: #ccc;
         flex-shrink: 0;

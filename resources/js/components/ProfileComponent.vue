@@ -1,32 +1,34 @@
 <template>
     <div v-if="currentUser" class="profile">
-        <div class="profile__hero">
+        <div class="profile-hero">
             <img
-                class="profile__hero__image"
+                alt="Hero"
+                class="profile-hero__image"
                 src="/assets/luca-bravo-O453M2Liufs-unsplash.jpg"
             />
         </div>
 
-        <section class="profile__card">
-            <div class="profile__card__header">
-                <div class="profile__card__picture profile__card__picture--rounded">
+        <section class="profile-card">
+            <div class="profile-card__header">
+                <div class="profile-card__picture profile-card__picture--rounded">
                     <img
                         alt="profile-picture"
-                        class="profile__card__picture-image"
+                        class="profile-card__picture-image"
                         src="/assets/tyler-nix-PQeoQdkU9jQ-unsplash.jpg"
                     />
                 </div>
-                <div class="profile__card--info">
-                    <h2 class="profile__card--name">{{ currentUser.name }}</h2>
-                    <p class="profile__card--username">@{{ currentUser.username }}</p>
-                    <p class="profile__card--bio">
+
+                <div class="profile-card__info">
+                    <h2 class="profile-card__name">{{ currentUser.name }}</h2>
+                    <span class="profile-card__username">@{{ currentUser.username }}</span>
+                    <p class="profile-card__bio">
                         {{ currentUser.bio || 'Geen bio beschikbaar' }}
                     </p>
-                    <div class="profile__card__stats">
-                        <div class="profile__card__stats--badge profile__card__stats--badge--followers">
+                    <div class="profile-card__stats">
+                        <div class="profile-card__stats--badge profile-card__stats--badge--followers">
                             <span>{{ currentUser.followers || 0 }} volgers</span>
                         </div>
-                        <div class="profile__card__stats--badge profile__card__stats--badge--following">
+                        <div class="profile-card__stats--badge profile-card__stats--badge--following">
                             <span>{{ currentUser.following || 0 }} volgend</span>
                         </div>
                     </div>
@@ -35,38 +37,33 @@
         </section>
     </div>
 
-    <main class="profile-blog">
-        <section class="profile-blog__input">
-            <img
-                alt="writing"
-                class="profile-blog__img"
-                src="/assets/writing.png"
-            />
-            <input
-                v-model="newBlog"
-                class="profile-blog__input__field"
-                placeholder="Schrijf een blog..."
-                type="text"
-                @keyup.enter="postBlog"
-            />
-        </section>
-    </main>
+    <div class="profile-blog">
+        <create-blog-component image="/assets/writing.png"/>
+    </div>
 </template>
 
 <script>
+import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
+import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+
 export default {
-    name: 'ProfielComponent',
+    name: "ProfileComponent",
+
+    components: {
+        BaseInputComponent,
+        CreateBlogComponent,
+    },
 
     data() {
         return {
-            newBlog: ''
-        }
+            newBlog: '',
+        };
     },
 
     computed: {
         currentUser() {
             return this.$store.getters['user/currentUser'];
-        }
+        },
     },
 
     mounted() {
@@ -77,10 +74,11 @@ export default {
 
     methods: {
         postBlog() {
-            if (!this.newBlog.trim()) return;
+            if (!this.newBlog.trim()) return; // Voorkomt het posten van lege of spatie-only blogs
             console.log('Nieuwe blog:', this.newBlog);
             this.newBlog = '';
         },
     },
+
 };
 </script>
