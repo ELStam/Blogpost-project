@@ -8,7 +8,7 @@
         </aside>
 
         <main class="home__content">
-            <create-blog-component image="/assets/img.png"/>
+            <create-blog-component/>
 
             <blog-list-component/>
         </main>
