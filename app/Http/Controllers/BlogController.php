@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Gate;
 class BlogController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the blogs.
+     *
+     * @return JsonResponse
      */
     public function index(): JsonResponse
     {
@@ -32,7 +34,11 @@ class BlogController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created blog with categories.
+     * The categories can be added based on the id.
+     *
+     * @param CreateBlogRequest $request
+     * @return JsonResponse
      */
     public function store(CreateBlogRequest $request): JsonResponse
     {
@@ -59,7 +65,10 @@ class BlogController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified blog.
+     *
+     * @param Blog $blog
+     * @return JsonResponse
      */
     public function show(Blog $blog): JsonResponse
     {
@@ -77,7 +86,12 @@ class BlogController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified blog wit the categories.
+     * Categories can be updated based on the id.
+     *
+     * @param UpdateBlogRequest $request
+     * @param Blog $blog
+     * @return JsonResponse
      */
     public function update(UpdateBlogRequest $request, Blog $blog): JsonResponse
     {
@@ -98,7 +112,11 @@ class BlogController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified blog.
+     *
+     * @param DeleteBlogRequest $request
+     * @param Blog $blog
+     * @return JsonResponse
      */
     public function destroy(DeleteBlogRequest $request, Blog $blog): JsonResponse
     {

@@ -20,14 +20,14 @@ class AuthController extends Controller
      * hashing the password, generating a personal access token.
      *
      * @param RegisterRequest $request
-     * @return \Illuminate\Http\JsonResponse JSON response containing:
+     * @return JsonResponse JSON response containing:
      *      - 'auth_token' => the generated Sanctum token for API authentication
      *      - 'user' => the created user object
      */
     public function register(RegisterRequest $request): JsonResponse
     {
         $user = User::create([
-            'name' =>  $request->name,
+            'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'bio' => $request->bio,
@@ -38,7 +38,7 @@ class AuthController extends Controller
         try {
             $token = $user->createToken('auth_token')->plainTextToken;
         } catch (Exception $e) {
-            return response()-json(['Error'=> 'Could not create token'], 500);
+            return response() - json(['Error' => 'Could not create token'], 500);
         }
 
         return response()->json([
@@ -54,7 +54,7 @@ class AuthController extends Controller
      * If the credentials are valid, it generated a personal access token.
      *
      * @param LoginRequest $request
-     * @return \Illuminate\Http\JsonResponse JSON response containing:
+     * @return JsonResponse JSON response containing:
      *      - 'message' => if the user is succesfully logged in
      *      - 'auth_token' => the generated Sanctum token for the API authentication
      *      - 'user' => the created user object
@@ -81,7 +81,7 @@ class AuthController extends Controller
     /**
      * Log out the authenticated user by deleting their current Sanctum token.
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function logout(Request $request): JsonResponse
     {
