@@ -20,7 +20,7 @@ export default {
     async getAllBlogs() {
         try {
             const response = await apiClient.get(route('blogs.index'))
-            return response.data
+            return response.data.blogs
         } catch (error) {
             alert(error)
         }

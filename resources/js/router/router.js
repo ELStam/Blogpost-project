@@ -3,6 +3,7 @@ import HomeComponent from '@/components/HomeComponent.vue';
 import ProfileComponent from "@/components/ProfileComponent.vue";
 import LoginComponent from "@/components/auth/LoginComponent.vue";
 import BlogDetailComponent from "@/components/blogs/BlogDetailComponent.vue";
+import FollowingComponent from "@/components/FollowingComponent.vue";
 
 const routes = [
     {
@@ -25,6 +26,11 @@ const routes = [
         path: '/login',
         component: LoginComponent,
         name: 'Login'
+    },
+    {
+        path: '/following',
+        component: FollowingComponent,
+        name: 'Following'
     }
 ];
 
