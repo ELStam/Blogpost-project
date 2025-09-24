@@ -1,7 +1,9 @@
 .home {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    padding: 70px;
-
+    &__content {
+        background: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 1600px;
+    }
 }

@@ -30,6 +30,15 @@ export default {
     async getBlog(id) {
         try {
             const response = await apiClient.get(route('blogs.show', {blog: id}))
+            return response.data.blog
+        } catch (error) {
+            alert(error)
+        }
+    },
+
+    async deleteBlog(id) {
+        try {
+            const response = await apiClient.delete(route('blogs.destroy', {blog: id}))
             return response.data
         } catch (error) {
             alert(error)

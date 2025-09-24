@@ -1,17 +1,20 @@
 <template>
     <div class="home">
-        <aside class="home__sidebar">
+        <page-layout class="--home" content-class="--home" sidebar-class="--home">
+            <template #sidebar>
+                <category-component
+                    label="Categorieën"
+                />
+            </template>
 
-            <category-component
-                label="Categorieën"
-            />
-        </aside>
+            <template #default>
+                <main class="home__content">
+                    <create-blog-component/>
+                    <blog-list-component/>
 
-        <main class="home__content">
-            <create-blog-component/>
-
-            <blog-list-component/>
-        </main>
+                </main>
+            </template>
+        </page-layout>
     </div>
 </template>
 <script>
@@ -21,11 +24,13 @@ import {mapActions, mapGetters} from "vuex";
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import CategoryComponent from "@/components/navigation/CategoryComponent.vue";
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import PageLayout from "@/components/PageLayout.vue";
 
 export default {
     name: "HomeComponent",
 
     components: {
+        PageLayout,
         CreateBlogComponent,
         CategoryComponent,
         BlogListComponent,
