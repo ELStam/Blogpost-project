@@ -1,3 +1,5 @@
+$blog: ".blog";
+
 .blog {
 
     // List Styling
@@ -24,6 +26,14 @@
         display: flex;
         margin-bottom: 30px;
         padding: 20px;
+
+        &.--following {
+            #{$blog}-create {
+                &__username {
+                
+                }
+            }
+        }
 
 
         &__image {

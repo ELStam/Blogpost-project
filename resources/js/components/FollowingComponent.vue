@@ -1,14 +1,14 @@
 <template>
-    <div v-if="currentUser" class="following">
-        <div class="following-left">
-            <div class="following-blog">
-                <div class="following-blog__username">
-                    <span class="following-blog__username-text">@{{ currentUser.username }}</span>
-                </div>
-                <create-blog-component/>
+    <div v-if="currentUser" class="following following__layout">
+        <div class="following__left">
+            <div class="following__blog">
+                <create-blog-component
+                    :user="currentUser"
+                    class="following__layout__create-blog following__layout__create-blog--below-image"
+                />
             </div>
 
-            <div class="following-blog__more-friends">
+            <div class="following__blog__more-friends">
                 Bekijk meer van je vrienden
             </div>
         </div>
