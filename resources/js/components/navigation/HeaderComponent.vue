@@ -9,7 +9,7 @@
         <nav class="app-blog-header__nav">
             <router-link class="app-blog-header__link" to="/">Home</router-link>
             <router-link class="app-blog-header__link" to="/ontdek">Ontdek</router-link>
-            <router-link class="app-blog-header__link" to="/volgend">Volgend</router-link>
+            <router-link class="app-blog-header__link" to="/following">Volgend</router-link>
             <router-link class="app-blog-header__link" to="/categorieen">Categorieën</router-link>
             <router-link class="app-blog-header__link" to="/TopPosts">Top Posts</router-link>
 

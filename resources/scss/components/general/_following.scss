@@ -1,0 +1,55 @@
+.following {
+    align-items: flex-start;
+    display: flex;
+    gap: 2%;
+    margin-left: 5%;
+
+    &-left {
+        display: flex;
+        flex-direction: column;
+        max-width: 30%;
+    }
+
+    &-blog {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        height: 500px;
+        margin-top: 40px;
+        padding: 2%;
+
+        &__username {
+            &-text {
+                color: #111B4E;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+
+        &__more-friends {
+            color: #111B4E;
+            font-family: "Rockwell Extra Bold", Rockwell, serif;
+            font-size: 20px;
+            font-weight: 500;
+            margin-top: 20px;
+            text-align: left;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+
+    &__title {
+        color: #E56620;
+        font-family: "Rockwell Extra Bold", Rockwell, serif;
+        font-size: 35px;
+        font-weight: bold;
+        margin-top: 40px;
+    }
+}
