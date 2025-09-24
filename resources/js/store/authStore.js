@@ -13,6 +13,14 @@ export default {
     },
 
     mutations: {
+        /**
+         * Sets or removes the token in the state and cookies.
+         *
+         * @param {Object} state
+         * @param {string} token
+         *
+         * @return {void}
+         */
         SET_TOKEN(state, token) {
             state.token = token
             if (token) {
@@ -24,16 +32,34 @@ export default {
     },
 
     actions: {
+        /**
+         * Logs the user in via the API and stores the token.
+         *
+         * @param {Object} context
+         * @param {Function} context.commit
+         * @param {Object} payload
+         * @param {string} payload.username
+         * @param {string} payload.password
+         *
+         * @return {Promise<void>}
+         */
         async login({commit}, {username, password}) {
             try {
                 const data = await AuthService.login(username, password)
                 commit('SET_TOKEN', data.auth_token)
-                return data
+                return datain
             } catch (error) {
-                console.error('Login failed', error)
+                throw error
             }
         },
 
+        /**
+         * Logs the user ou via the API and sets the token null.
+         * @param {Object} context
+         * @param {Function} context.commit
+         *
+         * @return {Promise<void>}
+         */
         async logout({commit}) {
             try {
                 await AuthService.logout()
@@ -45,10 +71,22 @@ export default {
     },
 
     getters: {
+        /**
+         * Returns whether the user is authenticated.
+         *
+         * @param {Object} state
+         * @return {boolean}
+         */
         isAuthenticated(state) {
             return !!state.token
         },
 
+        /**
+         * Returns the current token.
+         *
+         * @param {Object} state
+         * @return {string}
+         */
         getToken(state) {
             return state.token
         }
