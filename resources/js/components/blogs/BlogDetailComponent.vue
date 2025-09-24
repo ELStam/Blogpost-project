@@ -12,10 +12,11 @@
                         class="blog-detail__profile"
                         src="/assets/img.png"
                     />
-                    <h3 class="blog-detail__info">Meer van deze blogger</h3>
                 </div>
                 <article class="blog-detail__blogs">
-                    <span class="blogger-detail__name">@{{ blog.user.username }}</span>
+                    <h3 class="blog-detail__information">Meer van deze blogger</h3>
+
+                    <blog-item-component :blog="blog"/>
                 </article>
             </aside>
 
@@ -79,10 +80,12 @@
 import {mapActions, mapGetters} from "vuex";
 import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 import IconComponent from "@/components/general/IconComponent.vue";
+import BlogSubCardComponent from "@/components/blogs/BlogItemComponent.vue";
+import BlogItemComponent from "@/components/blogs/BlogItemComponent.vue";
 
 export default {
     name: 'BlogDetailComponent',
-    components: {IconComponent, ProfilePhotoComponent},
+    components: {BlogItemComponent, BlogSubCardComponent, IconComponent, ProfilePhotoComponent},
     props: {
         id: {
             type: String,
