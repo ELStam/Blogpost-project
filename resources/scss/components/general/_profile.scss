@@ -1,9 +1,49 @@
+$profile: ".profile";
+
 .profile {
     display: grid;
     gap: 20px;
     grid-template-columns: 300px 1fr;
     min-height: 100vh;
     position: relative;
+
+    &-photo {
+        &.--blog {
+            margin-bottom: 15px;
+
+            #{$profile}-photo {
+                &__image {
+                    border: 10px solid #f4f4f4;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        &.--card {
+            margin-right: 10px;
+
+            #{$profile}-photo {
+                &__image {
+                    border-radius: 50%;
+                    height: 50px;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        &.--create {
+            margin-right: 10px;
+            
+            #{$profile}-photo {
+                &__image {
+                    border-radius: 50%;
+                    height: 70px;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
 
     &-hero {
         grid-column: 1 / -1;

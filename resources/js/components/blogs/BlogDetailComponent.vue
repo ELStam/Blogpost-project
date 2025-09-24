@@ -6,13 +6,11 @@
 
         <div class="blog-detail__body">
             <aside class="blog-detail__sidebar">
-                <div class="blog-detail__blogger">
-                    <profile-photo-component
-                        alt="Profile photo of the blogger"
-                        class="blog-detail__profile"
-                        src="/assets/img.png"
-                    />
-                </div>
+                <profile-photo-component
+                    alt="Profile photo of the blogger"
+                    class="--blog"
+                    src="/assets/img.png"
+                />
                 <article class="blog-detail__blogs">
                     <h3 class="blog-detail__information">Meer van deze blogger</h3>
 

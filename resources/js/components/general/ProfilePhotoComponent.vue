@@ -1,11 +1,8 @@
 <template>
-    <div class="profile-photo">
+    <div :class="['profile-photo', $attrs?.class]">
         <img
-            :alt="alt"
-            :class="photoClass"
-            :src="src"
             class="profile-photo__image"
-            v-bind="$attrs"
+            v-bind="attrsWithoutClass"
             @click="handleClick"
         />
     </div>
@@ -16,19 +13,11 @@ export default {
     name: 'ProfilePhotoComponent',
 
     inheritAttrs: false,
-
-    props: {
-        src: {
-            type: String,
-            required: true
-        },
-        alt: {
-            type: String,
-            default: 'Profile Photo'
-        },
-        photoClass: {
-            type: String,
-            default: ''
+    
+    computed: {
+        attrsWithoutClass() {
+            const {class: _class, ...rest} = this.$attrs
+            return rest
         }
     },
 

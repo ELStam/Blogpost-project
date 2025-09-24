@@ -2,7 +2,7 @@
     <div v-if="isAuthenticated" class="blog-create">
         <profile-photo-component
             alt="Profile photo of the user"
-            class="blog-create__image"
+            class="--create"
             src="/assets/img.png"
         />
 

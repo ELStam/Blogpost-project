@@ -6,7 +6,6 @@
         gap: 30px;
         grid-template-columns: 1fr 1fr 1fr;
         justify-content: center;
-        padding-top: 20px;
 
         @media screen and (max-width: 1535px) {
             grid-template-columns: 1fr 1fr;
@@ -23,6 +22,7 @@
         align-items: center;
         background-color: #fff;
         display: flex;
+        margin-bottom: 30px;
         padding: 20px;
 
 
@@ -129,17 +129,11 @@
         }
 
         &__sidebar {
-            padding: 30px;
-        }
-
-        &__profile {
-            border: 10px solid #f4f4f4;
-            border-radius: 50%;
-            height: 250px;
-            margin-bottom: 15px;
-            object-fit: cover;
-            transform: translateY(-60%);
-            width: 250px;
+            left: 20px;
+            position: absolute;
+            top: 0;
+            transform: translateY(-20%);
+            width: 350px;
         }
 
         &__blogs {
@@ -154,11 +148,14 @@
         &__body {
             display: flex;
             justify-content: center;
+            margin: 0 auto;
+            max-width: 1200px;
             padding: 20px;
+            position: relative;
         }
 
         &__post {
-            max-width: 1200px;
+            margin-left: 375px;
             padding: 30px;
         }
 

@@ -3,7 +3,7 @@
         <div class="blog-card__header">
             <profile-photo-component
                 alt="Profile photo"
-                class="blog-card__profile"
+                class="--card"
                 src="/assets/img.png"
             />
             <span class="blog-card__username">@{{ blog.user.username }}</span>

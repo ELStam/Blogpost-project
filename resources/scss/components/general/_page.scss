@@ -1,0 +1,11 @@
+.page {
+    background: #f4f4f4;
+
+
+    &.--home {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        padding: 40px;
+    }
+}
