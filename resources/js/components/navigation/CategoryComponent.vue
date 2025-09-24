@@ -9,7 +9,7 @@
                         Alle blogs
                     </button>
                 </li>
-                <li v-for="category in getCategories" class="category__list-item">
+                <li v-for="category in categories" class="category__list-item">
                     <button class="category__button">{{ category.name }}</button>
                 </li>
                 <li class="category__list-item">
@@ -37,7 +37,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('blog', ['getCategories'])
+        ...mapGetters('blog', ['categories'])
     },
 
     created() {

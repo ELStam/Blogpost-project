@@ -8,6 +8,8 @@
 @forward "components/general/general";
 @forward "components/general/home";
 @forward "components/general/profile";
+@forward "components/general/page";
+@forward "components/general/sidebar";
 
 // blogs
 @forward "components/blogs/blog";
@@ -24,15 +26,13 @@
 /* Basis styling */
 .app {
     height: 100vh;
-}
 
-.app-blog {
-    height: 100%;
-}
+    &-blog {
 
-.app-blog-body {
-    background: #f4f4f4;
-    color: #333;
-    font-family: Arial, sans-serif;
 
+        &-body {
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+    }
 }

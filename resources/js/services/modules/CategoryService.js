@@ -5,7 +5,7 @@ export default {
     async getAllCategories() {
         try {
             const response = await apiClient.get(route('categories.index'))
-            return response.data
+            return response.data.categories
         } catch (error) {
             alert(error)
         }

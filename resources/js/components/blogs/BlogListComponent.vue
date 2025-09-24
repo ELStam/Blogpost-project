@@ -1,7 +1,7 @@
 <template>
     <div class="blog-list">
         <blog-card-component
-            v-for="blog in getBlogs"
+            v-for="blog in blogs"
             :key="blog.id"
             :blog="blog"
         />
@@ -18,15 +18,17 @@ export default {
     components: {BlogCardComponent},
 
     computed: {
-        ...mapGetters('blog', ['getBlogs'])
+        ...mapGetters('blog', ['blogs'])
     },
 
     created() {
         this.fetchBlogs()
+        this.fetchCurrentUser()
     },
 
     methods: {
         ...mapActions('blog', ['fetchBlogs']),
+        ...mapActions('user', ['fetchCurrentUser'])
     }
 }
 </script>

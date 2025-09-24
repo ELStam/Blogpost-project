@@ -5,7 +5,7 @@
             :value="modelValue"
             class="base-input__input"
             v-bind="$attrs"
-            @input="$emit('update:modelValue', $event.target.value)"
+            @input="handleInput($event.target.value)"
         >
     </div>
 </template>
@@ -21,6 +21,12 @@ export default {
         modelValue: {
             type: [String, Number],
             default: ''
+        }
+    },
+
+    methods: {
+        handleInput(event) {
+            this.$emit('update:modelValue', event)
         }
     }
 }
