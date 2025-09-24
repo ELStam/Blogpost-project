@@ -1,76 +1,162 @@
 <template>
     <div v-if="blog" class="blog-detail">
-        <div class="blog-detail__header">
-            <img class="blog-detail__banner" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg"/>
-        </div>
-
-        <div class="blog-detail__body">
-            <aside class="blog-detail__sidebar">
+        <header class="blog-detail__header">
+            <img class="blog-detail__banner" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg"/></header>
+        <page-layout class="--home" content-class="--detail" sidebar-class="--detail">
+            <template #sidebar>
                 <profile-photo-component
                     alt="Profile photo of the blogger"
                     class="--blog"
                     src="/assets/img.png"
                 />
-                <article class="blog-detail__blogs">
-                    <h3 class="blog-detail__information">Meer van deze blogger</h3>
+
+                <div class="blog-detail__items">
+                    <h3 class="blog-detail__more">
+                        Meer van deze blogger
+                    </h3>
 
                     <blog-item-component :blog="blog"/>
-                </article>
-            </aside>
-
-            <section class="blog-detail__post">
-                <div class="blog-detail__buttons">
-                    <button
-                        v-for="category in blog.categories"
-                        class="blog-detail__button">{{ category.name }}
-                    </button>
-                    <span
-                        class="blog-detail__time"
-                    >
-                        {{ dateFormat }}
-                    </span>
-                    <icon-component
-                        :blog="blog"
-                    />
+                    <blog-item-component :blog="blog"/>
                 </div>
+            </template>
 
-                <h1 class="blog-detail__title">{{ blog.title }}</h1>
+            <template #default>
+                <main class="blog-detail__content">
+                    <section class="blog-post">
 
-                <p class="blog-detail__introduction"> {{ blog.introduction }}</p>
+                        <div class="blog-post__header">
+                            <button
+                                v-for="category in blog.categories"
+                                class="blog-post__button"
+                            >
+                                {{ category.name }}
+                            </button>
+                            <span
+                                class="blog-post__time"
+                            >
+                                {{ dateFormat }}
+                            </span>
 
-                <div class="blog-detail__content">
-                    <h4 class="blog-detail__paragraph-title">
-                        {{ blog.paragraph_title }}
-                    </h4>
+                            <icon-component
+                                :blog="blog"
+                            />
+                        </div>
+                        <h1 class="blog-detail__title">
+                            {{ blog.title }}
+                        </h1>
 
-                    <p class="blog-detail__paragraph-body">
-                        {{ blog.paragraph_body }}
-                    </p>
+                        <span class="blog-detail__introduction">
+                            {{ blog.introduction }}
+                        </span>
 
-                    <div class="blog-detail__images">
-                        <img
-                            alt="A man in a boat"
-                            class="blog-detail__image"
-                            src="/assets/rolands-varsbergs-miKmVyq3qhE-unsplash.jpg"
-                        />
-                        <img
-                            alt="A man in a boat"
-                            class="blog-detail__image"
-                            src="/assets/samsung-memory-IfFP9JT-a4s-unsplash.jpg"
-                        />
-                    </div>
+                        <div class="blog-post__content">
+                            <h4 class="blog-post__title">
+                                {{ blog.paragraph_title }}
+                            </h4>
 
-                    <h4 class="blog-detail__paragraph-title">
-                        {{ blog.paragraph_title }}
-                    </h4>
+                            <p class="blog-post__paragraph">
+                                {{ blog.paragraph_body }}
+                            </p>
+                        </div>
 
-                    <p class="blog-detail__paragraph-body">
-                        {{ blog.paragraph_body }}
-                    </p>
-                </div>
-            </section>
-        </div>
+                        <div class="blog-post__images">
+                            <img
+                                alt="Man in a boat"
+                                class="blog-post__image"
+                                src="/assets/rolands-varsbergs-miKmVyq3qhE-unsplash.jpg"
+                            >
+
+                            <img
+                                alt="A hand holding a Samsung memory chip"
+                                class="blog-post__image"
+                                src="/assets/samsung-memory-IfFP9JT-a4s-unsplash.jpg"
+                            >
+
+                            <h4 class="blog-post__title">
+                                {{ blog.paragraph_title }}
+                            </h4>
+
+                            <p class="blog-post__paragraph">
+                                {{ blog.paragraph_body }}
+                            </p>
+                        </div>
+                    </section>
+                </main>
+            </template>
+        </page-layout>
     </div>
+    <!--    <div v-if="blog" class="blog-detail">-->
+    <!--        <div class="blog-detail__header">-->
+    <!--            <img class="blog-detail__banner" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg"/>-->
+    <!--        </div>-->
+
+    <!--        <div class="blog-detail__body">-->
+    <!--            <aside class="blog-detail__sidebar">-->
+    <!--    <profile-photo-component-->
+    <!--        alt="Profile photo of the blogger"-->
+    <!--        class="&#45;&#45;blog"-->
+    <!--        src="/assets/img.png"-->
+    <!--    />-->
+    <!--                <article class="blog-detail__blogs">-->
+    <!--                    <h3 class="blog-detail__information">Meer van deze blogger</h3>-->
+
+    <!--                    <blog-item-component :blog="blog"/>-->
+    <!--                </article>-->
+    <!--            </aside>-->
+
+    <!--            <section class="blog-detail__post">-->
+    <!--                <div class="blog-detail__buttons">-->
+    <!--                    <button-->
+    <!--                        v-for="category in blog.categories"-->
+    <!--                        class="blog-detail__button">{{ category.name }}-->
+    <!--                    </button>-->
+    <!--                    <span-->
+    <!--                        class="blog-detail__time"-->
+    <!--                    >-->
+    <!--                        {{ dateFormat }}-->
+    <!--                    </span>-->
+    <!--                        <icon-component-->
+    <!--                            :blog="blog"-->
+    <!--                        />-->
+    <!--                </div>-->
+
+    <!--                <h1 class="blog-detail__title">{{ blog.title }}</h1>-->
+
+    <!--                <p class="blog-detail__introduction"> {{ blog.introduction }}</p>-->
+
+    <!--                <div class="blog-detail__content">-->
+    <!--                    <h4 class="blog-detail__paragraph-title">-->
+    <!--                        {{ blog.paragraph_title }}-->
+    <!--                    </h4>-->
+
+    <!--                    <p class="blog-detail__paragraph-body">-->
+    <!--                        {{ blog.paragraph_body }}-->
+    <!--                    </p>-->
+
+    <!--                    <div class="blog-detail__images">-->
+    <!--                        <img-->
+    <!--                            alt="A man in a boat"-->
+    <!--                            class="blog-detail__image"-->
+    <!--                            src="/assets/rolands-varsbergs-miKmVyq3qhE-unsplash.jpg"-->
+    <!--                        />-->
+    <!--                        <img-->
+    <!--                            alt="A man in a boat"-->
+    <!--                            class="blog-detail__image"-->
+    <!--                            src="/assets/samsung-memory-IfFP9JT-a4s-unsplash.jpg"-->
+    <!--                        />-->
+    <!--                    </div>-->
+
+    <!--                    <h4 class="blog-detail__paragraph-title">-->
+    <!--                        {{ blog.paragraph_title }}-->
+    <!--                    </h4>-->
+
+    <!--                    <p class="blog-detail__paragraph-body">-->
+    <!--                        {{ blog.paragraph_body }}-->
+    <!--                    </p>-->
+    <!--                </div>-->
+    <!--            </section>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </template>
 
 
@@ -80,10 +166,20 @@ import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vu
 import IconComponent from "@/components/general/IconComponent.vue";
 import BlogSubCardComponent from "@/components/blogs/BlogItemComponent.vue";
 import BlogItemComponent from "@/components/blogs/BlogItemComponent.vue";
+import CategoryComponent from "@/components/navigation/CategoryComponent.vue";
+import PageLayout from "@/components/PageLayout.vue";
+import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
+import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 
 export default {
     name: 'BlogDetailComponent',
-    components: {BlogItemComponent, BlogSubCardComponent, IconComponent, ProfilePhotoComponent},
+    components: {
+        CreateBlogComponent,
+        BlogListComponent,
+        PageLayout,
+        CategoryComponent,
+        BlogItemComponent, BlogSubCardComponent, IconComponent, ProfilePhotoComponent
+    },
     props: {
         id: {
             type: String,
