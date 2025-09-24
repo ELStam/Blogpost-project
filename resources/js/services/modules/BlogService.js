@@ -34,6 +34,15 @@ export default {
         } catch (error) {
             alert(error)
         }
+    },
+
+    async deleteBlog(id) {
+        try {
+            const response = await apiClient.delete(route('blogs.destroy', {blog: id}))
+            return response.data
+        } catch (error) {
+            alert(error)
+        }
     }
 }
 

@@ -5,7 +5,7 @@ export default {
 
     state() {
         return {
-            currentUser: null,
+            currentUser: '',
             users: []
         }
     },
@@ -24,12 +24,14 @@ export default {
             try {
                 commit('SET_CURRENT_USER', await UserService.getCurrentUser())
             } catch (error) {
-                console.error('Failed to fetch current user:', error);
+                throw error
             }
         },
     },
 
     getters: {
-        currentUser: (state) => state.currentUser,
+        currentUser(state) {
+            return state.currentUser
+        },
     }
 }

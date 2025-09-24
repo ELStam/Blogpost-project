@@ -25,6 +25,10 @@ export default {
             state.blog = blog
         },
 
+        REMOVE_BLOG(state, index) {
+            state.blogs.splice(index, 1)
+        },
+
         SET_CATEGORIES(state, categories) {
             state.categories = categories
         }
@@ -37,14 +41,13 @@ export default {
                 commit('ADD_BLOG', blog)
                 return blog
             } catch (error) {
-                console.log('Failed to add blog', blog)
+                throw error
             }
         },
 
         fetchBlogs({commit}) {
             return BlogService.getAllBlogs()
                 .then(response => {
-                    console.log('blogs: ', response)
                     commit('SET_BLOGS', response)
                 })
                 .catch(error => {
@@ -55,8 +58,16 @@ export default {
         fetchBlog({commit}, id) {
             return BlogService.getBlog(id)
                 .then(response => {
-                    console.log('blog', response)
                     commit('SET_BLOG', response)
+                }).catch(error => {
+                    throw error
+                })
+        },
+
+        removeBlog({commit, state}, id) {
+            return BlogService.deleteBlog(id)
+                .then(response => {
+                    commit('REMOVE_BLOG', response)
                 }).catch(error => {
                     throw error
                 })
@@ -65,7 +76,6 @@ export default {
         fetchCategories({commit}) {
             return CategoryService.getAllCategories()
                 .then(response => {
-                    console.log('categories', response)
                     commit('SET_CATEGORIES', response)
                 })
                 .catch(error => {
@@ -75,16 +85,15 @@ export default {
     },
 
     getters: {
-        getBlogs(state) {
-            console.log(state.blogs)
+        blogs(state) {
             return state.blogs
         },
 
-        getBlog(state) {
+        blog(state) {
             return state.blog
         },
 
-        getCategories(state) {
+        categories(state) {
             return state.categories
         }
     }

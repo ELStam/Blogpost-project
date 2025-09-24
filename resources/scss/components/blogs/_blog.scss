@@ -115,4 +115,117 @@
             }
         }
     }
+
+    // Detail styling
+    &-detail {
+        display: flex;
+        flex-flow: column wrap;
+
+        &__banner {
+            height: 350px;
+            object-fit: cover;
+            object-position: bottom;
+            width: 100%;
+        }
+
+        &__sidebar {
+            padding: 30px;
+        }
+
+        &__profile {
+            border: 10px solid #f4f4f4;
+            border-radius: 50%;
+            height: 250px;
+            margin-bottom: 15px;
+            object-fit: cover;
+            transform: translateY(-60%);
+            width: 250px;
+        }
+
+        &__body {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        &__post {
+            max-width: 1200px;
+            padding: 30px;
+        }
+
+        &__buttons {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__time {
+            color: #c04e1a;
+            margin-left: auto;
+        }
+
+        &__button {
+            background-color: #f4f4f4;
+            border: 1px solid #111B4E;
+            border-radius: 25px;
+            color: #111A51;
+            font-size: 16px;
+            margin-right: 10px;
+            padding: 7px 30px;
+        }
+
+        &__title {
+            color: #111B4E;
+            padding: 20px 0;
+        }
+
+        &__introduction {
+            color: #b9b9b9;
+            font-size: 20px;
+            font-style: italic;
+            padding-bottom: 30px;
+        }
+
+        &__paragraph {
+            color: #b9b9b9;
+
+            &-title {
+                color: #818181;
+                font-weight: bold;
+            }
+
+            &-body {
+                color: #b9b9b9;
+            }
+        }
+
+        &__images {
+            margin: 40px 0;
+        }
+
+        &__image {
+            height: 500px;
+            margin-right: 30px;
+            object-fit: cover;
+            width: 500px;
+        }
+    }
+
+    // Icons
+    &-icons {
+        margin: 10px;
+
+        &__image {
+            height: 15px;
+            width: 15px;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &--edit {
+                margin-right: 5px;
+            }
+        }
+    }
 }
