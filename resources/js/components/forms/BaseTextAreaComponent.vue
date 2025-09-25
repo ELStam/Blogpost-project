@@ -1,17 +1,17 @@
 <template>
-    <div class="base-input">
-        <input
+    <div class="base-textarea">
+        <textarea
             :placeholder="label"
             :value="modelValue"
-            class="base-input__input"
+            class="base-textarea__input"
             v-bind="$attrs"
-            @input="handleInput($event.target.value)"
-        >
+            @input="handleTextArea($event.target.value)"
+        />
     </div>
 </template>
 <script>
 export default {
-    name: 'BaseInputComponent',
+    name: 'BaseTextAreaComponent',
 
     props: {
         label: {
@@ -32,7 +32,7 @@ export default {
          *
          * @returns {void}
          */
-        handleInput(event) {
+        handleTextArea(event) {
             this.$emit('update:modelValue', event)
         }
     }

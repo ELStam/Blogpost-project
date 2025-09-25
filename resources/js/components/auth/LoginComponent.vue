@@ -1,54 +1,50 @@
 <template>
-    <div class="login">
-        <div class="login__background">
-            <img
-                alt="Writing"
-                class="login__img" src="/assets/writing.png"
-            />
-        </div>
-        <div class="login__container">
-            <h1 class="login__title">INLOGGEN</h1>
-
-            <div class="login__content">
-                <form class="login__form" @submit.prevent="submitLogin">
+    <div class="login-page">
+        <auth-layout title="Inloggen">
+            <template #form>
+                <form class="login-page__form" @submit.prevent="submitLogin">
                     <base-input-component
                         v-model="username"
-                        class="login__input login__input--username"
+                        class="login-page__input login-page__input--username"
                         label="Gebruikersnaam"
                         type="text"
                     />
 
                     <base-input-component
                         v-model="password"
-                        class="login__input login__input--password"
+                        class="login-page__input login-page__input--password"
                         label="Wachtwoord"
                         type="password"
                     />
 
-                    <div class="login__privacy">
-                        <input class="login__checkbox" type="checkbox"/>
-                        <label class="login__privacy-label">
+                    <div class="login-page__privacy">
+                        <input class="login-page__checkbox" type="checkbox"/>
+                        <label class="login-page__privacy-label">
                             Ja, Ik ga akkoord met de privacyverklaring
                         </label>
                     </div>
 
-                    <button class="login__button">Inloggen</button>
+                    <button class="login-page__button">Inloggen</button>
                 </form>
+            </template>
 
-                <div class="login__links">
+            <template #links>
+                <div class="login-page__links">
                     <img
                         alt="Padlock"
-                        class="login__link-icon" src="/assets/padlock.png"
+                        class="login-page__link-icon" src="/assets/padlock.png"
                     >
-                    <span class="login__link login__link--forget">
+                    <span class="login-page__link login-page__link--forget">
                         Wachtwoord vergeten
                     </span>
-                    <span class="login__link login__link--register">
+                    <router-link :to="{name: 'Register'}" class="login-page__link">
+                    <span class="login-page__link login-page__link--register">
                         Nog geen account?
                     </span>
+                    </router-link>
                 </div>
-            </div>
-        </div>
+            </template>
+        </auth-layout>
     </div>
 </template>
 
@@ -56,12 +52,13 @@
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import BaseButtonComponent from "@/components/forms/BaseInputComponent.vue";
 import {mapActions} from "vuex";
+import AuthLayout from "@/components/auth/AuthLayout.vue";
 
 export default {
     name: 'LoginComponent',
 
     components: {
-        BaseButtonComponent,
+        AuthLayout,
         BaseInputComponent
     },
 

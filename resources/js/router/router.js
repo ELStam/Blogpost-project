@@ -5,6 +5,7 @@ import LoginComponent from "@/components/auth/LoginComponent.vue";
 import BlogDetailComponent from "@/components/blogs/BlogDetailComponent.vue";
 import FollowingComponent from "@/components/FollowingComponent.vue";
 import Cookies from "js-cookie";
+import RegisterComponent from "@/components/auth/RegisterComponent.vue";
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         path: '/login',
         component: LoginComponent,
         name: 'Login'
+    },
+    {
+        path: '/register',
+        component: RegisterComponent,
+        name: 'Register'
     },
     {
         path: '/following',
