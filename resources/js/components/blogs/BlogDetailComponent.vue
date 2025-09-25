@@ -34,7 +34,7 @@
                             <span
                                 class="blog-post__time"
                             >
-                                {{ dateFormat }}
+                                {{ dateFormat(blog.created_at) }}
                             </span>
 
                             <icon-component
@@ -98,9 +98,12 @@ import CategoryComponent from "@/components/navigation/CategoryComponent.vue";
 import PageLayout from "@/components/PageLayout.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
 
 export default {
     name: 'BlogDetailComponent',
+
+    mixins: [DateFormatMixin],
 
     components: {
         CreateBlogComponent,
@@ -119,14 +122,6 @@ export default {
 
     computed: {
         ...mapGetters('blog', ['blog']),
-
-        dateFormat() {
-            return new Date(this.blog.created_at).toLocaleDateString('nl-NL', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            })
-        }
     },
 
     created() {

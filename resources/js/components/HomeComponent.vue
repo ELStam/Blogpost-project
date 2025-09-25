@@ -16,8 +16,8 @@
         </page-layout>
     </div>
 </template>
-<script>
 
+<script>
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
 import {mapActions, mapGetters} from "vuex";
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
@@ -37,7 +37,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('blog', ['getCategories'])
+        ...mapGetters('blog', ['categories'])
     },
 
     created() {

@@ -24,6 +24,7 @@
 <script>
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "FollowingComponent",
@@ -34,15 +35,16 @@ export default {
     },
 
     computed: {
-        currentUser() {
-            return this.$store.getters['user/currentUser'];
-        },
+        ...mapGetters('user', ['currentUser'])
     },
 
-    mounted() {
-        this.$store.dispatch('user/fetchCurrentUser')
-            .then(() => console.log('currentUser loaded:', this.currentUser))
-            .catch(err => alert(err));
+    created() {
+        this.fetchCurrentUser();
     },
+
+    methods: {
+        ...mapActions('user', ['fetchCurrentUser'])
+    }
+
 };
 </script>
