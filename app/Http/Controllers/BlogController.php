@@ -6,9 +6,11 @@ use App\Http\Requests\Blog\CreateBlogRequest;
 use App\Http\Requests\Blog\DeleteBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
 use App\Models\Blog;
+use File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Storage;
 
 class BlogController extends Controller
 {
@@ -131,5 +133,12 @@ class BlogController extends Controller
                 'message' => $exception->getMessage()
             ], 500);
         }
+    }
+
+    public function uploadTest(Request $request)
+    {
+        $originalName = $request->file('file')->getClientOriginalName();
+        $path = "blog/1";
+        $fileStorage = Storage::disk('public')->putFileAs($path, $request->file, $originalName);
     }
 }

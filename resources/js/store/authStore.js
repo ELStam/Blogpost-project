@@ -41,7 +41,7 @@ export default {
          * @param {string} payload.username
          * @param {string} payload.password
          *
-         * @return {Promise<void>}
+         * @return {Promise<Object>}
          */
         async login({commit}, {username, password}) {
             try {
@@ -54,7 +54,33 @@ export default {
         },
 
         /**
-         * Logs the user ou via the API and sets the token null.
+         * Registers a new user via the API and stores the token.
+         *
+         * @param {Object} context
+         * @param {Function} context.commit
+         * @param {Object} user
+         * @param {string} user.name
+         * @param {string} user.bio
+         * @param {string} user.username
+         * @param {string} user.password
+         * @param {string} user.confirm_password
+         *
+         * @returns {Promise<Object>}
+         */
+        async register({commit}, user) {
+            try {
+                const data = await AuthService.register(
+                    user
+                )
+                commit('SET_TOKEN', data.auth_token)
+                return data
+            } catch (error) {
+                throw error
+            }
+        },
+
+        /**
+         * Logs the user out via the API and sets the token null.
          * @param {Object} context
          * @param {Function} context.commit
          *

@@ -1,5 +1,7 @@
 // authentication
 @forward "components/auth/authentication";
+@forward "components/auth/login";
+@forward "components/auth/register";
 
 // forms
 @forward "components/forms/forms";
@@ -29,7 +31,7 @@
     height: 100vh;
 
     &-blog {
-        
+
         &-body {
             background: #f4f4f4;
             color: #333;

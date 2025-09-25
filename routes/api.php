@@ -21,6 +21,8 @@ Route::get('blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 
+Route::post('uploadtest', [BlogController::class, 'uploadtest'])->name('uploadtest');
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');
     Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
