@@ -29,6 +29,14 @@ export default {
     computed: {
         ...mapGetters('user', ['currentUser']),
 
+        /**
+         * Checks if the current user is the owner of the blog.
+         *
+         * Compares the 'currentUser.id' with the 'blog.user_id'.
+         * If they match, the current user is considered the owner.
+         *
+         * @returns {boolean}
+         */
         isOwner() {
             return this.currentUser?.id === this.blog.user_id
         }
