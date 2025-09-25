@@ -24,15 +24,27 @@ class Blog extends Model
         'user_id' => 'int'
     ];
 
-    public function user(): BelongsTo // Relatie: een blog hoort bij een gebruiker
+    /**
+     * Relatie: een blog hoort bij een gebruiker
+     */
+    public function user(): BelongsTo
 
     {
-        return $this->belongsTo(User::class); // Verbindt de blog met het User-model
+        /**
+         *  Verbindt de blog met het User-model
+         */
+        return $this->belongsTo(User::class);
     }
 
-    public function categories(): BelongsToMany // Relatie: een blog kan meerdere categorieën hebben
+    /**
+     * Relatie: een blog kan meerdere categorieën hebben
+     */
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class); // Verbindt de blog met het Category-model
+        /**
+         * Verbindt de blog met het Category-model
+         */
+        return $this->belongsToMany(Category::class);
     }
 
 }

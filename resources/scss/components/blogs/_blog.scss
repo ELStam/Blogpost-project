@@ -30,11 +30,9 @@ $blog: ".blog";
         &.--following {
             #{$blog}-create {
                 &__username {
-                
                 }
             }
         }
-
 
         &__image {
             height: 80px;

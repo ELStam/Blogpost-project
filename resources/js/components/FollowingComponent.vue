@@ -11,6 +11,17 @@
             <div class="following__blog__more-friends">
                 Bekijk meer van je vrienden
             </div>
+
+            <div class="following__blog__friends">
+                <div class="following__blog__friends__item">
+                    <h3 class="following__blog__friends__item-title">@{{ currentUser.username }}</h3>
+                    <span class="following__blog__friends__item-name">{{ currentUser.name }}</span>
+                    <span class="following__blog__friends__item-followers">{{
+                            currentUser.followers || 0
+                        }} volgers</span>
+                </div>
+            </div>
+
         </div>
 
         <div class="following__content">
