@@ -45,6 +45,7 @@
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "ProfileComponent",
@@ -61,24 +62,29 @@ export default {
     },
 
     computed: {
-        currentUser() {
-            return this.$store.getters['user/currentUser'];
-        },
+        ...mapGetters('user', ['currentUser']),
     },
 
     mounted() {
-        this.$store.dispatch('user/fetchCurrentUser')
-            .then(() => console.log('currentUser loaded:', this.currentUser))
-            .catch(err => console.error(err));
+
     },
 
     methods: {
+        ...mapActions('user', ['fetchCurrentUser']),
+
+        /**
+         * Posts a new blog in the console.
+         * The method checks if the blog is not empty.
+         * If it is valid, it logs the blog content to the console
+         * and resets the input field.
+         *
+         * @retuns {void}
+         */
         postBlog() {
-            if (!this.newBlog.trim()) return; // Voorkomt het posten van lege of spatie-only blogs
-            console.log('Nieuwe blog:', this.newBlog);
-            this.newBlog = '';
+            if (!this.newBlog.trim()) return
+            console.log('Nieuwe blog:', this.newBlog)
+            this.newBlog = ''
         },
     },
-
-};
+}
 </script>

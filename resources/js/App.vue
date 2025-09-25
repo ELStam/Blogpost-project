@@ -4,7 +4,6 @@
         <div class="app-blog-body">
             <router-view></router-view>
         </div>
-
         <footer-component/>
     </div>
 </template>

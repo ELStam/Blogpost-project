@@ -8,38 +8,47 @@ $profile: ".profile";
     position: relative;
 
     &-photo {
+        &__image {
+            --height: auto;
+            border-radius: 50%;
+            height: var(--height);
+            object-fit: cover;
+        }
+
         &.--blog {
             margin-bottom: 15px;
 
             #{$profile}-photo {
                 &__image {
                     border: 10px solid #f4f4f4;
-                    border-radius: 50%;
-                    object-fit: cover;
+                }
+            }
+        }
+
+        &.--card,
+        &.--create {
+            margin-right: 10px;
+
+            #{$profile}-photo {
+                &__image {
+                    --height: auto;
+                    height: var(--height);
                 }
             }
         }
 
         &.--card {
-            margin-right: 10px;
-
             #{$profile}-photo {
                 &__image {
-                    border-radius: 50%;
-                    height: 50px;
-                    object-fit: cover;
+                    --height: 50px;
                 }
             }
         }
 
         &.--create {
-            margin-right: 10px;
-            
             #{$profile}-photo {
                 &__image {
-                    border-radius: 50%;
-                    height: 70px;
-                    object-fit: cover;
+                    --height: 70px;
                 }
             }
         }

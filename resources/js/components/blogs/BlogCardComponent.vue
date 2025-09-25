@@ -7,7 +7,7 @@
                 src="/assets/img.png"
             />
             <span class="blog-card__username">@{{ blog.user.username }}</span>
-            <span class="blog-card__date">{{ dateFormat }}</span>
+            <span class="blog-card__date">{{ dateFormat(blog.created_at) }}</span>
             <icon-component :blog="blog"/>
         </div>
 
@@ -28,9 +28,13 @@
 <script>
 import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 import IconComponent from "@/components/general/IconComponent.vue";
+import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
 
 export default {
     name: 'BlogCardComponent',
+
+    mixins: [DateFormatMixin],
+
     components: {IconComponent, ProfilePhotoComponent},
 
     props: {
@@ -39,15 +43,5 @@ export default {
             required: true
         }
     },
-
-    computed: {
-        dateFormat() {
-            return new Date(this.blog.created_at).toLocaleDateString('nl-NL', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            })
-        }
-    }
 }
 </script>
