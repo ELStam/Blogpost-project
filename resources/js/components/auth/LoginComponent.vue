@@ -75,7 +75,7 @@ export default {
         /**
          * Handles the login form submission.
          *
-         * Calls tge login method in the authStore with the provided username and password.
+         * Calls the login method in the authStore with the provided username and password.
          * If the login is successful, it navigates the user to the home page.
          *
          * @returns {Promise<void>}

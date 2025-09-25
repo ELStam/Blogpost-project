@@ -1,6 +1,6 @@
 <template>
     <div class="register-page">
-        <auth-layout title="Register">
+        <auth-layout title="Registeren">
             <template #form>
                 <form class="register-page__form" @submit.prevent="submitRegister">
                     <base-input-component
@@ -38,7 +38,7 @@
                     />
 
                     <base-input-component
-                        v-model="confirmPassword"
+                        v-model="user.confirm_password"
                         class="register-page__input register-page__input--confirm"
                         label="Herhaal Wachtwoord"
                         type="password"
@@ -69,6 +69,7 @@
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import AuthLayout from "@/components/auth/AuthLayout.vue";
 import BaseTextAreaComponent from "@/components/forms/BaseTextAreaComponent.vue";
+import {mapActions} from "vuex";
 
 export default {
     name: "RegisterComponent",
@@ -82,11 +83,36 @@ export default {
                 email: '',
                 bio: '',
                 password: '',
+                confirm_password: ''
             },
-            confirmPassword: ''
             // file: null
         }
     },
+
+    methods: {
+        ...mapActions('auth', ['register']),
+        
+        /**
+         * Handles the register form submission.
+         *
+         * Calls the register method in the authStore with the provided user.
+         * If the register is successful, it navigates the user to the home page.
+         *
+         * @returns {Promise<void>}
+         */
+        async submitRegister() {
+            try {
+                if (this.user.password !== this.user.confirm_password) {
+                    alert("Wachtwoorden komen niet overeen!");
+                    return
+                }
+                await this.register(this.user);
+                this.$router.push('/')
+            } catch (error) {
+                throw error
+            }
+        }
+    }
     //
     // methods: {
     //
