@@ -4,23 +4,33 @@ import ProfileComponent from "@/components/ProfileComponent.vue";
 import LoginComponent from "@/components/auth/LoginComponent.vue";
 import BlogDetailComponent from "@/components/blogs/BlogDetailComponent.vue";
 import FollowingComponent from "@/components/FollowingComponent.vue";
+import Cookies from "js-cookie";
 
 const routes = [
     {
         path: '/',
         component: HomeComponent,
-        name: 'Home'
+        name: 'Home',
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/blogs/:id',
         name: 'BlogDetail',
         component: BlogDetailComponent,
-        props: true
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/profile',
         component: ProfileComponent,
-        name: 'Profile'
+        name: 'Profile',
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/login',
@@ -30,13 +40,28 @@ const routes = [
     {
         path: '/following',
         component: FollowingComponent,
-        name: 'Following'
+        name: 'Following',
+        meta: {
+            requiresAuth: true
+        }
     }
-];
+]
 
 const router = createRouter({
     history: createWebHistory(),
     routes
-});
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!Cookies.get('auth_token')) {
+            next('/login')
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
+})
 
 export default router;
