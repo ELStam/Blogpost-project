@@ -13,15 +13,17 @@
             </div>
 
             <div class="following__blog__friends">
-                <div class="following__blog__friends__item">
-                    <h3 class="following__blog__friends__item-title">@{{ currentUser.username }}</h3>
-                    <span class="following__blog__friends__item-name">{{ currentUser.name }}</span>
-                    <span class="following__blog__friends__item-followers">{{
-                            currentUser.followers || 0
-                        }} volgers</span>
+                <!-- Loop door users -->
+                <div
+                    v-for="user in users"
+                    :key="user.id"
+                    class="following__blog__friends__item"
+                >
+                    <h3 class="following__blog__friends__item-title">@{{ user.username }}</h3>
+                    <span class="following__blog__friends__item-name">{{ user.name }}</span>
+                    <span class="following__blog__friends__item-followers">{{ user.followers }} volgers</span>
                 </div>
             </div>
-
         </div>
 
         <div class="following__content">
@@ -30,7 +32,6 @@
         </div>
     </div>
 </template>
-
 
 <script>
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
@@ -46,14 +47,20 @@ export default {
 
     computed: {
         currentUser() {
-            return this.$store.getters['user/currentUser'];
+            return this.$store.getters["user/currentUser"];
+        },
+        users() {
+            return this.$store.getters["user/users"] || [];
         },
     },
 
     mounted() {
-        this.$store.dispatch('user/fetchCurrentUser')
-            .then(() => console.log('currentUser loaded:', this.currentUser))
-            .catch(err => alert(err));
+        this.$store
+            .dispatch("user/fetchCurrentUser")
+            .then(() => console.log("currentUser loaded:", this.currentUser))
+            .catch((err) => alert(err));
+
+        this.$store.dispatch("user/fetchUsers").catch((err) => console.error(err));
     },
 };
 </script>

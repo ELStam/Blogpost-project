@@ -26,7 +26,7 @@
                     </p>
                     <div class="profile-card__stats">
                         <div class="profile-card__stats--badge profile-card__stats--badge--followers">
-                            <span>{{ currentUser.followers || 0 }} volgers</span>
+                            <span>{{ currentUser.followers }} volgers</span>
                         </div>
                         <div class="profile-card__stats--badge profile-card__stats--badge--following">
                             <span>{{ currentUser.following || 0 }} volgend</span>

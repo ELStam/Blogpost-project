@@ -4,7 +4,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\FollowController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -22,9 +21,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user', [UserController::class, 'current'])->name('user.current');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
-    Route::post('/follow/{userId}', [FollowController::class, 'follow'])->name('user.follow');
-    Route::post('/unfollow/{userId}', [FollowController::class, 'unfollow'])->name('user.unfollow');
-    Route::get('/followers', [FollowController::class, 'followers'])->name('user.followers');
-    Route::get('/following', [FollowController::class, 'following'])->name('user.following');
 });
