@@ -13,9 +13,8 @@
             </div>
 
             <div class="following__blog__friends">
-                <!-- Loop door users -->
                 <div
-                    v-for="user in users"
+                    v-for="user in currentUser"
                     :key="user.id"
                     class="following__blog__friends__item"
                 >
@@ -36,6 +35,7 @@
 <script>
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "FollowingComponent",
@@ -46,21 +46,16 @@ export default {
     },
 
     computed: {
-        currentUser() {
-            return this.$store.getters["user/currentUser"];
-        },
-        users() {
-            return this.$store.getters["user/users"] || [];
-        },
+        ...mapGetters('user', ['currentUser']),
     },
 
     mounted() {
-        this.$store
-            .dispatch("user/fetchCurrentUser")
-            .then(() => console.log("currentUser loaded:", this.currentUser))
-            .catch((err) => alert(err));
-
-        this.$store.dispatch("user/fetchUsers").catch((err) => console.error(err));
+        this.fetchCurrentUser()
     },
+
+    methods: {
+        ...mapActions('user', ['fetchCurrentUser'])
+    }
+
 };
 </script>

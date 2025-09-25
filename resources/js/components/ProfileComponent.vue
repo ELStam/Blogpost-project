@@ -45,6 +45,7 @@
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import {mapGetters} from "vuex";
 
 export default {
     name: "ProfileComponent",
@@ -61,9 +62,7 @@ export default {
     },
 
     computed: {
-        currentUser() {
-            return this.$store.getters['user/currentUser'];
-        },
+        ...mapGetters('user', ['currentUser']),
     },
 
     mounted() {
