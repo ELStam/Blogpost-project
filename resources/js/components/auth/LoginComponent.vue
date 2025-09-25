@@ -75,12 +75,20 @@ export default {
     methods: {
         ...mapActions('auth', ['login']),
 
+        /**
+         * Handles the login form submission.
+         *
+         * Calls tge login method in the authStore with the provided username and password.
+         * If the login is successful, it navigates the user to the home page.
+         *
+         * @returns {Promise<void>}
+         */
         async submitLogin() {
             try {
                 await this.login({username: this.username, password: this.password})
                 this.$router.push('/')
             } catch (error) {
-                console.log(error)
+                throw error
             }
         }
     }
