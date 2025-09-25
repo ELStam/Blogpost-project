@@ -101,6 +101,7 @@ import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 
 export default {
     name: 'BlogDetailComponent',
+
     components: {
         CreateBlogComponent,
         BlogListComponent,
@@ -108,6 +109,7 @@ export default {
         CategoryComponent,
         BlogItemComponent, BlogSubCardComponent, IconComponent, ProfilePhotoComponent
     },
+
     props: {
         id: {
             type: String,

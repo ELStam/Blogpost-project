@@ -47,7 +47,7 @@ export default {
             try {
                 const data = await AuthService.login(username, password)
                 commit('SET_TOKEN', data.auth_token)
-                return datain
+                return data
             } catch (error) {
                 throw error
             }

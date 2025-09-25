@@ -45,6 +45,7 @@
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "ProfileComponent",
@@ -61,18 +62,20 @@ export default {
     },
 
     computed: {
+        ...mapGetters('user', ['currentUser']),
+
         currentUser() {
             return this.$store.getters['user/currentUser'];
         },
     },
 
     mounted() {
-        this.$store.dispatch('user/fetchCurrentUser')
-            .then(() => console.log('currentUser loaded:', this.currentUser))
-            .catch(err => console.error(err));
+
     },
 
     methods: {
+        ...mapActions('user', ['fetchCurrentUser']),
+
         postBlog() {
             if (!this.newBlog.trim()) return; // Voorkomt het posten van lege of spatie-only blogs
             console.log('Nieuwe blog:', this.newBlog);

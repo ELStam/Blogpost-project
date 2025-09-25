@@ -30,17 +30,17 @@ export default {
         ...mapGetters('user', ['currentUser']),
 
         isOwner() {
-            return this.currentUser.id === this.blog.user_id
+            return this.currentUser?.id === this.blog.user_id
         }
     },
 
-    mounted() {
+    created() {
         this.fetchCurrentUser()
     },
 
     methods: {
         ...mapActions('user', ['fetchCurrentUser']),
-        
+
     }
 
 }

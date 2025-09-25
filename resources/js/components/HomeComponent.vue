@@ -11,7 +11,6 @@
                 <main class="home__content">
                     <create-blog-component/>
                     <blog-list-component/>
-
                 </main>
             </template>
         </page-layout>

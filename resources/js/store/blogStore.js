@@ -1,13 +1,7 @@
 import BlogService from "@/services/modules/BlogService.js";
 import CategoryService from "@/services/modules/CategoryService.js";
-import PageLayout from "@/components/PageLayout.vue";
-import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
-import BlogItemComponent from "@/components/blogs/BlogItemComponent.vue";
-import IconComponent from "@/components/general/IconComponent.vue";
 
 export default {
-    components: {IconComponent, BlogItemComponent, ProfilePhotoComponent, PageLayout},
-    
     namespaced: true,
 
     state() {
