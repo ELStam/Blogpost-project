@@ -27,5 +27,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
     Route::get('/user', [UserController::class, 'current'])->name('user.current');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

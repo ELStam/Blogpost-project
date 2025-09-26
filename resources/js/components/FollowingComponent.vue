@@ -8,18 +8,9 @@
                 />
             </div>
 
-            <div class="following__blog__more-friends">
-                Bekijk meer van je vrienden
+            <div class="following__blog__more-friends">Bekijk meer van je vrienden
+                <users-component :users="users"/>
             </div>
-
-            <div class="following__blog__friends">
-                <div class="following__blog__friends__item">
-                    <h3 class="following__blog__friends__item-title">@{{ currentUser.username }}</h3>
-                    <span class="following__blog__friends__item-name">{{ currentUser.name }}</span>
-                    <span class="following__blog__friends__item-followers">{{ currentUser.followers }} volgers</span>
-                </div>
-            </div>
-
         </div>
 
         <div class="following__content">
@@ -32,27 +23,29 @@
 <script>
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
-import {mapActions, mapGetters} from "vuex";
+import UsersComponent from "@/components/UsersComponent.vue";
+import {mapGetters, mapActions} from "vuex";
 
 export default {
     name: "FollowingComponent",
 
     components: {
+        UsersComponent,
         BlogListComponent,
         CreateBlogComponent,
     },
 
     computed: {
-        ...mapGetters('user', ['currentUser'])
+        ...mapGetters('user', ['currentUser', "users"]),
     },
 
     created() {
         this.fetchCurrentUser();
+        this.fetchUsers();
     },
 
     methods: {
-        ...mapActions('user', ['fetchCurrentUser'])
-    }
-
+        ...mapActions('user', ['fetchCurrentUser', 'fetchUsers']),
+    },
 };
 </script>
