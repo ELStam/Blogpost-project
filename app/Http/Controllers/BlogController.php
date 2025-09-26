@@ -38,6 +38,7 @@ class BlogController extends Controller
 
     /**
      * Store a newly created blog with categories.
+     * Uploads a banner to the storage and saves the banner path in the database.
      * The categories can be added based on the id.
      *
      * @param CreateBlogRequest $request
@@ -66,7 +67,7 @@ class BlogController extends Controller
 
             $blog->categories()->attach($validated['categories_id']);
             $blog->load('categories');
-            
+
             return response()->json([
                 'message' => 'Blog created successfully',
                 'blog' => $blog

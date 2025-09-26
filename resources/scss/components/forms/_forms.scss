@@ -11,5 +11,19 @@
         }
     }
 
+    &-button {
+        &__button {
+            &:hover {
+                cursor: pointer;
+            }
 
+            &.--create {
+                background-color: transparent;
+                border: none;
+                font-size: 30px;
+                padding: 5px;
+
+            }
+        }
+    }
 }

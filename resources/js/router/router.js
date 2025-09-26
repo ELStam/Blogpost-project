@@ -56,9 +56,6 @@ const routes = [
         path: '/blogs/create',
         name: 'BlogCreate',
         component: CreateBlogComponent,
-        props: route => ({
-            title: route.query.title || ''
-        }),
         meta: {
             requiresAuth: true
         }

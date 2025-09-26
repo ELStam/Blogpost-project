@@ -9,7 +9,14 @@
 
             <template #default>
                 <main class="home__content">
-                    <blog-input-title-component/>
+                    <router-link :to="{name: 'BlogCreate'}">
+                        <base-button-component
+                            buttonClass="--create"
+                            type="submit"
+                        >
+                            <i class="fa-solid fa-circle-plus icon --home"></i>
+                        </base-button-component>
+                    </router-link>
                     <blog-list-component/>
                 </main>
             </template>
@@ -24,11 +31,13 @@ import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import CategoryComponent from "@/components/navigation/CategoryComponent.vue";
 import BlogInputTitleComponent from "@/components/blogs/BlogInputTitleComponent.vue";
 import PageLayout from "@/components/PageLayout.vue";
+import BaseButtonComponent from "@/components/forms/BaseButtonComponent.vue";
 
 export default {
     name: "HomeComponent",
 
     components: {
+        BaseButtonComponent,
         PageLayout,
         BlogInputTitleComponent,
         CategoryComponent,
