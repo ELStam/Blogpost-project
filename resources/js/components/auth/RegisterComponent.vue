@@ -93,7 +93,7 @@ export default {
     computed: {
         ...mapGetters('auth', ['getErrors'])
     },
-    
+
     created() {
         this.clearErrors()
     },
@@ -111,13 +111,13 @@ export default {
          */
         async submitRegister() {
             try {
-                this.getErrors = []
+                await this.clearErrors()
                 if (this.user.password !== this.user.confirm_password) {
                     alert("Wachtwoorden komen niet overeen!");
                     return
                 }
                 await this.register(this.user);
-                if (!this.getErrors) {
+                if (Object.keys(this.getErrors).length === 0) {
                     this.$router.push('/')
                 }
             } catch (error) {

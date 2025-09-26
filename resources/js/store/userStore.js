@@ -5,33 +5,36 @@ export default {
 
     state() {
         return {
-            currentUser: null,
+            currentUser: '',
             users: []
         }
     },
 
     mutations: {
         /**
-         * Sets the current user in the state.
+         * set currentUser state
          *
          * @param {Object} state
          * @param {Object} user
          *
-         * @return {void}
+         * @returns {void}
          */
         SET_CURRENT_USER(state, user) {
             state.currentUser = user;
         },
+        SET_USERS(state, users) {
+            state.users = users;
+        }
     },
 
     actions: {
         /**
-         * Fetches the current user from the API and commits it to the state
+         * Fetch currentUser handler
          *
          * @param {Object} context
          * @param {Function} context.commit
          *
-         * @return {Promise<void>}
+         * @returns {void}
          */
         async fetchCurrentUser({commit}) {
             try {
@@ -40,18 +43,45 @@ export default {
                 throw error
             }
         },
+
+        /**
+         * Fetch users handler
+         *
+         * @param {Object} context
+         * @param {Function} context.commit
+         *
+         * @returns {void}
+         */
+        async fetchUsers({commit}) {
+            try {
+                commit('SET_USERS', await UserService.getAllUsers())
+            } catch (error) {
+                throw error
+            }
+        },
     },
 
     getters: {
         /**
-         * Returns the current user.
+         * Get currentUser state
          *
          * @param {Object} state
          *
-         * @return {Object} - current user
+         * @returns {string}
          */
         currentUser(state) {
             return state.currentUser
         },
+
+        /**
+         * Get users state
+         *
+         * @param {Object} state
+         *
+         * @returns {Array}
+         */
+        users(state) {
+            return state.users
+        }
     }
 }

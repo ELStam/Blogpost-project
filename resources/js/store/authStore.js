@@ -23,7 +23,8 @@ export default {
          */
         SET_TOKEN(state, token) {
             state.token = token
-            token ? Cookies.set('auth_token') : Cookies.remove('auth_token')
+
+            token ? Cookies.set('auth_token', token) : Cookies.remove('auth_token')
         },
 
         SET_ERRORS(state, errors) {
@@ -46,10 +47,12 @@ export default {
         async login({commit}, {username, password}) {
             try {
                 const data = await AuthService.login(username, password)
+                const token = data.auth_token
 
-                data.auth_token
-                    ? commit('SET_TOKEN', data.auth_token)
+                token
+                    ? commit('SET_TOKEN', token)
                     : commit('SET_ERRORS', data)
+                console.log(data)
 
                 return data
             } catch (error) {

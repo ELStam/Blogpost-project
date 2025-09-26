@@ -7,13 +7,6 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/**
- * GET /api/users
- * Example route: returns a list of users in JSON format.
- * This route is name 'users.index' so it can be referenced with Ziggy
- * in the frontend (e.g. route('users.index)).
- */
-
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
@@ -35,7 +28,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user', [UserController::class, 'current'])->name('user.current');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
 });
-
-

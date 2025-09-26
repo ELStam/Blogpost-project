@@ -14,8 +14,8 @@ export default {
 
     props: {
         errors: {
-            type: [Array, Object],
-            default: []
+            type: Object,
+            default: ({})
         }
     },
 

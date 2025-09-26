@@ -2,25 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class UserModel extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
+    protected $table = 'users';
+    
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -29,46 +22,24 @@ class UserModel extends Authenticatable
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'confirm_password',
         'remember_token',
     ];
 
-    /**
-     * Relation with Blog model.
-     *
-     * Gets all blogs of the user.
-     *
-     * @return HasMany
-     */
-    public function blogs(): HasMany
+    public function followers(): BelongsToMany
     {
-        return $this->hasMany(BlogModel::class);
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
     }
 
-    /**
-     * Relation with Comment model.
-     *
-     * Get all the user's comments.
-     *
-     * @return HasMany
-     */
-    public function comments(): HasMany
+
+    public function following(): BelongsToMany
     {
-        return $this->hasMany(CommentModel::class);
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+
     protected function casts(): array
     {
         return [
