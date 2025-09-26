@@ -2,30 +2,33 @@
     <div class="login-page">
         <auth-layout title="Inloggen">
             <template #form>
-                <form class="login-page__form" @submit.prevent="submitLogin">
-                    <base-input-component
-                        v-model="username"
-                        class="login-page__input login-page__input--username"
-                        label="Gebruikersnaam"
-                        type="text"
-                    />
+                <div class="login-page__container">
+                    <error-component :errors="getErrors"/>
+                    <form class="login-page__form" @submit.prevent="submitLogin">
+                        <base-input-component
+                            v-model="username"
+                            class="login-page__input login-page__input--username"
+                            label="Gebruikersnaam"
+                            type="text"
+                        />
 
-                    <base-input-component
-                        v-model="password"
-                        class="login-page__input login-page__input--password"
-                        label="Wachtwoord"
-                        type="password"
-                    />
+                        <base-input-component
+                            v-model="password"
+                            class="login-page__input login-page__input--password"
+                            label="Wachtwoord"
+                            type="password"
+                        />
 
-                    <div class="login-page__privacy">
-                        <input class="login-page__checkbox" type="checkbox"/>
-                        <label class="login-page__privacy-label">
-                            Ja, Ik ga akkoord met de privacyverklaring
-                        </label>
-                    </div>
+                        <div class="login-page__privacy">
+                            <input class="login-page__checkbox" type="checkbox"/>
+                            <label class="login-page__privacy-label">
+                                Ja, Ik ga akkoord met de privacyverklaring
+                            </label>
+                        </div>
 
-                    <button class="login-page__button">Inloggen</button>
-                </form>
+                        <button class="login-page__button">Inloggen</button>
+                    </form>
+                </div>
             </template>
 
             <template #links>
@@ -51,13 +54,15 @@
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import BaseButtonComponent from "@/components/forms/BaseInputComponent.vue";
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import AuthLayout from "@/components/auth/AuthLayout.vue";
+import ErrorComponent from "@/components/general/ErrorComponent.vue";
 
 export default {
     name: 'LoginComponent',
 
     components: {
+        ErrorComponent,
         AuthLayout,
         BaseInputComponent
     },
@@ -69,8 +74,16 @@ export default {
         }
     },
 
+    computed: {
+        ...mapGetters('auth', ['getErrors'])
+    },
+
+    created() {
+        this.clearErrors()
+    },
+
     methods: {
-        ...mapActions('auth', ['login']),
+        ...mapActions('auth', ['login', 'clearErrors']),
 
         /**
          * Handles the login form submission.
@@ -82,12 +95,13 @@ export default {
          */
         async submitLogin() {
             try {
+                this.getErrors = []
                 await this.login({username: this.username, password: this.password})
                 this.$router.push('/')
             } catch (error) {
                 throw error
             }
-        }
+        },
     }
 }
 </script>

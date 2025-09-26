@@ -27,7 +27,7 @@ export default {
 
             return response.data
         } catch (error) {
-            alert(error)
+            if (error.status === 422) return error.response.data.errors
         }
     },
 
@@ -58,7 +58,7 @@ export default {
 
             return response.data
         } catch (error) {
-            alert(error)
+            if (error.status === 422) return error.response.data.errors
         }
     },
 

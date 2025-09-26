@@ -8,7 +8,7 @@ export default {
     state() {
         return {
             token: Cookies.get('auth_token') || null,
-
+            errors: {},
         }
     },
 
@@ -23,12 +23,12 @@ export default {
          */
         SET_TOKEN(state, token) {
             state.token = token
-            if (token) {
-                Cookies.set('auth_token', token)
-            } else {
-                Cookies.remove('auth_token')
-            }
+            token ? Cookies.set('auth_token') : Cookies.remove('auth_token')
         },
+
+        SET_ERRORS(state, errors) {
+            state.errors = errors
+        }
     },
 
     actions: {
@@ -46,7 +46,11 @@ export default {
         async login({commit}, {username, password}) {
             try {
                 const data = await AuthService.login(username, password)
-                commit('SET_TOKEN', data.auth_token)
+
+                data.auth_token
+                    ? commit('SET_TOKEN', data.auth_token)
+                    : commit('SET_ERRORS', data)
+
                 return data
             } catch (error) {
                 throw error
@@ -72,8 +76,13 @@ export default {
                 const data = await AuthService.register(
                     user
                 )
-                commit('SET_TOKEN', data.auth_token)
+
+                data.auth_token
+                    ? commit('SET_TOKEN', data.auth_token)
+                    : commit('SET_ERRORS', data)
+
                 return data
+
             } catch (error) {
                 throw error
             }
@@ -81,6 +90,7 @@ export default {
 
         /**
          * Logs the user out via the API and sets the token null.
+         *
          * @param {Object} context
          * @param {Function} context.commit
          *
@@ -90,6 +100,23 @@ export default {
             try {
                 await AuthService.logout()
                 commit('SET_TOKEN', null)
+            } catch (error) {
+                throw error
+            }
+        },
+
+        /**
+         * Clears the errors in the state and
+         * commits it to the store.
+         *
+         * @param {Object} context
+         * @param {Function} context.commit
+         *
+         * @returns {Promise<void>}
+         */
+        clearErrors({commit}) {
+            try {
+                commit('SET_ERRORS', {})
             } catch (error) {
                 throw error
             }
@@ -115,6 +142,10 @@ export default {
          */
         getToken(state) {
             return state.token
+        },
+
+        getErrors(state) {
+            return state.errors
         }
     }
 }
