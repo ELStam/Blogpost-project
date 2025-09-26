@@ -4,6 +4,7 @@ import ProfileComponent from "@/components/ProfileComponent.vue";
 import LoginComponent from "@/components/auth/LoginComponent.vue";
 import BlogDetailComponent from "@/components/blogs/BlogDetailComponent.vue";
 import FollowingComponent from "@/components/FollowingComponent.vue";
+import RegisterComponent from "@/components/auth/RegisterComponent.vue";
 
 const routes = [
     {
@@ -31,7 +32,12 @@ const routes = [
         path: '/following',
         component: FollowingComponent,
         name: 'Following'
-    }
+    },
+    {
+        path: '/register',
+        component: RegisterComponent,
+        name: 'Register'
+    },
 ];
 
 const router = createRouter({

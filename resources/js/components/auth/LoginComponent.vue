@@ -95,9 +95,12 @@ export default {
          */
         async submitLogin() {
             try {
-                this.getErrors = []
+                await this.clearErrors()
+                console.log(this.getErrors)
                 await this.login({username: this.username, password: this.password})
-                this.$router.push('/')
+                if (Object.keys(this.getErrors).length === 0) {
+                    this.$router.push('/')
+                }
             } catch (error) {
                 throw error
             }

@@ -20,10 +20,15 @@ export default {
                 username,
                 password
             })
+            console.log(response.data.auth_token)
 
-            if (response.data.auth_token) {
-                Cookies.set('auth_token', response.data.auth_token)
-            }
+            Cookies.set('auth_token', response.data.auth_token)
+
+
+            // if (response.data.auth_token) {
+            //     Cookies.set('auth_token', response.data.auth_token)
+            // }
+
 
             return response.data
         } catch (error) {

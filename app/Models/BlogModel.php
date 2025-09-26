@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class BlogModel extends Model
 {
+    protected $table = 'blogs';
     /**
      * @var list<string>
      */

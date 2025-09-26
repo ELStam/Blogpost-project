@@ -8,8 +8,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class User extends Authenticatable
+class UserModel extends Authenticatable
 {
+    protected $table = 'users';
+    
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
@@ -36,7 +38,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
-    
+
 
     protected function casts(): array
     {

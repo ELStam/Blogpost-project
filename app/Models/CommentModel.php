@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CommentModel extends Model
 {
+    protected $table = 'comments';
     /**
      * @var list<string>
      */
