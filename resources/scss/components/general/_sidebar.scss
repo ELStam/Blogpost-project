@@ -1,5 +1,10 @@
 .sidebar {
-    &.--home {
-        max-width: 350px;
+    max-width: 350px;
+
+    &.--detail {
+        transform: translateY(-15%);
+
     }
+
+
 }

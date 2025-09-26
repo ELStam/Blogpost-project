@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CategoryModel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class CategoryController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $categories = Category::all();
+            $categories = CategoryModel::all();
             return response()->json([
                 'message' => 'Categories retrieved successfully',
                 'categories' => $categories

@@ -6,9 +6,12 @@ use App\Http\Requests\Blog\CreateBlogRequest;
 use App\Http\Requests\Blog\DeleteBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
 use App\Models\Blog;
+use App\Models\BlogModel;
+use File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Storage;
 
 class BlogController extends Controller
 {
@@ -20,7 +23,7 @@ class BlogController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $blogs = Blog::with(['user', 'categories'])->get();
+            $blogs = BlogModel::with(['user', 'categories'])->get();
 
             return response()->json([
                 'message' => 'Blogs retrieved successfully.',
@@ -47,7 +50,7 @@ class BlogController extends Controller
 
             $validated['user_id'] = auth()->id();
 
-            $blog = Blog::create($validated);
+            $blog = BlogModel::create($validated);
 
             $blog->categories()->attach($validated['categories_id']);
 
@@ -131,5 +134,12 @@ class BlogController extends Controller
                 'message' => $exception->getMessage()
             ], 500);
         }
+    }
+
+    public function uploadTest(Request $request)
+    {
+        $originalName = $request->file('file')->getClientOriginalName();
+        $path = "blog/1";
+        $fileStorage = Storage::disk('public')->putFileAs($path, $request->file, $originalName);
     }
 }

@@ -1,0 +1,13 @@
+.error {
+    border: 2px solid #b71c1c;
+    border-radius: 20px;
+    padding: 10px;
+
+    &__item {
+        color: #b71c1c;
+        font-weight: bold;
+        list-style: inside;
+        margin: 5px 0;
+
+    }
+}

@@ -1,5 +1,7 @@
 // authentication
 @forward "components/auth/authentication";
+@forward "components/auth/login";
+@forward "components/auth/register";
 
 // forms
 @forward "components/forms/forms";
@@ -11,6 +13,7 @@
 @forward "components/general/following";
 @forward "components/general/page";
 @forward "components/general/sidebar";
+@forward "components/general/error";
 
 // blogs
 @forward "components/blogs/blog";
@@ -29,9 +32,10 @@
     height: 100vh;
 
     &-blog {
-
+        height: 100%;
 
         &-body {
+            background: #f4f4f4;
             color: #333;
             font-family: Arial, sans-serif;
         }
