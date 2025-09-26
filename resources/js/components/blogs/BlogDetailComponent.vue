@@ -110,7 +110,10 @@ export default {
         BlogListComponent,
         PageLayout,
         CategoryComponent,
-        BlogItemComponent, BlogSubCardComponent, IconComponent, ProfilePhotoComponent
+        BlogItemComponent,
+        BlogSubCardComponent,
+        IconComponent,
+        ProfilePhotoComponent
     },
 
     props: {

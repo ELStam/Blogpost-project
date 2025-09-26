@@ -13,6 +13,12 @@ class CategoryModel extends Model
 
     public function blogs(): BelongsToMany
     {
-        return $this->belongsToMany(BlogModel::class);
+        return $this->belongsToMany(
+            BlogModel::class,
+            'blogs_categories',
+            'category_id',
+            'blog_id'
+        );
     }
+
 }

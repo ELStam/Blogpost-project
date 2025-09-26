@@ -26,16 +26,22 @@ class BlogModel extends Model
         'user_id' => 'int'
     ];
 
-    public function user(): BelongsTo // Relatie: een blog hoort bij een gebruiker
+    public function user(): BelongsTo
 
     {
-        return $this->belongsTo(UserModel::class); // Verbindt de blog met het User-model
+        return $this->belongsTo(UserModel::class);
     }
 
-    public function categories(): BelongsToMany // Relatie: een blog kan meerdere categorieën hebben
+    public function categories()
     {
-        return $this->belongsToMany(CategoryModel::class); // Verbindt de blog met het Category-model
+        return $this->belongsToMany(
+            CategoryModel::class,
+            'blogs_categories',
+            'blog_id',
+            'category_id'
+        );
     }
+
 
     /**
      * Relation with Comment model.
