@@ -13,16 +13,13 @@
             </div>
 
             <div class="following__blog__friends">
-                <div
-                    v-for="user in currentUser"
-                    :key="user.id"
-                    class="following__blog__friends__item"
-                >
-                    <h3 class="following__blog__friends__item-title">@{{ user.username }}</h3>
-                    <span class="following__blog__friends__item-name">{{ user.name }}</span>
-                    <span class="following__blog__friends__item-followers">{{ user.followers }} volgers</span>
+                <div class="following__blog__friends__item">
+                    <h3 class="following__blog__friends__item-title">@{{ currentUser.username }}</h3>
+                    <span class="following__blog__friends__item-name">{{ currentUser.name }}</span>
+                    <span class="following__blog__friends__item-followers">{{ currentUser.followers }} volgers</span>
                 </div>
             </div>
+
         </div>
 
         <div class="following__content">
@@ -46,11 +43,11 @@ export default {
     },
 
     computed: {
-        ...mapGetters('user', ['currentUser']),
+        ...mapGetters('user', ['currentUser'])
     },
 
-    mounted() {
-        this.fetchCurrentUser()
+    created() {
+        this.fetchCurrentUser();
     },
 
     methods: {
