@@ -13,6 +13,7 @@
 @forward "components/general/following";
 @forward "components/general/page";
 @forward "components/general/sidebar";
+@forward "components/general/error";
 
 // blogs
 @forward "components/blogs/blog";
@@ -31,6 +32,7 @@
     height: 100vh;
 
     &-blog {
+        height: 100%;
 
         &-body {
             background: #f4f4f4;

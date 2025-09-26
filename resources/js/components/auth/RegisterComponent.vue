@@ -2,6 +2,7 @@
     <div class="register-page">
         <auth-layout title="Registeren">
             <template #form>
+                <error-component :errors="getErrors"/>
                 <form class="register-page__form" @submit.prevent="submitRegister">
                     <base-input-component
                         v-model="user.name"
@@ -9,13 +10,12 @@
                         label="Naam"
                         type="text"
                     />
+
                     <base-text-area-component
                         v-model="user.bio"
                         class="register-page__input register-page__input--username"
                         label="Schijf hier iets over jezelf..."
-
                     />
-
 
                     <base-input-component
                         v-model="user.username"
@@ -69,11 +69,12 @@
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import AuthLayout from "@/components/auth/AuthLayout.vue";
 import BaseTextAreaComponent from "@/components/forms/BaseTextAreaComponent.vue";
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
+import ErrorComponent from "@/components/general/ErrorComponent.vue";
 
 export default {
     name: "RegisterComponent",
-    components: {BaseTextAreaComponent, AuthLayout, BaseInputComponent},
+    components: {ErrorComponent, BaseTextAreaComponent, AuthLayout, BaseInputComponent},
 
     data() {
         return {
@@ -89,9 +90,17 @@ export default {
         }
     },
 
+    computed: {
+        ...mapGetters('auth', ['getErrors'])
+    },
+    
+    created() {
+        this.clearErrors()
+    },
+
     methods: {
-        ...mapActions('auth', ['register']),
-        
+        ...mapActions('auth', ['register', 'clearErrors']),
+
         /**
          * Handles the register form submission.
          *
@@ -102,13 +111,17 @@ export default {
          */
         async submitRegister() {
             try {
+                this.getErrors = []
                 if (this.user.password !== this.user.confirm_password) {
                     alert("Wachtwoorden komen niet overeen!");
                     return
                 }
                 await this.register(this.user);
-                this.$router.push('/')
+                if (!this.getErrors) {
+                    this.$router.push('/')
+                }
             } catch (error) {
+                console.log(error)
                 throw error
             }
         }

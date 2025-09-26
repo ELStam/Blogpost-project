@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\UserModel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -26,7 +27,7 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request): JsonResponse
     {
-        $user = User::create([
+        $user = UserModel::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
@@ -61,7 +62,7 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request): JsonResponse
     {
-        $user = User::where('username', $request->username)->first();
+        $user = UserModel::where('username', $request->username)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
