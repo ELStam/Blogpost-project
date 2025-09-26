@@ -70,10 +70,10 @@ class BlogController extends Controller
     /**
      * Display the specified blog.
      *
-     * @param Blog $blog
+     * @param BlogModel $blog
      * @return JsonResponse
      */
-    public function show(Blog $blog): JsonResponse
+    public function show(BlogModel $blog): JsonResponse
     {
         try {
             $blog->load(['user', 'categories']);
@@ -93,10 +93,10 @@ class BlogController extends Controller
      * Categories can be updated based on the id.
      *
      * @param UpdateBlogRequest $request
-     * @param Blog $blog
+     * @param BlogModel $blog
      * @return JsonResponse
      */
-    public function update(UpdateBlogRequest $request, Blog $blog): JsonResponse
+    public function update(UpdateBlogRequest $request, BlogModel $blog): JsonResponse
     {
         try {
             $blog->update($request->validated());
@@ -118,10 +118,10 @@ class BlogController extends Controller
      * Remove the specified blog.
      *
      * @param DeleteBlogRequest $request
-     * @param Blog $blog
+     * @param BlogModel $blog
      * @return JsonResponse
      */
-    public function destroy(DeleteBlogRequest $request, Blog $blog): JsonResponse
+    public function destroy(DeleteBlogRequest $request, BlogModel $blog): JsonResponse
     {
         try {
             $blog->delete();
