@@ -20,5 +20,4 @@ class CategoryModel extends Model
             'blog_id'
         );
     }
-
 }
