@@ -11,7 +11,7 @@
             <icon-component :blog="blog"/>
         </div>
 
-        <img alt="" class="blog-card__image" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg">
+        <img :src="bannerUrl" alt="" class="blog-card__image">
 
         <div class="blog-card__body">
             <h2 class="blog-card__title">{{ blog.title }}</h2>
@@ -43,5 +43,11 @@ export default {
             required: true
         }
     },
+
+    computed: {
+        bannerUrl() {
+            return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/';
+        }
+    }
 }
 </script>

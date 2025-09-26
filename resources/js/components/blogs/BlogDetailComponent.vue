@@ -1,7 +1,9 @@
 <template>
     <div v-if="blog" class="blog-detail">
         <header class="blog-detail__header">
-            <img alt="Blog banner" class="blog-detail__banner" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg"/>
+            <img :src="bannerUrl"
+                 alt="Blog banner"
+                 class="blog-detail__banner"/>
         </header>
         <page-layout class="--home" content-class="--detail" sidebar-class="--detail">
             <template #sidebar>
@@ -124,6 +126,9 @@ export default {
 
     computed: {
         ...mapGetters('blog', ['blog']),
+        bannerUrl() {
+            return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/';
+        }
     },
 
     created() {

@@ -54,40 +54,23 @@ class BlogController extends Controller
 
             if ($request->hasFile('banner')) {
                 $originalName = $request->file('banner')->getClientOriginalName();
-                $path = "blog/" . $blog->id . "/";
+                $path = "blog/" . $blog->id;
+
                 $fileStorage = Storage::disk('public')
                     ->putFileAs($path, $request->file('banner'), $originalName);
+
+                $blog->update([
+                    'banner' => $path . '/' . $originalName
+                ]);
             }
 
             $blog->categories()->attach($validated['categories_id']);
             $blog->load('categories');
-
-
+            
             return response()->json([
                 'message' => 'Blog created successfully',
                 'blog' => $blog
             ], 201);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'message' => $exception->getMessage()
-            ], 500);
-        }
-    }
-
-    /**
-     * Display the specified blog.
-     *
-     * @param BlogModel $blog
-     * @return JsonResponse
-     */
-    public function show(BlogModel $blog): JsonResponse
-    {
-        try {
-            $blog->load(['user', 'categories']);
-            return response()->json([
-                'message' => 'Blog retrieved successfully',
-                'blog' => $blog
-            ], 200);
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
@@ -114,6 +97,28 @@ class BlogController extends Controller
                 'message' => 'Blog updated succesfully',
                 'blog' => $blog
             ], 201);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Display the specified blog.
+     *
+     * @param BlogModel $blog
+     * @return JsonResponse
+     */
+    public function show(BlogModel $blog): JsonResponse
+    {
+        try {
+            $blog->load(['user', 'categories']);
+
+            return response()->json([
+                'message' => 'Blog retrieved successfully',
+                'blog' => $blog
+            ], 200);
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()

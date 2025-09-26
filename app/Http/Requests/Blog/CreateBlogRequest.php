@@ -28,7 +28,6 @@ class CreateBlogRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'banner' => [
-                'required',
                 File::image([
                     'jpeg',
                     'jpg',
