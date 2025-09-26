@@ -3,8 +3,10 @@
 namespace App\Http\Requests\Blog;
 
 use App\Models\Blog;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rules\File;
 
 class CreateBlogRequest extends FormRequest
 {
@@ -19,12 +21,20 @@ class CreateBlogRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
             'title' => 'required|string|max:255',
+            'banner' => [
+                'required',
+                File::image([
+                    'jpeg',
+                    'jpg',
+                    'png'
+                ])
+            ],
             'introduction' => 'required|string|max:255',
             'paragraph_title' => 'required|string|max:255',
             'paragraph_body' => 'required|string',

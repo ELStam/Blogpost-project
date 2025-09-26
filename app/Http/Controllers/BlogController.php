@@ -52,9 +52,16 @@ class BlogController extends Controller
 
             $blog = BlogModel::create($validated);
 
-            $blog->categories()->attach($validated['categories_id']);
+            if ($request->hasFile('banner')) {
+                $originalName = $request->file('banner')->getClientOriginalName();
+                $path = "blog/" . $blog->id . "/";
+                $fileStorage = Storage::disk('public')
+                    ->putFileAs($path, $request->file('banner'), $originalName);
+            }
 
+            $blog->categories()->attach($validated['categories_id']);
             $blog->load('categories');
+
 
             return response()->json([
                 'message' => 'Blog created successfully',

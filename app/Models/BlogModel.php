@@ -16,6 +16,7 @@ class BlogModel extends Model
      */
     protected $fillable = [
         'title',
+        'banner',
         'introduction',
         'paragraph_title',
         'paragraph_body',
