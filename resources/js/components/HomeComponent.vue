@@ -9,7 +9,7 @@
 
             <template #default>
                 <main class="home__content">
-                    <create-blog-component/>
+                    <blog-input-title-component/>
                     <blog-list-component/>
                 </main>
             </template>
@@ -22,7 +22,7 @@ import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
 import {mapActions, mapGetters} from "vuex";
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import CategoryComponent from "@/components/navigation/CategoryComponent.vue";
-import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import BlogInputTitleComponent from "@/components/blogs/BlogInputTitleComponent.vue";
 import PageLayout from "@/components/PageLayout.vue";
 
 export default {
@@ -30,7 +30,7 @@ export default {
 
     components: {
         PageLayout,
-        CreateBlogComponent,
+        BlogInputTitleComponent,
         CategoryComponent,
         BlogListComponent,
         BaseInputComponent,

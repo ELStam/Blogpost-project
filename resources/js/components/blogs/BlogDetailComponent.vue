@@ -1,7 +1,8 @@
 <template>
     <div v-if="blog" class="blog-detail">
         <header class="blog-detail__header">
-            <img class="blog-detail__banner" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg"/></header>
+            <img alt="Blog banner" class="blog-detail__banner" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg"/>
+        </header>
         <page-layout class="--home" content-class="--detail" sidebar-class="--detail">
             <template #sidebar>
                 <profile-photo-component
@@ -97,7 +98,6 @@ import BlogItemComponent from "@/components/blogs/BlogItemComponent.vue";
 import CategoryComponent from "@/components/navigation/CategoryComponent.vue";
 import PageLayout from "@/components/PageLayout.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
-import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
 
 export default {
@@ -106,7 +106,6 @@ export default {
     mixins: [DateFormatMixin],
 
     components: {
-        CreateBlogComponent,
         BlogListComponent,
         PageLayout,
         CategoryComponent,

@@ -2,7 +2,7 @@
     <div v-if="currentUser" class="following following__layout">
         <div class="following__left">
             <div class="following__blog">
-                <create-blog-component
+                <blog-input-title-component
                     :user="currentUser"
                     class="following__layout__create-blog following__layout__create-blog--below-image"
                 />
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import BlogInputTitleComponent from "@/components/blogs/BlogInputTitleComponent.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
 import {mapActions, mapGetters} from "vuex";
 
@@ -39,7 +39,7 @@ export default {
 
     components: {
         BlogListComponent,
-        CreateBlogComponent,
+        BlogInputTitleComponent,
     },
 
     computed: {

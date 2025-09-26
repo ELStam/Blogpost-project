@@ -38,21 +38,21 @@
     </div>
 
     <div class="profile-blog">
-        <create-blog-component image="/assets/writing.png"/>
+        <blog-title-input-component image="/assets/writing.png"/>
     </div>
 </template>
 
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
-import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
-import {mapGetters} from "vuex";
+import BlogTitleInputComponent from "@/components/blogs/BlogInputTitleComponent.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "ProfileComponent",
 
     components: {
         BaseInputComponent,
-        CreateBlogComponent,
+        BlogTitleInputComponent,
     },
 
     data() {
@@ -65,18 +65,12 @@ export default {
         ...mapGetters('user', ['currentUser']),
     },
 
-    mounted() {
-        this.$store.dispatch('user/fetchCurrentUser')
-            .then(() => console.log('currentUser loaded:', this.currentUser))
-            .catch(err => console.error(err));
+    created() {
+        this.fetchCurrentUser()
     },
 
     methods: {
-        postBlog() {
-            if (!this.newBlog.trim()) return; // Voorkomt het posten van lege of spatie-only blogs
-            console.log('Nieuwe blog:', this.newBlog);
-            this.newBlog = '';
-        },
+        ...mapActions('user', ['fetchCurrentUser']),
     },
 
 };

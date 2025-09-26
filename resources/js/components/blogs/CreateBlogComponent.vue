@@ -1,51 +1,37 @@
 <template>
-    <div v-if="isAuthenticated" class="blog-create">
-        <div>
-            <profile-photo-component
-                alt="Profile photo of the user"
-                class="--create"
-                src="/assets/img.png"
-            />
-            <span v-if="Object.keys(user).length > 0" class="blog-create__username">@{{
-                    user.username
-                }}</span>
-        </div>
-        <base-input-component
-            class="blog-create__input"
-            label="Titel van de blog..."
-            type="text"
-        />
+    <div class="blog-create">
+        <page-layout class="--create" content-class="--create" sidebar-class="--create">
+            <template #sidebar>
+
+            </template>
+
+            <template #default>
+                {{ title }}
+            </template>
+        </page-layout>
     </div>
 </template>
 
 <script>
-import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
-import {mapActions, mapGetters} from "vuex";
-import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
+
+import BlogInputTitleComponent from "@/components/blogs/BlogInputTitleComponent.vue";
+import PageLayout from "@/components/PageLayout.vue";
 
 export default {
-    name: 'CreateBlogComponent',
+    name: "BlogCreateComponent",
 
-    components: {ProfilePhotoComponent, BaseInputComponent},
+    components: {
+        PageLayout,
+        BlogInputTitleComponent
+    },
+
     props: {
-        user: {
-            type: Object, default: ({})
+        title: {
+            type: String,
+            required: true
         }
-    },
-
-    data() {
-        return {
-            title: '',
-            body: ''
-        }
-    },
-
-    computed: {
-        ...mapGetters('auth', ['isAuthenticated'])
-    },
-
-    methods: {
-        ...mapActions('blog', ['createBlog'])
     }
+
+
 }
 </script>
