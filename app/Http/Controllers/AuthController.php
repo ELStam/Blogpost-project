@@ -39,7 +39,7 @@ class AuthController extends Controller
         try {
             $token = $user->createToken('auth_token')->plainTextToken;
         } catch (Exception $e) {
-            return response() - json(['Error' => 'Could not create token'], 500);
+            return response()->json(['Error' => 'Could not create token'], 500);
         }
 
         return response()->json([

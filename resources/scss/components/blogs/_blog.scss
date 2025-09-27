@@ -254,7 +254,78 @@ $blog: ".blog";
         &__introduction {
             color: #818181;
         }
+    }
 
+    // Create Styling
+    &-create {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px;
+        max-width: 100%;
+        
+        &__container {
+            background-color: #fff;
+            border: 1px solid #E0E0E0;
+            border-radius: 10px;
+            padding: 50px;
+            width: 800px;
+        }
 
+         &__title {
+            color: #111A51;
+            font-family: "Rockwell Extra Bold", Rockwell, serif;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        &__form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        &__field {
+            margin: 5px 0;
+        }
+
+        &__textarea {
+
+            &.--introduction {
+                height: 100px;
+                resize: none;
+                width: 100%;
+            }
+
+            &.--paragraph {
+                height: 200px;
+                resize: none;
+                width: 100%;
+            }
+        }
+
+        &__label {
+            
+            &.--categories {
+                color: #111A51;
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+            &.--checkbox {
+                margin: 10px;
+                
+            }
+        }
+
+        &__checkbox {
+            margin: 5px 0;
+        }
+        
+        &__buttons {
+            display: flex;
+            gap: 10px;
+        }
+    
     }
 }

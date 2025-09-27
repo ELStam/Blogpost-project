@@ -8,7 +8,8 @@ export default {
         return {
             blogs: [],
             categories: [],
-            blog: ''
+            blog: '',
+            errors: {},
         }
     },
 
@@ -64,13 +65,25 @@ export default {
         /**
          * Sets the categories array in the state.
          *
-         * @param state
-         * @param categories
+         * @param {Object} state
+         * @param {Array<Object>} categories
          *
          * @return {void}
          */
         SET_CATEGORIES(state, categories) {
             state.categories = categories
+        },
+
+        /**
+         * Sets the errors object in the state.
+         * 
+         * @param {Object} state 
+         * @param {Object} errors 
+         * 
+         * @returns {void}
+         */
+        SET_ERRORS(state, errors) {
+            state.errors = errors
         }
     },
 
@@ -80,18 +93,18 @@ export default {
          *
          * @param {Object} context
          * @param {Function} context.commit
-         * @param {Object} payload - Blog data
-         *
-         * @return {Promise<Object>}
+         * @param {Object} blog
+         * 
+         * @return {Promise<void>}
          */
-        async createBlog({commit}, {blog}) {
-            try {
-                const createdBlog = await BlogService.createBlog(blog)
-                commit('ADD_BLOG', createdBlog)
-                return createdBlog
-            } catch (error) {
-                throw error
-            }
+        async createBlog({commit}, blog) {
+           try {
+            const data = await BlogService.createBlog(blog)
+            commit('ADD_BLOG', data)
+            return data
+           } catch (error) {
+            if (error.status === 422) return error.response.data.errors
+           }
         },
 
         /**

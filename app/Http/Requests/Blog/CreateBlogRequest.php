@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Blog;
 
-use App\Models\Blog;
+use App\Models\BlogModel;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -15,7 +15,7 @@ class CreateBlogRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('create', Blog::class);
+        return Gate::allows('create', BlogModel::class);
     }
 
     /**

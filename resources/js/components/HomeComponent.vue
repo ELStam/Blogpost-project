@@ -11,8 +11,7 @@
                 <main class="home__content">
                     <router-link :to="{name: 'BlogCreate'}">
                         <base-button-component
-                            buttonClass="--create"
-                            type="submit"
+                            buttonClass="base-button__button --create"
                         >
                             <i class="fa-solid fa-circle-plus icon --home"></i>
                         </base-button-component>

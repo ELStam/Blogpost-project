@@ -2,11 +2,12 @@
     <div class="base-button">
         <button
             :class="buttonClass"
+            :type="type"
             class="base-button__button"
             v-bind="$attrs"
             v-on="$listeners"
         >
-            <slot/>
+            <slot></slot>
         </button>
     </div>
 </template>
@@ -21,6 +22,10 @@ export default {
         buttonClass: {
             type: String,
             default: ''
+        },
+        type: {
+            type: String,
+            default: 'button'
         }
     }
 }

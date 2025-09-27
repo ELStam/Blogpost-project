@@ -127,7 +127,7 @@ export default {
     computed: {
         ...mapGetters('blog', ['blog']),
         bannerUrl() {
-            return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/';
+            return this.blog.banner ? `/storage/public/blog/${this.blog.id}/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
         }
     },
 

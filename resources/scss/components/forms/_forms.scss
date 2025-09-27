@@ -7,11 +7,11 @@
             font-size: 16px;
             max-width: 100%;
             padding: 15px;
-
         }
     }
 
     &-button {
+        display: flex;
         &__button {
             &:hover {
                 cursor: pointer;
@@ -22,7 +22,37 @@
                 border: none;
                 font-size: 30px;
                 padding: 5px;
+                align-self: flex-end;
+                margin-bottom: 10px;
+            }
 
+            &.--submit {
+                background-color: #E56620;
+                border: none;
+                border-radius: 25px;
+                color: #FFFFFF;
+                font-size: 16px;
+                padding: 7px 30px;
+
+                &:hover {
+                    background-color: #c04e1a;
+                }
+            }
+
+            &.--cancel {
+                background-color: #bababa;
+                border: none;
+                border-radius: 25px;
+                color: #FFFFFF;
+                font-size: 16px;
+                margin-right: 10px;
+                padding: 7px 30px;
+
+                &:hover {
+                    background-color: #a2a2a2;
+                    border: none;
+                    color: #FFFFFF;
+                }
             }
         }
     }

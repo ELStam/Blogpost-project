@@ -46,7 +46,7 @@ export default {
 
     computed: {
         bannerUrl() {
-            return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/';
+            return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
         }
     }
 }
