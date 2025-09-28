@@ -50,6 +50,14 @@ export default {
             state.blog = blog
         },
 
+        /**
+         * Removes a blog from the state based on its id.
+         *
+         * @param {Object} state
+         * @param {number} id
+         *
+         * @return {void}
+         */
         REMOVE_BLOG(state, id) {
             state.blogs = state.blogs.filter(blog => blog.id !== id)
         },
