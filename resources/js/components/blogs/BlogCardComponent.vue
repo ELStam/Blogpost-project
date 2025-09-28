@@ -8,7 +8,7 @@
             />
             <span class="blog-card__username">@{{ blog.user.username }}</span>
             <span class="blog-card__date">{{ dateFormat(blog.created_at) }}</span>
-            <icon-component :blog="blog"/>
+            <icon-component :blog="blog" @delete="handleDelete"/>
         </div>
 
         <img :src="bannerUrl" alt="" class="blog-card__image">
@@ -29,6 +29,7 @@
 import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 import IconComponent from "@/components/general/IconComponent.vue";
 import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
+import { mapActions } from "vuex";
 
 export default {
     name: 'BlogCardComponent',
@@ -47,6 +48,27 @@ export default {
     computed: {
         bannerUrl() {
             return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
+        }
+    },
+
+    methods: {
+        ...mapActions('blog', ['removeBlog']),
+
+        /**
+         * Handles the deletion of the blog.
+         * It calls the 'removeBlog' action with the blog's id.
+         * 
+         * 
+         * @returns {void}
+         */
+        handleDelete() {
+            try {
+                this.removeBlog(this.blog.id).then(() => {
+                    alert('Blog deleted successfully')
+                })
+            } catch (error) {
+                throw  error
+            }
         }
     }
 }

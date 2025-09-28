@@ -50,16 +50,8 @@ export default {
             state.blog = blog
         },
 
-        /**
-         * Removes the blog based on the index.
-         *
-         * @param {Object} state
-         * @param {number} index
-         *
-         * @return {void}
-         */
-        REMOVE_BLOG(state, index) {
-            state.blogs.splice(index, 1)
+        REMOVE_BLOG(state, id) {
+            state.blogs = state.blogs.filter(blog => blog.id !== id)
         },
 
         /**
@@ -149,15 +141,14 @@ export default {
          *
          * @param {Object} context
          * @param {Function} context.commit
-         * @param {Object} state
          * @param id - the id of the blog
          *
          * @return {Promise<void>}
          */
-        removeBlog({commit, state}, id) {
+        removeBlog({commit}, id) {
             return BlogService.deleteBlog(id)
-                .then(response => {
-                    commit('REMOVE_BLOG', response)
+                .then(() => {
+                    commit('REMOVE_BLOG', id)
                 }).catch(error => {
                     throw error
                 })

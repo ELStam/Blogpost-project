@@ -5,7 +5,7 @@
                  alt="Blog banner"
                  class="blog-detail__banner"/>
         </header>
-        <page-layout class="--home" content-class="--detail" sidebar-class="--detail">
+        <page-layout class="--detail" content-class="--detail" sidebar-class="--detail">
             <template #sidebar>
                 <profile-photo-component
                     alt="Profile photo of the blogger"
@@ -14,7 +14,7 @@
                 />
 
                 <div class="blog-detail__items">
-                    <h3 class="blog-detail__more">
+                    <h3 class="blog-detail__items-title">
                         Meer van deze blogger
                     </h3>
 
@@ -39,9 +39,10 @@
                             >
                                 {{ dateFormat(blog.created_at) }}
                             </span>
-
+                            
                             <icon-component
                                 :blog="blog"
+                                @delete="handleDeleteBlog"
                             />
                         </div>
                         <h1 class="blog-detail__title">
@@ -136,7 +137,27 @@ export default {
     },
 
     methods: {
-        ...mapActions('blog', ['fetchBlog']),
+        ...mapActions('blog', ['fetchBlog', 'removeBlog']),
+
+        /**
+         * Handles the deletion of the blog.
+         * It calls the 'removeBlog' action with the blog's id.
+         * 
+         * If the deletion of the blog is successful, it shows an alert and navigates to the 'Home' page.
+         * 
+         * @returns {void}
+         * 
+         */
+        handleDeleteBlog() {
+            try {
+                this.removeBlog(this.blog.id).then(() => {
+                    alert('Blog deleted successfully');
+                    this.$router.push({name: 'Home'})
+                });
+            } catch (error) {
+                throw  error
+            }
+        }
     }
 }
 </script>

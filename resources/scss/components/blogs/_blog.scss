@@ -156,11 +156,11 @@ $blog: ".blog";
         &__items {
             background-color: #fff;
             padding: 20px;
-        }
 
-        &__more {
+            &-title {
             color: #c04e1a;
-        }
+            }
+        } 
     }
 
     // Post Styling
