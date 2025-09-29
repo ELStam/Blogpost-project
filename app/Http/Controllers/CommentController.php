@@ -14,10 +14,22 @@ class CommentController extends Controller
     /**
      * Display a listing of the comments.
      *
+     * @param BlogModel $blog
+     *
      * @returns JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(BlogModel $blog): JsonResponse
     {
+        try {
+            $comments = $blog->comments()->with('user')->get();
+
+            return response()->json([
+                'comments' => $comments
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+        }
     }
 
     /**
@@ -27,8 +39,23 @@ class CommentController extends Controller
      */
     public function store(CreateCommentRequest $request, BlogModel $blog): JsonResponse
     {
-    }
+        try {
+            $validated = $request->validated();
 
+            $validated['user_id'] = auth()->id();
+
+            $comment = $blog->comments()->create($validated);
+
+            return response()->json([
+                'message' => 'Comment successfully created!',
+                'comment' => $comment
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ]);
+        }
+    }
 
     /**
      * Remove the specified resource from storage.

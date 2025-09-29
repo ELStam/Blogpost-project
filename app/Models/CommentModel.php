@@ -24,7 +24,7 @@ class CommentModel extends Model
      */
     public function blog(): BelongsTo
     {
-        return $this->belongsTo(BlogModel::class);
+        return $this->belongsTo(BlogModel::class, 'blog_id');
     }
 
     /**
@@ -34,7 +34,7 @@ class CommentModel extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(UserModel::class);
+        return $this->belongsTo(UserModel::class, 'user_id');
     }
 
 }

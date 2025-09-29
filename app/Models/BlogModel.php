@@ -53,7 +53,7 @@ class BlogModel extends Model
      */
     public function comments(): HasMany
     {
-        return $this->hasMany(CommentModel::class);
+        return $this->hasMany(CommentModel::class, 'blog_id');
     }
 
 }
