@@ -1,7 +1,7 @@
 <template>
     <div class="blog-list">
         <blog-card-component
-            v-for="blog in blogs"
+            v-for="blog in displayedBlogs"
             :key="blog.id"
             :blog="blog"
         />
@@ -17,8 +17,23 @@ export default {
 
     components: {BlogCardComponent},
 
+    props: {
+        onlyCurrentUser: {
+            type: Boolean,
+            default: false
+        }
+    },
+
     computed: {
-        ...mapGetters('blog', ['blogs'])
+        ...mapGetters('blog', ['blogs']),
+        ...mapGetters('user', ['currentUser']),
+
+        displayedBlogs() {
+            if (this.onlyCurrentUser && this.currentUser) {
+                return this.blogs.filter(b => b.user_id === this.currentUser.id);
+            }
+            return this.blogs;
+        }
     },
 
     created() {

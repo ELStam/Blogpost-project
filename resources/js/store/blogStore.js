@@ -76,10 +76,10 @@ export default {
 
         /**
          * Sets the errors object in the state.
-         * 
-         * @param {Object} state 
-         * @param {Object} errors 
-         * 
+         *
+         * @param {Object} state
+         * @param {Object} errors
+         *
          * @returns {void}
          */
         SET_ERRORS(state, errors) {
@@ -94,7 +94,7 @@ export default {
          * @param {Object} context
          * @param {Function} context.commit
          * @param {Object} blog
-         * 
+         *
          * @return {Promise<void>}
          */
         async createBlog({commit}, blog) {

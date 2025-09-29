@@ -1,12 +1,6 @@
 <template>
     <div v-if="currentUser" class="following">
         <div class="following-sidebar">
-            <div class="following-sidebar-profile">
-                <create-blog-component
-                    :user="currentUser"
-                    class="following-sidebar-profile__create-blog"
-                />
-            </div>
 
             <div class="following-sidebar-profile__friends">Bekijk meer van je vrienden
                 <users-component :users="users"/>
