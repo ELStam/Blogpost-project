@@ -1,20 +1,20 @@
 <template>
-    <div v-if="currentUser" class="following following__layout">
-        <div class="following__left">
-            <div class="following__blog">
+    <div v-if="currentUser" class="following">
+        <div class="following-sidebar">
+            <div class="following-sidebar-profile">
                 <create-blog-component
                     :user="currentUser"
-                    class="following__layout__create-blog following__layout__create-blog--below-image"
+                    class="following-sidebar-profile__create-blog"
                 />
             </div>
 
-            <div class="following__blog__more-friends">Bekijk meer van je vrienden
+            <div class="following-sidebar-profile__friends">Bekijk meer van je vrienden
                 <users-component :users="users"/>
             </div>
         </div>
 
-        <div class="following__content">
-            <h1 class="following__title">Volgend</h1>
+        <div class="following-blogs">
+            <h1 class="following-blogs__title">Volgend</h1>
             <blog-list-component/>
         </div>
     </div>

@@ -1,13 +1,13 @@
 <template>
-    <div class="following__blog__friends">
+    <div class="users">
         <div
             v-for="user in users"
             :key="user.id"
-            class="following__blog__friends__item"
+            class="users-info"
         >
-            <h3 class="following__blog__friends__item-title">@{{ user.username }}</h3>
-            <span class="following__blog__friends__item-name">{{ user.name }}</span>
-            <span class="following__blog__friends__item-followers">{{ user.followers }} volgers</span>
+            <h3 class="users-info__username">@{{ user.username }}</h3>
+            <span class="users-info__name">{{ user.name }}</span>
+            <span class="users-info__followers">{{ user.followers }} volgers</span>
 
         </div>
     </div>
