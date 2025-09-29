@@ -1,7 +1,15 @@
 .category {
-    background-color: #fff;
-    max-width: 500px;
-    padding: 30px;
+
+    &__title {
+        color: #c04e1a;
+        margin-bottom: 20px;
+    }
+
+    &-sidebar {
+        background-color: #fff;
+        max-width: 500px;
+        padding: 30px;
+    }
 
     &__label {
         color: #111B4E;
@@ -46,5 +54,41 @@
                 background-color: #c04e1a;
             }
         }
+    }
+
+    &__content {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: center;
+        margin-top: 40px;
+
+        @media screen and (max-width: 1535px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media screen and (max-width: 1171px) {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+    &__card {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__image {
+        border-radius: 50%;
+        height: 300px;
+        object-fit: cover;
+        width: 300px;
+    }
+
+    &__name {
+        color: #111A51;
+        font-weight: bold;
+        margin-top: 20px;
     }
 }
