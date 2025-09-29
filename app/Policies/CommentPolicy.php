@@ -10,7 +10,10 @@ use Illuminate\Auth\Access\Response;
 class CommentPolicy
 {
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can view any comments.
+     *
+     * @param UserModel $user
+     * @return Response
      */
     public function viewAny(UserModel $user): Response
     {
@@ -20,7 +23,10 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create comments.
+     *
+     * @param UserModel $user
+     * @return Response
      */
     public function create(UserModel $user): Response
     {
@@ -30,10 +36,18 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the comment or if the owner of the
+     * blog can delete the comment.
+     *
+     * @param UserModel $user
+     * @param CommentModel $comment
+     * @return Response
      */
-    public function delete(UserModel $user, CommentModel $comment, BlogModel $blog): bool
+    public function delete(UserModel $user, CommentModel $comment): Response
     {
-        return false;
+        return $user->id === $comment->user_id ||
+        $user->id === $comment->blog->user_id
+            ? Response::allow()
+            : Response::denyWithStatus(403);
     }
 }

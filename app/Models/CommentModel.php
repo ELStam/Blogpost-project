@@ -24,7 +24,7 @@ class CommentModel extends Model
      */
     public function blog(): BelongsTo
     {
-        return $this->belongsTo(BlogModel::class);
+        return $this->belongsTo(BlogModel::class, 'blog_id');
     }
 
     /**

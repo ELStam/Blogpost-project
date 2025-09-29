@@ -7,6 +7,7 @@ use App\Http\Requests\Blog\DeleteBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
 use App\Models\Blog;
 use App\Models\BlogModel;
+use Exception;
 use File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -38,6 +39,7 @@ class BlogController extends Controller
 
     /**
      * Store a newly created blog with categories.
+     * Uploads a banner to the storage and saves the banner path in the database.
      * The categories can be added based on the id.
      *
      * @param CreateBlogRequest $request
@@ -52,36 +54,26 @@ class BlogController extends Controller
 
             $blog = BlogModel::create($validated);
 
-            $blog->categories()->attach($validated['categories_id']);
+            if ($request->hasFile('banner')) {
+                $originalName = $request->file('banner')->getClientOriginalName();
+                $path = "blog/" . $blog->id;
 
+                $fileStorage = Storage::disk('public')
+                    ->putFileAs($path, $request->file('banner'), $originalName);
+
+                $blog->update([
+                    'banner' => $path . '/' . $originalName
+                ]);
+            }
+
+            $blog->categories()->attach($validated['categories_id']);
             $blog->load('categories');
 
             return response()->json([
                 'message' => 'Blog created successfully',
                 'blog' => $blog
             ], 201);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'message' => $exception->getMessage()
-            ], 500);
-        }
-    }
-
-    /**
-     * Display the specified blog.
-     *
-     * @param BlogModel $blog
-     * @return JsonResponse
-     */
-    public function show(BlogModel $blog): JsonResponse
-    {
-        try {
-            $blog->load(['user', 'categories']);
-            return response()->json([
-                'message' => 'Blog retrieved successfully',
-                'blog' => $blog
-            ], 200);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ], 500);
@@ -115,6 +107,28 @@ class BlogController extends Controller
     }
 
     /**
+     * Display the specified blog.
+     *
+     * @param BlogModel $blog
+     * @return JsonResponse
+     */
+    public function show(BlogModel $blog): JsonResponse
+    {
+        try {
+            $blog->load(['user', 'categories']);
+
+            return response()->json([
+                'message' => 'Blog retrieved successfully',
+                'blog' => $blog
+            ], 200);
+        } catch (Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
      * Remove the specified blog.
      *
      * @param DeleteBlogRequest $request
@@ -129,17 +143,10 @@ class BlogController extends Controller
             return response()->json([
                 'message' => 'Blog deleted'
             ]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ], 500);
         }
-    }
-
-    public function uploadTest(Request $request)
-    {
-        $originalName = $request->file('file')->getClientOriginalName();
-        $path = "blog/1";
-        $fileStorage = Storage::disk('public')->putFileAs($path, $request->file, $originalName);
     }
 }

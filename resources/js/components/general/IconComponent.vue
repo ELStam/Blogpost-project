@@ -4,11 +4,13 @@
             alt="Pencil for edit"
             class="blog-icons__image  blog-icons__image--edit"
             src="/assets/draw.png"
+            @click="onEdit()"
         />
         <img
             alt="Bin for delete"
             class="blog-icons__image blog-icons__image--delete"
             src="/assets/bin.png"
+            @click="onDelete()"
         />
     </div>
 </template>
@@ -48,6 +50,24 @@ export default {
 
     methods: {
         ...mapActions('user', ['fetchCurrentUser']),
+
+        /**
+         * Emits an 'edit' event with the blog object when the edit icon is clicked.
+         * 
+         * @returns {void}
+         */
+        onEdit() {
+            this.$emit('edit', this.blog)
+        },
+
+        /**
+         * Emits a 'delete' event with the blog object when the delete icon is clicked.
+         * 
+         * @returns {void}
+         */
+        onDelete() {
+            this.$emit('delete', this.blog)
+        }
 
     }
 

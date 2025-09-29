@@ -12,6 +12,9 @@ class BlogPolicy
 {
     /**
      * Determine whether the user can view any models.
+     *
+     * @param UserModel $user
+     * @return bool
      */
     public function viewAny(UserModel $user): bool
     {
@@ -20,6 +23,10 @@ class BlogPolicy
 
     /**
      * Determine whether the user can view the model.
+     *
+     * @param UserModel $user
+     * @param Blog $blog
+     * @return bool
      */
     public function view(UserModel $user, Blog $blog): bool
     {
@@ -27,7 +34,10 @@ class BlogPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     *  Determine whether the user can create models.
+     *
+     * @param UserModel $user
+     * @return Response
      */
     public function create(UserModel $user): Response
     {
@@ -38,6 +48,10 @@ class BlogPolicy
 
     /**
      * Determine whether the user can update the model.
+     *
+     * @param UserModel $user
+     * @param BlogModel $blog
+     * @return Response
      */
     public function update(UserModel $user, BlogModel $blog): Response
     {
@@ -48,6 +62,10 @@ class BlogPolicy
 
     /**
      * Determine whether the user can delete the model.
+     *
+     * @param UserModel $user
+     * @param BlogModel $blog
+     * @return Response
      */
     public function delete(UserModel $user, BlogModel $blog): Response
     {

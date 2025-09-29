@@ -16,6 +16,7 @@ class BlogModel extends Model
      */
     protected $fillable = [
         'title',
+        'banner',
         'introduction',
         'paragraph_title',
         'paragraph_body',
@@ -52,7 +53,7 @@ class BlogModel extends Model
      */
     public function comments(): HasMany
     {
-        return $this->hasMany(CommentModel::class);
+        return $this->hasMany(CommentModel::class, 'blog_id');
     }
 
 }

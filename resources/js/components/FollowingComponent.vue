@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import BlogInputTitleComponent from "@/components/blogs/BlogInputTitleComponent.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
 import UsersComponent from "@/components/UsersComponent.vue";
 import {mapGetters, mapActions} from "vuex";
@@ -32,7 +32,7 @@ export default {
     components: {
         UsersComponent,
         BlogListComponent,
-        CreateBlogComponent,
+        BlogInputTitleComponent,
     },
 
     computed: {

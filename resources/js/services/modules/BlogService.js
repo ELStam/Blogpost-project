@@ -8,26 +8,41 @@ export default {
      * Creates a new blog post.
      *
      * Sends a POST request to the 'blogs.store' endpoint.
-     *
-     * @param {string} title
-     * @param {string} introduction
-     * @param {string} paragraph_title
-     * @param {string} parapgraph_body
-     * @param {Array<number>} categories_id
+     * The blog data is sent as FormData to handle file uploads.
+     * 
+     * @param {Object} blog
+     * @param {string} blog.title
+     * @param {string} blog.introduction
+     * @param {string} blog.paragraph_title
+     * @param {string} blog.paragraph_body
+     * @param {Array<number>} blog.category_id
+     * @param {File|null} blog.banner
      *
      * @returns {Promise<Object|undefined>}
      */
-    async createBlog(title, introduction, paragraph_title, parapgraph_body, categories_id) {
+    async createBlog(blog) {
         try {
-            const response = await apiClient.post('blogs.store', {
-                title,
-                introduction,
-                paragraph_title,
-                parapgraph_body,
-                categories_id
+            let formData = new FormData()
+            formData.append('title', blog.title)
+            formData.append('introduction', blog.introduction)
+            formData.append('paragraph_title', blog.paragraph_title)
+            formData.append('paragraph_body', blog.paragraph_body)
+
+            blog.category_id.forEach(id => {
+                formData.append('categories_id[]', id)
             })
 
-            return response.data
+            if (blog.banner) {
+                formData.append('banner', blog.banner)
+            }
+
+            const response = await apiClient.post(route('blogs.store'), formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            })
+
+            return response.data.blog
         } catch (error) {
             alert(error)
         }

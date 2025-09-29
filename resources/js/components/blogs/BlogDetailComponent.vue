@@ -1,8 +1,11 @@
 <template>
     <div v-if="blog" class="blog-detail">
         <header class="blog-detail__header">
-            <img class="blog-detail__banner" src="/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg"/></header>
-        <page-layout class="--home" content-class="--detail" sidebar-class="--detail">
+            <img :src="bannerUrl"
+                 alt="Blog banner"
+                 class="blog-detail__banner"/>
+        </header>
+        <page-layout class="--detail" content-class="--detail" sidebar-class="--detail">
             <template #sidebar>
                 <profile-photo-component
                     alt="Profile photo of the blogger"
@@ -11,7 +14,7 @@
                 />
 
                 <div class="blog-detail__items">
-                    <h3 class="blog-detail__more">
+                    <h3 class="blog-detail__items-title">
                         Meer van deze blogger
                     </h3>
 
@@ -36,9 +39,10 @@
                             >
                                 {{ dateFormat(blog.created_at) }}
                             </span>
-
+                            
                             <icon-component
                                 :blog="blog"
+                                @delete="handleDeleteBlog"
                             />
                         </div>
                         <h1 class="blog-detail__title">
@@ -97,7 +101,6 @@ import BlogItemComponent from "@/components/blogs/BlogItemComponent.vue";
 import CategoryComponent from "@/components/navigation/CategoryComponent.vue";
 import PageLayout from "@/components/PageLayout.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
-import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
 
 export default {
@@ -106,7 +109,6 @@ export default {
     mixins: [DateFormatMixin],
 
     components: {
-        CreateBlogComponent,
         BlogListComponent,
         PageLayout,
         CategoryComponent,
@@ -125,6 +127,9 @@ export default {
 
     computed: {
         ...mapGetters('blog', ['blog']),
+        bannerUrl() {
+            return this.blog.banner ? `/storage/public/blog/${this.blog.id}/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
+        }
     },
 
     created() {
@@ -132,7 +137,27 @@ export default {
     },
 
     methods: {
-        ...mapActions('blog', ['fetchBlog']),
+        ...mapActions('blog', ['fetchBlog', 'removeBlog']),
+
+        /**
+         * Handles the deletion of the blog.
+         * It calls the 'removeBlog' action with the blog's id.
+         * 
+         * If the deletion of the blog is successful, it shows an alert and navigates to the 'Home' page.
+         * 
+         * @returns {void}
+         * 
+         */
+        handleDeleteBlog() {
+            try {
+                this.removeBlog(this.blog.id).then(() => {
+                    alert('Blog deleted successfully');
+                    this.$router.push({name: 'Home'})
+                });
+            } catch (error) {
+                throw  error
+            }
+        }
     }
 }
 </script>

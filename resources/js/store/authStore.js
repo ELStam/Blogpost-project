@@ -27,6 +27,14 @@ export default {
             token ? Cookies.set('auth_token', token) : Cookies.remove('auth_token')
         },
 
+        /**
+         * Sets the errors object in the state.
+         * 
+         * @param {Object} state 
+         * @param {Object} errors 
+         * 
+         * @return {void}
+         */
         SET_ERRORS(state, errors) {
             state.errors = errors
         }
