@@ -29,6 +29,7 @@ class CommentController extends Controller
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
+            ]);
         }
     }
 
