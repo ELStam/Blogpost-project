@@ -35,10 +35,9 @@
                 </div>
             </div>
         </section>
-    </div>
-
-    <div class="profile-blog">
-        <blog-title-input-component image="/assets/writing.png"/>
+        <div class="profile-blog">
+            <blog-list-component :only-current-user="true"/>
+        </div>
     </div>
 </template>
 
@@ -46,11 +45,13 @@
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import BlogTitleInputComponent from "@/components/blogs/BlogInputTitleComponent.vue";
 import {mapActions, mapGetters} from "vuex";
+import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
 
 export default {
     name: "ProfileComponent",
 
     components: {
+        BlogListComponent,
         BaseInputComponent,
         BlogTitleInputComponent,
     },

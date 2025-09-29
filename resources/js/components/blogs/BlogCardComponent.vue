@@ -29,7 +29,7 @@
 import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 import IconComponent from "@/components/general/IconComponent.vue";
 import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
-import { mapActions } from "vuex";
+import {mapActions} from "vuex";
 
 export default {
     name: 'BlogCardComponent',
@@ -57,8 +57,8 @@ export default {
         /**
          * Handles the deletion of the blog.
          * It calls the 'removeBlog' action with the blog's id.
-         * 
-         * 
+         *
+         *
          * @returns {void}
          */
         handleDelete() {
@@ -67,7 +67,7 @@ export default {
                     alert('Blog deleted successfully')
                 })
             } catch (error) {
-                throw  error
+                throw error
             }
         }
     }

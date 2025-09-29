@@ -39,7 +39,7 @@
                             >
                                 {{ dateFormat(blog.created_at) }}
                             </span>
-                            
+
                             <icon-component
                                 :blog="blog"
                                 @delete="handleDeleteBlog"
@@ -128,7 +128,7 @@ export default {
     computed: {
         ...mapGetters('blog', ['blog']),
         bannerUrl() {
-            return this.blog.banner ? `/storage/public/blog/${this.blog.id}/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
+            return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
         }
     },
 
@@ -142,11 +142,11 @@ export default {
         /**
          * Handles the deletion of the blog.
          * It calls the 'removeBlog' action with the blog's id.
-         * 
+         *
          * If the deletion of the blog is successful, it shows an alert and navigates to the 'Home' page.
-         * 
+         *
          * @returns {void}
-         * 
+         *
          */
         handleDeleteBlog() {
             try {
@@ -155,7 +155,7 @@ export default {
                     this.$router.push({name: 'Home'})
                 });
             } catch (error) {
-                throw  error
+                throw error
             }
         }
     }
