@@ -12,8 +12,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 
-Route::post('uploadtest', [BlogController::class, 'uploadtest'])->name('uploadtest');
-
 Route::middleware('auth:sanctum')->group(function () {
     // Blogs
     Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');

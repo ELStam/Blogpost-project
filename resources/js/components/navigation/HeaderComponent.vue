@@ -11,7 +11,7 @@
                 <router-link class="app-blog-header__link" to="/">Home</router-link>
                 <router-link class="app-blog-header__link" to="/ontdek">Ontdek</router-link>
                 <router-link class="app-blog-header__link" to="/following">Volgend</router-link>
-                <router-link class="app-blog-header__link" to="/categorieen">Categorieën</router-link>
+                <router-link :to="{name: 'CategoryList'}" class="app-blog-header__link">Categorieën</router-link>
                 <router-link class="app-blog-header__link" to="/TopPosts">Top Posts</router-link>
 
                 <div class="app-blog-header__dropdown">

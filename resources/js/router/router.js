@@ -7,6 +7,7 @@ import FollowingComponent from "@/components/FollowingComponent.vue";
 import Cookies from "js-cookie";
 import RegisterComponent from "@/components/auth/RegisterComponent.vue";
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
+import CategoryListComponent from "@/components/general/CategoryListComponent.vue";
 
 const routes = [
     {
@@ -56,6 +57,14 @@ const routes = [
         path: '/blogs/create',
         name: 'BlogCreate',
         component: CreateBlogComponent,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/categories',
+        name: 'CategoryList',
+        component: CategoryListComponent,
         meta: {
             requiresAuth: true
         }
