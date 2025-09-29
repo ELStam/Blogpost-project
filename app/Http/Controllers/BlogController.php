@@ -67,7 +67,7 @@ class BlogController extends Controller
             }
 
             $blog->categories()->attach($validated['categories_id']);
-            $blog->load('categories');
+            $blog->load(['categories', 'user']);
 
             return response()->json([
                 'message' => 'Blog created successfully',

@@ -84,27 +84,29 @@ export default {
          */
         SET_ERRORS(state, errors) {
             state.errors = errors
+        },
+
+        RESET_BLOGS(state) {
+            state.blogs = []
         }
     },
 
     actions: {
         /**
-         * Creates a new blog via API and commits it to the store.
+         * Creates a new blog via API.
          *
-         * @param {Object} context
-         * @param {Function} context.commit
+         * @param {any} __
          * @param {Object} blog
          *
          * @return {Promise<void>}
          */
-        async createBlog({commit}, blog) {
-           try {
-            const data = await BlogService.createBlog(blog)
-            commit('ADD_BLOG', data)
-            return data
-           } catch (error) {
-            if (error.status === 422) return error.response.data.errors
-           }
+        async createBlog(__, blog) {
+            try {
+                const data = await BlogService.createBlog(blog)
+                return data
+            } catch (error) {
+                if (error.status === 422) return error.response.data.errors
+            }
         },
 
         /**
@@ -179,6 +181,10 @@ export default {
                 .catch(error => {
                     throw error
                 })
+        },
+
+        resetBlogs({commit}) {
+            commit('RESET_BLOGS')
         }
     },
 
