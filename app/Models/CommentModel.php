@@ -34,7 +34,7 @@ class CommentModel extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(UserModel::class, 'user_id');
+        return $this->belongsTo(UserModel::class);
     }
 
 }

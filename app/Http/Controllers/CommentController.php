@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Comments\CreateCommentRequest;
-use App\Models\Blog;
+use App\Http\Requests\Comments\DeleteCommentRequest;
 use App\Models\BlogModel;
 use App\Models\CommentModel;
 use Illuminate\Http\JsonResponse;
@@ -34,9 +34,11 @@ class CommentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created comment in storage.
      *
-     * @returns JsonResponse
+     * @param CreateCommentRequest $request
+     * @param BlogModel $blog
+     * @return JsonResponse
      */
     public function store(CreateCommentRequest $request, BlogModel $blog): JsonResponse
     {
@@ -59,11 +61,13 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deletes the comment from the storage.
      *
-     * @returns JsonResponse
+     * @param DeleteCommentRequest $request
+     * @param CommentModel $comment
+     * @return JsonResponse
      */
-    public function destroy(CommentModel $comment): JsonResponse
+    public function destroy(DeleteCommentRequest $request, CommentModel $comment): JsonResponse
     {
         //
     }
