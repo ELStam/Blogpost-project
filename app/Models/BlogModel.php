@@ -28,12 +28,11 @@ class BlogModel extends Model
     ];
 
     public function user(): BelongsTo
-
     {
         return $this->belongsTo(UserModel::class);
     }
 
-    public function categories()
+    public function categories(): BelongsToMany
     {
         return $this->belongsToMany(
             CategoryModel::class,

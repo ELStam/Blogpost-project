@@ -26,8 +26,12 @@ export default {
         this.fetchCurrentUser()
     },
 
+    beforeUnmount() {
+        this.resetBlogs()
+    },
+
     methods: {
-        ...mapActions('blog', ['fetchBlogs']),
+        ...mapActions('blog', ['fetchBlogs', 'resetBlogs']),
         ...mapActions('user', ['fetchCurrentUser'])
     }
 }

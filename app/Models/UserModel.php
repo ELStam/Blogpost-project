@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class UserModel extends Authenticatable
 {
     protected $table = 'users';
-    
+
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
@@ -37,6 +38,11 @@ class UserModel extends Authenticatable
     public function following(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+    public function blogs(): HasMany
+    {
+        return $this->hasMany(BlogModel::class, 'user_id');
     }
 
 
