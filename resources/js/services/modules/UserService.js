@@ -5,7 +5,7 @@ export default {
     /**
      * Fetches all users.
      *
-     * Sends a GET request to the 'users.index' endpoint (or whatever route lists users).
+     * Sends a GET request to the 'users.index' endpoint
      *
      * @returns {Promise<Array>}
      */
