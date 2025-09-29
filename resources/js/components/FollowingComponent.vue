@@ -1,29 +1,20 @@
 <template>
-    <div v-if="currentUser" class="following following__layout">
-        <div class="following__left">
-            <div class="following__blog">
+    <div v-if="currentUser" class="following">
+        <div class="following-sidebar">
+            <div class="following-sidebar-profile">
                 <create-blog-component
                     :user="currentUser"
-                    class="following__layout__create-blog following__layout__create-blog--below-image"
+                    class="following-sidebar-profile__create-blog"
                 />
             </div>
 
-            <div class="following__blog__more-friends">
-                Bekijk meer van je vrienden
+            <div class="following-sidebar-profile__friends">Bekijk meer van je vrienden
+                <users-component :users="users"/>
             </div>
-
-            <div class="following__blog__friends">
-                <div class="following__blog__friends__item">
-                    <h3 class="following__blog__friends__item-title">@{{ currentUser.username }}</h3>
-                    <span class="following__blog__friends__item-name">{{ currentUser.name }}</span>
-                    <span class="following__blog__friends__item-followers">{{ currentUser.followers }} volgers</span>
-                </div>
-            </div>
-
         </div>
 
-        <div class="following__content">
-            <h1 class="following__title">Volgend</h1>
+        <div class="following-blogs">
+            <h1 class="following-blogs__title">Volgend</h1>
             <blog-list-component/>
         </div>
     </div>
@@ -32,27 +23,29 @@
 <script>
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 import BlogListComponent from "@/components/blogs/BlogListComponent.vue";
-import {mapActions, mapGetters} from "vuex";
+import UsersComponent from "@/components/UsersComponent.vue";
+import {mapGetters, mapActions} from "vuex";
 
 export default {
     name: "FollowingComponent",
 
     components: {
+        UsersComponent,
         BlogListComponent,
         CreateBlogComponent,
     },
 
     computed: {
-        ...mapGetters('user', ['currentUser'])
+        ...mapGetters('user', ['currentUser', "users"]),
     },
 
     created() {
         this.fetchCurrentUser();
+        this.fetchUsers();
     },
 
     methods: {
-        ...mapActions('user', ['fetchCurrentUser'])
-    }
-
+        ...mapActions('user', ['fetchCurrentUser', 'fetchUsers']),
+    },
 };
 </script>

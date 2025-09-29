@@ -4,71 +4,40 @@
     gap: 2%;
     margin-left: 5%;
 
-    &__left {
+    &-sidebar {
         display: flex;
         flex-direction: column;
         max-width: 30%;
+
+        &-profile {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            margin-top: 40px;
+            padding: 2%;
+
+            &__friends {
+                color: #111B4E;
+                font-family: "Rockwell Extra Bold", Rockwell, serif;
+                font-size: 17px;
+                font-weight: 500;
+                margin-top: 20px;
+                text-align: left;
+            }
+        }
     }
 
-    &__blog {
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        height: 500px;
-        margin-top: 40px;
-        padding: 2%;
-
-        &__username {
-            &__text {
-                color: #111B4E;
-                font-size: 20px;
-                font-weight: bold;
-            }
-        }
-
-        &__more-friends {
-            color: #111B4E;
+    &-blogs {
+        &__title {
+            color: #E56620;
             font-family: "Rockwell Extra Bold", Rockwell, serif;
-            font-size: 17px;
-            font-weight: 500;
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        &__friends {
-            padding: 1rem;
-            width: 100%;
-
-            &__item {
-                background-color: #f9f9f9;
-                border: 1px solid #ccc;
-                border-radius: 0.5rem;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-                margin-bottom: 1rem;
-                padding: 20px;
-
-                &-title {
-                    color: #666;
-                    font-size: 20px;
-                    margin: 0 0 0.5rem 0;
-                }
-
-                &-name {
-                    color: #666;
-                    display: block;
-                    font-size: 17px;
-                    margin: 0 0 0.5rem 0;
-                }
-
-                &-followers {
-                    color: #666;
-                    display: block;
-                    font-size: 15px;
-                }
-            }
+            font-size: 35px;
+            font-weight: bold;
+            margin-top: 40px;
         }
     }
 
@@ -76,22 +45,5 @@
         display: flex;
         flex-direction: column;
         width: 70%;
-    }
-
-    &__title {
-        color: #E56620;
-        font-family: "Rockwell Extra Bold", Rockwell, serif;
-        font-size: 35px;
-        font-weight: bold;
-        margin-top: 40px;
-    }
-
-    &__layout {
-        &__create-blog {
-            &--below-image {
-                display: flex;
-                flex-direction: column;
-            }
-        }
     }
 }
