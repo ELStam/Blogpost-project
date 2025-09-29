@@ -7,6 +7,7 @@ use App\Http\Requests\Blog\DeleteBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
 use App\Models\Blog;
 use App\Models\BlogModel;
+use Exception;
 use File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -72,7 +73,7 @@ class BlogController extends Controller
                 'message' => 'Blog created successfully',
                 'blog' => $blog
             ], 201);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ], 500);
@@ -120,7 +121,7 @@ class BlogController extends Controller
                 'message' => 'Blog retrieved successfully',
                 'blog' => $blog
             ], 200);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ], 500);
@@ -142,17 +143,10 @@ class BlogController extends Controller
             return response()->json([
                 'message' => 'Blog deleted'
             ]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ], 500);
         }
-    }
-
-    public function uploadTest(Request $request)
-    {
-        $originalName = $request->file('file')->getClientOriginalName();
-        $path = "blog/1";
-        $fileStorage = Storage::disk('public')->putFileAs($path, $request->file, $originalName);
     }
 }

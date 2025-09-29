@@ -6,6 +6,7 @@ use App\Http\Requests\Comments\CreateCommentRequest;
 use App\Http\Requests\Comments\DeleteCommentRequest;
 use App\Models\BlogModel;
 use App\Models\CommentModel;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class CommentController extends Controller
             return response()->json([
                 'comments' => $comments
             ]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ]);
@@ -53,7 +54,7 @@ class CommentController extends Controller
                 'message' => 'Comment successfully created!',
                 'comment' => $comment
             ]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ]);
