@@ -12,7 +12,7 @@
             </template>
             <template #default>
                 <main class="explore__content">
-                    <h1 class="explore-content__title">Ontdek</h1>
+                    <h1 class="explore__content__title">Ontdek</h1>
                     <blog-list-component random/>
                 </main>
 
