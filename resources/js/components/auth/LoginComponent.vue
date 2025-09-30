@@ -41,9 +41,9 @@
                         Wachtwoord vergeten
                     </span>
                     <router-link :to="{name: 'Register'}" class="login-page__link">
-                    <span class="login-page__link login-page__link--register">
-                        Nog geen account?
-                    </span>
+                        <span class="login-page__link login-page__link--register">
+                            Nog geen account?
+                        </span>
                     </router-link>
                 </div>
             </template>
@@ -53,7 +53,6 @@
 
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
-import BaseButtonComponent from "@/components/forms/BaseInputComponent.vue";
 import {mapActions, mapGetters} from "vuex";
 import AuthLayout from "@/components/auth/AuthLayout.vue";
 import ErrorComponent from "@/components/general/ErrorComponent.vue";
@@ -96,7 +95,6 @@ export default {
         async submitLogin() {
             try {
                 await this.clearErrors()
-                console.log(this.getErrors)
                 await this.login({username: this.username, password: this.password})
                 if (Object.keys(this.getErrors).length === 0) {
                     this.$router.push('/')

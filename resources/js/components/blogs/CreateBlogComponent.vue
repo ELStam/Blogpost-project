@@ -10,81 +10,81 @@
                     <form class="blog-create__form" @submit.prevent="handleCreateBlog">
                         <div class="blog-create__field">
                             <base-input-component
-                            class="blog-create__input"
-                            label="Titel van de blog"
-                            v-model="blog.title"
+                                v-model="blog.title"
+                                class="blog-create__input"
+                                label="Titel van de blog"
                             />
                         </div>
 
                         <div class="blog-create__field">
                             <base-textarea-component
-                            class="blog-create__textarea --introduction"
-                            label="Schrijf hier een korte introductie..."
-                            v-model="blog.introduction"
-                            maxlength="255"
+                                v-model="blog.introduction"
+                                class="blog-create__textarea --introduction"
+                                label="Schrijf hier een korte introductie..."
+                                maxlength="255"
                             />
                         </div>
 
                         <div class="blog-create__field">
                             <base-input-component
-                            class="blog-create__input"
-                            label="Titel van de paragraaf"
-                            v-model="blog.paragraph_title"
+                                v-model="blog.paragraph_title"
+                                class="blog-create__input"
+                                label="Titel van de paragraaf"
                             />
                         </div>
 
                         <div class="blog-create__field">
                             <base-textarea-component
-                            class="blog-create__textarea --paragraph"
-                            label="Schrijf hier een paragraaf..."
-                            v-model="blog.paragraph_body"
+                                v-model="blog.paragraph_body"
+                                class="blog-create__textarea --paragraph"
+                                label="Schrijf hier een paragraaf..."
                             />
                         </div>
 
                         <div class="blog-create__categories">
                             <label class="blog-create__label --categories">Categorieën</label>
-                            <div class="blog-create__checkbox" v-for="category in categories" :key="category.id">
-                            <input
-                                class="blog-create__checkbox-input"
-                                type="checkbox"
-                                :id="category.id"
-                                :value="category.id"
-                                v-model="blog.category_id"
-                            />
-                            <label
-                                class="blog-create__label --checkbox"
-                                :for="category.id"
-                            >
-                                {{ category.name }}
-                            </label>
+                            <div v-for="category in categories" :key="category.id" class="blog-create__checkbox">
+                                <input
+                                    :id="category.id"
+                                    v-model="blog.category_id"
+                                    :value="category.id"
+                                    class="blog-create__checkbox-input"
+                                    type="checkbox"
+                                />
+                                <label
+                                    :for="category.id"
+                                    class="blog-create__label --checkbox"
+                                >
+                                    {{ category.name }}
+                                </label>
                             </div>
                         </div>
 
                         <div class="blog-create__file">
                             <input
-                            class="blog-create__file-input"
-                            type="file"
-                            @change="selectedFile($event)"
+                                class="blog-create__file-input"
+                                type="file"
+                                @change="selectedFile($event)"
                             />
                         </div>
                         <div class="blog-create__buttons">
                             <base-button-component
-                                class="blog-create__button"
                                 buttonClass="--submit"
+                                class="blog-create__button"
                                 type="submit"
                             >
                                 Aanmaken
                             </base-button-component>
 
                             <base-button-component
-                                class="blog-create__button"
                                 buttonClass="--cancel"
+                                class="blog-create__button"
                                 @click="handleOnCancel"
                             >
                                 Annuleren
                             </base-button-component>
-                        </div>  
-                        </form>
+                        </div>
+                    </form>
                 </main>
             </template>
         </page-layout>
@@ -104,6 +104,7 @@ export default {
     name: "BlogCreateComponent",
 
     components: {
+        ErrorComponent,
         PageLayout,
         BaseInputComponent,
         BaseButtonComponent,
@@ -113,12 +114,12 @@ export default {
     data() {
         return {
             blog: {
-                'title': '',
-                'introduction': '',
-                'category_id': [],
-                'paragraph_title': '',
-                'paragraph_body': '',
-                'banner': null
+                title: '',
+                introduction: '',
+                category_id: [],
+                paragraph_title: '',
+                paragraph_body: '',
+                banner: null
             }
         }
     },
@@ -138,7 +139,6 @@ export default {
         ...mapActions('auth', ['clearErrors']),
 
         /**
-         * 
          * Handles the file input change event.
          *
          *  @param {Event} event
@@ -149,7 +149,7 @@ export default {
 
         /**
          * Handle the creation of a new blog
-         * 
+         *
          * @returns {Promise<void>}
          */
         async handleCreateBlog() {
@@ -158,7 +158,7 @@ export default {
                 await this.createBlog(this.blog)
 
                 if (Object.keys(this.getErrors).length === 0) {
-                    this.$router.push({ name: 'Home'} )
+                    this.$router.push({name: 'Home'})
                 }
             } catch (error) {
                 throw error
@@ -168,11 +168,11 @@ export default {
         /**
          * Handles the cancel button.
          * Navigates the user back to the home page.
-         * 
+         *
          * @returns {void}
          */
         handleOnCancel() {
-            this.$router.push({ name: 'Home'} )
+            this.$router.push({name: 'Home'})
         }
     },
 }

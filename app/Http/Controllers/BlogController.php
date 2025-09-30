@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Blog\CreateBlogRequest;
 use App\Http\Requests\Blog\DeleteBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
-use App\Models\Blog;
 use App\Models\BlogModel;
 use Exception;
 use File;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Storage;
 
+/**
+ * Controller that handles all logic related to blogs.
+ */
 class BlogController extends Controller
 {
     /**
@@ -30,7 +30,7 @@ class BlogController extends Controller
                 'message' => 'Blogs retrieved successfully.',
                 'blogs' => $blogs
             ], 200);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ]);
@@ -55,14 +55,14 @@ class BlogController extends Controller
             $blog = BlogModel::create($validated);
 
             if ($request->hasFile('banner')) {
-                $originalName = $request->file('banner')->getClientOriginalName();
-                $path = "blog/" . $blog->id;
+                $originalName = $request->file('banner')?->getClientOriginalName();
+                $path = "blog/$blog->id";
 
-                $fileStorage = Storage::disk('public')
+                Storage::disk('public')
                     ->putFileAs($path, $request->file('banner'), $originalName);
 
                 $blog->update([
-                    'banner' => $path . '/' . $originalName
+                    'banner' => "$path/$originalName"
                 ]);
             }
 
@@ -86,6 +86,7 @@ class BlogController extends Controller
      *
      * @param UpdateBlogRequest $request
      * @param BlogModel $blog
+     *
      * @return JsonResponse
      */
     public function update(UpdateBlogRequest $request, BlogModel $blog): JsonResponse
@@ -99,7 +100,7 @@ class BlogController extends Controller
                 'message' => 'Blog updated succesfully',
                 'blog' => $blog
             ], 201);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ], 500);
@@ -110,6 +111,7 @@ class BlogController extends Controller
      * Display the specified blog.
      *
      * @param BlogModel $blog
+     *
      * @return JsonResponse
      */
     public function show(BlogModel $blog): JsonResponse
@@ -133,6 +135,7 @@ class BlogController extends Controller
      *
      * @param DeleteBlogRequest $request
      * @param BlogModel $blog
+     *
      * @return JsonResponse
      */
     public function destroy(DeleteBlogRequest $request, BlogModel $blog): JsonResponse

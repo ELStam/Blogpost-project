@@ -21,6 +21,10 @@ export default {
         onlyCurrentUser: {
             type: Boolean,
             default: false
+        },
+        random: {
+            type: Boolean,
+            default: false
         }
     },
 
@@ -28,21 +32,31 @@ export default {
         ...mapGetters('blog', ['blogs']),
         ...mapGetters('user', ['currentUser']),
 
+        /**
+         * Filters the displayed blogs
+         *
+         * @returns {Array}
+         */
         displayedBlogs() {
-            if (this.onlyCurrentUser && this.currentUser) {
-                return this.blogs.filter(b => b.user_id === this.currentUser.id);
+            let list = (this.onlyCurrentUser && this.currentUser)
+                ? this.blogs.filter(blog => blog.user_id === this.currentUser.id)
+                : this.blogs;
+
+            if (this.random && list.length > 0) {
+                let shuffled = [...list].sort(() => 0.5 - Math.random());
+                return shuffled.slice(0, 3);
             }
-            return this.blogs;
+            return list;
         }
     },
 
     created() {
-        this.fetchBlogs()
-        this.fetchCurrentUser()
+        this.fetchBlogs();
+        this.fetchCurrentUser();
     },
 
     beforeUnmount() {
-        this.resetBlogs()
+        this.resetBlogs();
     },
 
     methods: {

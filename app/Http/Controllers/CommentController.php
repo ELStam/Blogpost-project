@@ -8,8 +8,10 @@ use App\Models\BlogModel;
 use App\Models\CommentModel;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
+/**
+ * Controller that handles all logic related to comments.
+ */
 class CommentController extends Controller
 {
     /**
@@ -17,7 +19,7 @@ class CommentController extends Controller
      *
      * @param BlogModel $blog
      *
-     * @returns JsonResponse
+     * @return JsonResponse
      */
     public function index(BlogModel $blog): JsonResponse
     {
@@ -39,6 +41,7 @@ class CommentController extends Controller
      *
      * @param CreateCommentRequest $request
      * @param BlogModel $blog
+     *
      * @return JsonResponse
      */
     public function store(CreateCommentRequest $request, BlogModel $blog): JsonResponse
@@ -66,6 +69,7 @@ class CommentController extends Controller
      *
      * @param DeleteCommentRequest $request
      * @param CommentModel $comment
+     *
      * @return JsonResponse
      */
     public function destroy(DeleteCommentRequest $request, CommentModel $comment): JsonResponse

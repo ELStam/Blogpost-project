@@ -25,11 +25,15 @@
                         {{ currentUser.bio || 'Geen bio beschikbaar' }}
                     </p>
                     <div class="profile-card__stats">
-                        <div class="profile-card__stats--badge profile-card__stats--badge--followers">
-                            <span>{{ currentUser.followers }} volgers</span>
+                        <div class="profile-card__stats-badge">
+                            <span class="profile-card__stats-badge--followers"> {{
+                                    currentUser.followers
+                                }} volgers</span>
                         </div>
-                        <div class="profile-card__stats--badge profile-card__stats--badge--following">
-                            <span>{{ currentUser.following || 0 }} volgend</span>
+                        <div class="profile-card__stats-badge">
+                            <span class="profile-card__stats-badge--following">{{
+                                    currentUser.following || 0
+                                }} volgend</span>
                         </div>
                     </div>
                 </div>

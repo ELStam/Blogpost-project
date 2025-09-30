@@ -8,6 +8,9 @@ import Cookies from "js-cookie";
 import RegisterComponent from "@/components/auth/RegisterComponent.vue";
 import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 import CategoryListComponent from "@/components/general/CategoryListComponent.vue";
+import ExploreComponent from "@/components/ExploreComponent.vue";
+import TopPostsComponent from "@/components/PostsComponent.vue";
+import PostsComponent from "@/components/PostsComponent.vue";
 
 const routes = [
     {
@@ -65,6 +68,22 @@ const routes = [
         path: '/categories',
         name: 'CategoryList',
         component: CategoryListComponent,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/explore',
+        name: 'Explore',
+        component: ExploreComponent,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/posts',
+        name: 'Posts',
+        component: PostsComponent,
         meta: {
             requiresAuth: true
         }

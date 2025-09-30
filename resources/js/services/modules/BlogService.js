@@ -9,7 +9,7 @@ export default {
      *
      * Sends a POST request to the 'blogs.store' endpoint.
      * The blog data is sent as FormData to handle file uploads.
-     * 
+     *
      * @param {Object} blog
      * @param {string} blog.title
      * @param {string} blog.introduction
@@ -87,7 +87,7 @@ export default {
      *
      * Sends a DELETE request to the 'blogs.destroy'.
      *
-     * @param id
+     * @param {number} id
      * @returns {Promise<Object|undefined>}
      */
     async deleteBlog(id) {

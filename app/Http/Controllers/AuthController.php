@@ -7,10 +7,12 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\UserModel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Mockery\Exception;
 
+/**
+ * Controller that handles all logic related to authentication.
+ */
 class AuthController extends Controller
 {
     /**
@@ -32,14 +34,13 @@ class AuthController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'bio' => $request->bio,
-            'password' => Hash::make($request->password),
-            'confirm_password' => Hash::make($request->confirm_password)
+            'password' => Hash::make($request->password)
         ]);
 
         try {
             $token = $user->createToken('auth_token')->plainTextToken;
-        } catch (Exception $e) {
-            return response()->json(['Error' => 'Could not create token'], 500);
+        } catch (Exception $ignored) {
+            return response()->json(['error' => 'Could not create token'], 500);
         }
 
         return response()->json([

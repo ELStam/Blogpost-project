@@ -25,7 +25,7 @@ export default {
          * If the error is an object, then it collects the values and flatten.
          * If the error is a string, then it wraps it in an array.
          *
-         * @returns {string[]}
+         * @returns {string[]|Object}
          */
         flatErrors() {
             if (typeof this.errors === "object" &&

@@ -1,11 +1,13 @@
 <template>
     <div v-if="blog" class="blog-detail">
         <header class="blog-detail__header">
-            <img :src="bannerUrl"
-                 alt="Blog banner"
-                 class="blog-detail__banner"/>
+            <img
+                :src="bannerUrl"
+                alt="Blog banner"
+                class="blog-detail__banner"
+            />
         </header>
-        <page-layout class="--detail" content-class="--detail" sidebar-class="--detail">
+        <page-layout class="--detail">
             <template #sidebar>
                 <profile-photo-component
                     alt="Profile photo of the blogger"
@@ -26,7 +28,6 @@
             <template #default>
                 <main class="blog-detail__content">
                     <section class="blog-post">
-
                         <div class="blog-post__header">
                             <button
                                 v-for="category in blog.categories"
@@ -34,9 +35,7 @@
                             >
                                 {{ category.name }}
                             </button>
-                            <span
-                                class="blog-post__time"
-                            >
+                            <span class="blog-post__time">
                                 {{ dateFormat(blog.created_at) }}
                             </span>
 
@@ -91,7 +90,6 @@
     </div>
 </template>
 
-
 <script>
 import {mapActions, mapGetters} from "vuex";
 import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
@@ -120,7 +118,7 @@ export default {
 
     props: {
         id: {
-            type: String,
+            type: Number,
             required: true
         }
     },
@@ -146,17 +144,13 @@ export default {
          * If the deletion of the blog is successful, it shows an alert and navigates to the 'Home' page.
          *
          * @returns {void}
-         *
          */
         handleDeleteBlog() {
-            try {
-                this.removeBlog(this.blog.id).then(() => {
-                    alert('Blog deleted successfully');
-                    this.$router.push({name: 'Home'})
-                });
-            } catch (error) {
+            this.removeBlog(this.blog.id).then(() => {
+                alert('Blog deleted successfully')
+            }).catch((error) => {
                 throw error
-            }
+            })
         }
     }
 }

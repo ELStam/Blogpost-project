@@ -7,7 +7,7 @@
         />
 
         <div class="blog-item__body">
-            <span class="blog-sub-card__username">
+            <span class="blog-item__username">
                 @{{ blog.user.username }}
             </span>
 

@@ -2,44 +2,23 @@
 
 namespace App\Policies;
 
-use App\Models\Blog;
 use App\Models\BlogModel;
-use App\Models\User;
 use App\Models\UserModel;
 use Illuminate\Auth\Access\Response;
 
+/**
+ * Policy that handles everything related to blog requests.
+ */
 class BlogPolicy
 {
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can create models.
      *
-     * @param UserModel $user
-     * @return bool
-     */
-    public function viewAny(UserModel $user): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can view the model.
+     * @param UserModel|null $user
      *
-     * @param UserModel $user
-     * @param Blog $blog
-     * @return bool
-     */
-    public function view(UserModel $user, Blog $blog): bool
-    {
-        return false;
-    }
-
-    /**
-     *  Determine whether the user can create models.
-     *
-     * @param UserModel $user
      * @return Response
      */
-    public function create(UserModel $user): Response
+    public function create(?UserModel $user): Response
     {
         return $user !== null
             ? Response::allow()
@@ -51,6 +30,7 @@ class BlogPolicy
      *
      * @param UserModel $user
      * @param BlogModel $blog
+     *
      * @return Response
      */
     public function update(UserModel $user, BlogModel $blog): Response
@@ -65,6 +45,7 @@ class BlogPolicy
      *
      * @param UserModel $user
      * @param BlogModel $blog
+     *
      * @return Response
      */
     public function delete(UserModel $user, BlogModel $blog): Response

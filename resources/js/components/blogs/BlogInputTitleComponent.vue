@@ -6,9 +6,9 @@
                 class="--create"
                 src="/assets/img.png"
             />
-            <span v-if="Object.keys(user).length > 0" class="blog-create__username">@{{
-                    user.username
-                }}</span>
+            <span v-if="Object.keys(user).length > 0" class="blog-create__username">
+                @{{ user.username }}
+            </span>
         </div>
         <base-input-component
             v-model="title"
@@ -53,6 +53,11 @@ export default {
     methods: {
         ...mapActions('blog', ['createBlog']),
 
+        /**
+         * Updates the title for the Blog
+         *
+         * @returns {void}
+         */
         updateTitle() {
             this.$emit("update:title", this.title)
         }

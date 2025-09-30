@@ -49,7 +49,7 @@ export default {
     },
 
     created() {
-        this.fetchCategories()
+        this.fetchCategories();
     },
 
     methods: {

@@ -2,7 +2,8 @@
     <div v-if="currentUser" class="following">
         <div class="following-sidebar">
 
-            <div class="following-sidebar-profile__friends">Bekijk meer van je vrienden
+            <div class="following-sidebar-profile">
+                <span class="following-sidebar-profile__friends">Bekijk meer van je vrienden</span>
                 <users-component :users="users"/>
             </div>
         </div>

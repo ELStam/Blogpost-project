@@ -61,10 +61,6 @@
     </div>
 </template>
 
-<!--<template>-->
-<!--    <input type="file" @change="selectedFile($event)"/>-->
-<!--</template>-->
-
 <script>
 import BaseInputComponent from "@/components/forms/BaseInputComponent.vue";
 import AuthLayout from "@/components/auth/AuthLayout.vue";
@@ -85,8 +81,7 @@ export default {
                 bio: '',
                 password: '',
                 confirm_password: ''
-            },
-            // file: null
+            }
         }
     },
 
@@ -121,23 +116,10 @@ export default {
                     this.$router.push('/')
                 }
             } catch (error) {
-                console.log(error)
                 throw error
             }
         }
     }
-    //
-    // methods: {
-    //
-    //     // selectedFile(event) {
-    //     //     let formData = new FormData()
-    //     //     formData.append('file', event.target.files[0])
-    //     //
-    //     //     axios.post(route('uploadtest'), formData).then(() => {
-    //     //         console.log('Doet nu nog niks')
-    //     //     })
-    //     // }
-    // }
 }
 </script>
 
