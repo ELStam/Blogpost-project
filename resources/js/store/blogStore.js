@@ -15,18 +15,6 @@ export default {
 
     mutations: {
         /**
-         * Adds new blog to the state.
-         *
-         * @param {Object} state
-         * @param {Object} blog
-         *
-         * @return {void}
-         */
-        ADD_BLOG(state, blog) {
-            state.blogs.push(blog)
-        },
-
-        /**
          * Sets the blogs array in the state.
          *
          * @param {Object} state
@@ -75,17 +63,11 @@ export default {
         },
 
         /**
-         * Sets the errors object in the state.
-         *
+         * Resets the blogs in the state
          * @param {Object} state
-         * @param {Object} errors
          *
          * @returns {void}
          */
-        SET_ERRORS(state, errors) {
-            state.errors = errors
-        },
-
         RESET_BLOGS(state) {
             state.blogs = []
         }
@@ -95,15 +77,14 @@ export default {
         /**
          * Creates a new blog via API.
          *
-         * @param {any} __
+         * @param {Object} context
          * @param {Object} blog
          *
          * @return {Promise<void>}
          */
-        async createBlog(__, blog) {
+        async createBlog({}, blog) {
             try {
-                const data = await BlogService.createBlog(blog)
-                return data
+                return await BlogService.createBlog(blog)
             } catch (error) {
                 if (error.status === 422) return error.response.data.errors
             }
@@ -133,7 +114,7 @@ export default {
          * @param {Object} context
          * @param {Function} context.commit
          *
-         * @param {number} id - the id of the blog
+         * @param {number} id
          *
          * @return {Promise<void>}
          */
@@ -151,7 +132,7 @@ export default {
          *
          * @param {Object} context
          * @param {Function} context.commit
-         * @param id - the id of the blog
+         * @param {number} id
          *
          * @return {Promise<void>}
          */
@@ -172,7 +153,6 @@ export default {
          *
          * @return {Promise<void>}
          */
-
         fetchCategories({commit}) {
             return CategoryService.getAllCategories()
                 .then(response => {
@@ -183,6 +163,14 @@ export default {
                 })
         },
 
+        /**
+         * Resets the blogs
+         *
+         * @param {Object} context
+         * @param {Function} context.commit
+         *
+         * @return {void}
+         */
         resetBlogs({commit}) {
             commit('RESET_BLOGS')
         }

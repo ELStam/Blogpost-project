@@ -13,7 +13,9 @@
                         <button class="category__button">{{ category.name }}</button>
                     </li>
                     <li class="category__list-item">
-                        <button class="category__button category__button--all">
+                        <button
+                            class="category__button category__button--all"
+                            onclick="window.location.href='categories';">
                             Bekijk alle categorieën
                         </button>
                     </li>

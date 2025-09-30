@@ -22,6 +22,15 @@ export default {
         SET_CURRENT_USER(state, user) {
             state.currentUser = user;
         },
+
+        /**
+         * Sets the users in the state
+         *
+         * @param {Object} state
+         * @param {Array} users
+         *
+         * @returns {void}
+         */
         SET_USERS(state, users) {
             state.users = users;
         }

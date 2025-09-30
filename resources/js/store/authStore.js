@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
 import AuthService from "@/services/modules/AuthService.js";
 
-
 export default {
     namespaced: true,
 
@@ -29,10 +28,10 @@ export default {
 
         /**
          * Sets the errors object in the state.
-         * 
-         * @param {Object} state 
-         * @param {Object} errors 
-         * 
+         *
+         * @param {Object} state
+         * @param {Object} errors
+         *
          * @return {void}
          */
         SET_ERRORS(state, errors) {
@@ -146,15 +145,11 @@ export default {
         },
 
         /**
-         * Returns the current token.
+         * Returns the errors found in the authentication process.
          *
-         * @param {Object} state
-         * @return {string}
+         * @param state
+         * @returns {Object}
          */
-        getToken(state) {
-            return state.token
-        },
-
         getErrors(state) {
             return state.errors
         }

@@ -16,11 +16,11 @@ class UserFollower extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(UserModel::class, 'user_id');
     }
     
     public function follower(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'follower_id');
+        return $this->belongsTo(UserModel::class, 'follower_id');
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\CategoryModel;
+use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
+/**
+ * Controller that handles all logic related to categories.
+ */
 class CategoryController extends Controller
 {
     /**
@@ -22,7 +24,7 @@ class CategoryController extends Controller
                 'message' => 'Categories retrieved successfully',
                 'categories' => $categories
             ]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
             ]);

@@ -11,7 +11,7 @@
             <icon-component :blog="blog" @delete="handleDelete"/>
         </div>
 
-        <img :src="bannerUrl" alt="" class="blog-card__image">
+        <img :alt="blog.title" :src="bannerUrl" class="blog-card__image">
 
         <div class="blog-card__body">
             <h2 class="blog-card__title">{{ blog.title }}</h2>
@@ -46,6 +46,11 @@ export default {
     },
 
     computed: {
+        /**
+         * Formats the Banner URL for proper viewing
+         *
+         * @returns {string}
+         */
         bannerUrl() {
             return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
         }
@@ -58,17 +63,14 @@ export default {
          * Handles the deletion of the blog.
          * It calls the 'removeBlog' action with the blog's id.
          *
-         *
          * @returns {void}
          */
         handleDelete() {
-            try {
-                this.removeBlog(this.blog.id).then(() => {
-                    alert('Blog deleted successfully')
-                })
-            } catch (error) {
+            this.removeBlog(this.blog.id).then(() => {
+                alert('Blog deleted successfully')
+            }).catch((error) => {
                 throw error
-            }
+            })
         }
     }
 }

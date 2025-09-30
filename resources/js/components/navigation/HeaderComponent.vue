@@ -9,10 +9,10 @@
         <nav class="app-blog-header__nav">
             <div v-if="isAuthenticated" class="app-blog-header__links">
                 <router-link class="app-blog-header__link" to="/">Home</router-link>
-                <router-link class="app-blog-header__link" to="/ontdek">Ontdek</router-link>
+                <router-link class="app-blog-header__link" to="/explore">Ontdek</router-link>
                 <router-link class="app-blog-header__link" to="/following">Volgend</router-link>
                 <router-link :to="{name: 'CategoryList'}" class="app-blog-header__link">Categorieën</router-link>
-                <router-link class="app-blog-header__link" to="/TopPosts">Top Posts</router-link>
+                <router-link class="app-blog-header__link" to="/posts">Top Posts</router-link>
 
                 <div class="app-blog-header__dropdown">
                     <img

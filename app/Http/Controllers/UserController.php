@@ -7,12 +7,16 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * Controller that handles all logic related to users.
+ */
 class UserController extends Controller
 {
     /**
      * Return the currently authenticated user.
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function current(Request $request): JsonResponse
@@ -30,16 +34,16 @@ class UserController extends Controller
     /**
      * Return a list of all users.
      *
-     * @param Request $request
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function index(): JsonResponse
     {
         try {
             $users = UserModel::all();
             return response()->json($users);
         } catch (Exception $exception) {
             return response()->json([
+                'message' => $exception->getMessage()
             ]);
         }
     }
