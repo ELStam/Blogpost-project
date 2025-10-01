@@ -29,6 +29,9 @@
     }
 
     &-blogs {
+        margin-bottom: 50px;
+        margin-right: 40px;
+
         &__title {
             color: #E56620;
             font-family: "Rockwell Extra Bold", Rockwell, serif;
@@ -37,11 +40,5 @@
             margin-bottom: 20px;
             margin-top: 40px;
         }
-    }
-
-    &__content {
-        display: flex;
-        flex-direction: column;
-        width: 70%;
     }
 }
