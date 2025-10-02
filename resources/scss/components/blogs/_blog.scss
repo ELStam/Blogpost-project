@@ -98,11 +98,13 @@ $blog: ".blog";
         &__title {
             color: #111A51;
             font-weight: bold;
+            min-height: 80px;
         }
 
         &__text {
             color: #cecece;
             margin: 20px 0;
+            min-height: 150px;
         }
 
         &__button {
@@ -131,6 +133,7 @@ $blog: ".blog";
             &__input {
                 align-items: center;
                 background-color: #fff;
+                border-radius: 30px;
                 display: flex;
                 margin-bottom: 30px;
                 padding: 20px;

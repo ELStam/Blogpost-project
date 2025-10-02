@@ -16,7 +16,7 @@
         <div class="blog-card__body">
             <h2 class="blog-card__title">{{ blog.title }}</h2>
 
-            <p class="blog-card__text">{{ blog.introduction }}</p>
+            <span class="blog-card__text">{{ blog.introduction }}</span>
 
             <router-link :to="{ name: 'BlogDetail', params: {id: blog.id}}">
                 <button class="blog-card__button">Lees verder</button>
@@ -31,10 +31,17 @@
                     @keyup.enter="submitComment"
                 />
 
-                <div v-for="(comment, index) in comments" :key="index">
-                    <comment-component :text="comment.text" :user="comment.user"/>
+                <div v-for="comment in comments" :key="comment.id">
+                    <comment-component
+                        :blog="blog"
+                        :comment-id="comment.id"
+                        :text="comment.body"
+                        :user="comment.user"
+                        @deleteComment="handleDelete"
+                    />
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -45,6 +52,7 @@ import IconComponent from "@/components/general/IconComponent.vue";
 import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
 import {mapActions, mapGetters} from "vuex";
 import CommentComponent from "@/components/blogs/CommentComponent.vue";
+import CommentService from "@/services/modules/CommentService.js";
 
 export default {
     name: 'BlogCardComponent',
@@ -54,7 +62,11 @@ export default {
 
     props: {
         blog:
-            {type: Object, required: true}
+            {type: Object, required: true},
+        comment: {
+            type: Object,
+        }
+
     },
 
     data() {
@@ -100,17 +112,16 @@ export default {
          * Submits a new comment.
          * Uses the currently logged-in user's username.
          */
-        submitComment() {
+        async submitComment() {
             if (!this.newComment.trim()) return;
 
-            const username = this.currentUser.username;
-
-            this.comments.push({
-                text: this.newComment,
-                user: {username}
-            });
-
-            this.newComment = '';
+            try {
+                const comment = await CommentService.addComment(this.blog.id, this.newComment);
+                this.comments.push(comment);
+                this.newComment = '';
+            } catch (error) {
+                console.error("Error adding comment:", error);
+            }
         }
     }
 }

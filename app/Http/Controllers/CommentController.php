@@ -8,6 +8,7 @@ use App\Models\BlogModel;
 use App\Models\CommentModel;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use function Illuminate\Events\queueable;
 
 /**
  * Controller that handles all logic related to comments.
@@ -17,16 +18,15 @@ class CommentController extends Controller
     /**
      * Display a listing of the comments.
      *
-     * @param BlogModel $blog
-     *
      * @return JsonResponse
      */
-    public function index(BlogModel $blog): JsonResponse
+    public function index(): JsonResponse
     {
         try {
-            $comments = $blog->comments()->with('user')->get();
+            $comments = CommentModel::with()->with('user')->get();
 
             return response()->json([
+                'message' => 'Comments retrieved successfully.',
                 'comments' => $comments
             ]);
         } catch (Exception $exception) {
@@ -40,18 +40,17 @@ class CommentController extends Controller
      * Store a newly created comment in storage.
      *
      * @param CreateCommentRequest $request
-     * @param BlogModel $blog
-     *
      * @return JsonResponse
      */
     public function store(CreateCommentRequest $request, BlogModel $blog): JsonResponse
     {
         try {
             $validated = $request->validated();
-
             $validated['user_id'] = auth()->id();
+            $validated['blog_id'] = $blog->id;
 
-            $comment = $blog->comments()->create($validated);
+            $comment = CommentModel::create($validated);
+            $comment->load('user');
 
             return response()->json([
                 'message' => 'Comment successfully created!',
@@ -60,7 +59,32 @@ class CommentController extends Controller
         } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage()
-            ]);
+            ], 500);
+        }
+    }
+
+
+    /**
+     * Display the specified comment.
+     *
+     * @param CommentModel $comment
+     *
+     * @return JsonResponse
+     */
+    public function show(CommentModel $comment): JsonResponse
+    {
+        try {
+            $comment->load(['user']);
+
+            return response()->json([
+                'message' => 'Comment retrieved successfully.',
+                'comment' => $comment
+            ], 200);
+        } catch (Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+
         }
     }
 
@@ -74,6 +98,16 @@ class CommentController extends Controller
      */
     public function destroy(DeleteCommentRequest $request, CommentModel $comment): JsonResponse
     {
-        //
+        try {
+            $comment->delete();
+
+            return response()->json([
+                'message' => 'Comment successfully deleted!'
+            ]);
+        } catch (Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 }
