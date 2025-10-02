@@ -11,15 +11,16 @@ export default class CommentService {
      *
      * @returns {Promise<Object|undefined>}
      * @param blog
+     * @param comment
      */
 
-    static async deleteComment(blog) {
+    static async deleteComment(blog, comment) {
         console.log('Deleting comment:', comment);
         console.log('From blog:', blog);
 
         try {
             const response = await apiClient.delete(
-                route('comments.destroy', {blog: blog.id})
+                route('comments.destroy', {blog: blog.id, comment: comment.id})
             );
             console.log('Response from API:', response.data);
             return response.data;
