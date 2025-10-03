@@ -4,14 +4,13 @@
         <icon-component
             :blog="blog"
             :comment="commentId"
-            @deleteComment="handleDelete"
+            @deleteComment="$emit('deleteComment', commentId)"
         />
     </div>
 </template>
 
 <script>
 import IconComponent from "@/components/general/IconComponent.vue";
-import {mapActions} from "vuex";
 
 export default {
     name: "CommentComponent",
@@ -32,43 +31,6 @@ export default {
         commentId: {
             type: Number,
             required: true
-        }
-    },
-    data() {
-        return {
-            newComment: ""
-        };
-    },
-    methods: {
-        ...mapActions('comment', ['deleteComment', 'addComment']),
-
-        /**
-         *  Deletes the Comment
-         */
-        handleDelete() {
-            this.deleteComment({
-                blogId: this.blog.id,
-                commentId: this.commentId
-            })
-                .then(() => alert('Comment deleted successfully'))
-                .catch(err => console.error(err));
-        },
-
-        /**
-         * Make a new Comment
-         */
-        async addComment() {
-            if (!this.newComment.trim()) return;
-
-            try {
-                await this.addComment({
-                    blogId: this.blog.id,
-                    body: this.newComment
-                });
-                this.newComment = "";
-            } catch (error) {
-                console.error(error);
-            }
         }
     }
 };

@@ -11,7 +11,6 @@
             class="blog-icons__image blog-icons__image--delete"
             src="/assets/bin.png"
             @click="onDelete()"
-
         />
     </div>
 </template>
@@ -32,6 +31,7 @@ export default {
             required: false,
             default: ''
         }
+
     },
 
     computed: {
@@ -46,9 +46,8 @@ export default {
          * @returns {boolean}
          */
         isOwner() {
-            return this.currentUser?.id === this.blog?.user_id;
+            return this.currentUser?.id === this.blog.user_id
         }
-
     },
 
     created() {
@@ -73,10 +72,8 @@ export default {
          * @returns {void}
          */
         onDelete() {
-            this.$emit('deleteComment', this.comment, this.$emit('deleteBlog', this.blog))
-        },
-
+            this.$emit('delete', this.blog, this.comment)
+        }
     }
-
 }
 </script>

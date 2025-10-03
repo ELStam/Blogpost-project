@@ -12,26 +12,6 @@ export default {
 
     mutations: {
         /**
-         * Set the comments state
-         *
-         * @param {Object} state
-         * @param {Array} comments
-         */
-        SET_COMMENTS(state, comments) {
-            state.comments = comments;
-        },
-
-        /**
-         * Add a new comment to the state
-         *
-         * @param {Object} state
-         * @param {Object} comment
-         */
-        ADD_COMMENT(state, comment) {
-            state.comments.push(comment);
-        },
-
-        /**
          * Remove a comment by its id
          *
          * @param {Object} state
@@ -44,38 +24,22 @@ export default {
 
     actions: {
         /**
-         * Add a new comment
-         *
-         * @param {Object} context
-         * @param {Object} commentData
-         */
-        async addComment({commit}, commentData) {
-            try {
-                const newComment = await CommentService.createComment(commentData);
-                commit('ADD_COMMENT', newComment);
-            } catch (error) {
-                console.error("Failed to add comment:", error);
-                throw error;
-            }
-        },
-
-        /**
-         * Delete a comment by ID
+         * Removes the comment based on the id via the API and commits it to the store.
          *
          * @param {Object} context
          * @param {Function} context.commit
-         * @param commentId
+         * @param {number} id
          *
          * @return {Promise<void>}
          */
-        deleteComment({commit}, commentId) {
-            return CommentService.deleteComment(commentId)
+        removeComment({commit}, id) {
+            return CommentService.deleteComment(id)
                 .then(() => {
-                    commit('DELETE_COMMENT', commentId)
+                    commit('REMOVE_COMMENT', id)
                 }).catch(error => {
                     throw error
                 })
-        }
+        },
     },
 
     getters: {

@@ -15,7 +15,6 @@
 
         <div class="blog-card__body">
             <h2 class="blog-card__title">{{ blog.title }}</h2>
-
             <span class="blog-card__text">{{ blog.introduction }}</span>
 
             <router-link :to="{ name: 'BlogDetail', params: {id: blog.id}}">
@@ -37,11 +36,10 @@
                         :comment-id="comment.id"
                         :text="comment.body"
                         :user="comment.user"
-                        @deleteComment="handleDelete"
+                        @deleteComment="deleteComment"
                     />
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -50,7 +48,7 @@
 import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 import IconComponent from "@/components/general/IconComponent.vue";
 import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
-import {mapActions, mapGetters} from "vuex";
+import {mapActions} from 'vuex'
 import CommentComponent from "@/components/blogs/CommentComponent.vue";
 import CommentService from "@/services/modules/CommentService.js";
 
@@ -61,12 +59,7 @@ export default {
     components: {CommentComponent, IconComponent, ProfilePhotoComponent},
 
     props: {
-        blog:
-            {type: Object, required: true},
-        comment: {
-            type: Object,
-        }
-
+        blog: {type: Object, required: true}
     },
 
     data() {
@@ -77,44 +70,30 @@ export default {
     },
 
     computed: {
-        /**
-         * Returns the correct banner URL for display.
-         * If the blog has a banner, it will use the storage path.
-         * Otherwise, this default image is used.
-         *
-         * @returns {string}
-         */
         bannerUrl() {
             return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
-        },
+        }
+    },
 
-        ...mapGetters('user', ['currentUser'])
+    async mounted() {
+        try {
+            this.comments = await CommentService.getAllComments(this.blog.id);
+        } catch (error) {
+            console.error("Failed to load comments:", error);
+        }
     },
 
     methods: {
         ...mapActions('blog', ['removeBlog']),
+        ...mapActions('comment', ['removeComment']),
 
-        /**
-         * Handles the deletion of the blog.
-         * It calls the 'removeBlog' action with the blog's id.
-         *
-         * @returns {void}
-         */
         handleDelete() {
-            this.removeBlog(this.blog.id).then(() => {
-                alert('Blog deleted successfully')
-            }).catch((error) => {
-                throw error
-            })
+            this.removeBlog(this.blog.id)
+                .then(() => alert('Blog deleted successfully'))
+                .catch(err => console.error(err));
         },
-
-        /**
-         * Submits a new comment.
-         * Uses the currently logged-in user's username.
-         */
         async submitComment() {
             if (!this.newComment.trim()) return;
-
             try {
                 const comment = await CommentService.addComment(this.blog.id, this.newComment);
                 this.comments.push(comment);
@@ -122,7 +101,13 @@ export default {
             } catch (error) {
                 console.error("Error adding comment:", error);
             }
-        }
+        },
+
+        deleteComment() {
+            this.removeComment(this.comments.id)
+                .then(() => alert('Comment deleted successfully'))
+                .catch(err => console.error(err));
+        },
     }
 }
 </script>
