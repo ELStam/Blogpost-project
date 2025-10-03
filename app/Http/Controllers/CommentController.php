@@ -10,9 +10,17 @@ use App\Models\CommentModel;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * Controller that handles all logic related to comments.
+ */
 class CommentController extends Controller
 {
-    // Haal alle comments van een blog op
+    /**
+     * Display a listing of the comments.
+     *
+     * @param $blogId
+     * @return JsonResponse
+     */
     public function index($blogId): JsonResponse
     {
         try {
@@ -29,7 +37,14 @@ class CommentController extends Controller
         }
     }
 
-    // Maak een nieuwe comment
+    /**
+     * Store a newly created comment in storage.
+     *
+     * @param CreateCommentRequest $request
+     * @param BlogModel $blog
+     *
+     * @return JsonResponse
+     */
     public function store(CreateCommentRequest $request, BlogModel $blog): JsonResponse
     {
         try {
@@ -49,7 +64,14 @@ class CommentController extends Controller
         }
     }
 
-    // Verwijder een comment
+    /**
+     * Deletes the comment from the storage.
+     *
+     * @param DeleteCommentRequest $request
+     * @param CommentModel $comment
+     *
+     * @return JsonResponse
+     */
     public function destroy(DeleteCommentRequest $request, CommentModel $comment): JsonResponse
     {
         try {
