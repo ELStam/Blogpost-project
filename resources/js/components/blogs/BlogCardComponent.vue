@@ -70,6 +70,11 @@ export default {
     },
 
     computed: {
+        /**
+         * Formats the Banner URL for proper viewing
+         *
+         * @returns {string}
+         */
         bannerUrl() {
             return this.blog.banner
                 ? `/storage/${this.blog.banner}`
@@ -89,6 +94,12 @@ export default {
         ...mapActions('blog', ['removeBlog']),
         ...mapActions('comment', ['removeComment']),
 
+        /**
+         * Handles the deletion of the blog.
+         * It calls the 'removeBlog' action with the blog's id.
+         *
+         * @returns {void}
+         */
         handleDelete() {
             this.removeBlog(this.blog.id)
                 .then(() => alert('Blog deleted successfully'))

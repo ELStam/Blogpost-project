@@ -34,6 +34,12 @@ export default {
         }
     },
     methods: {
+        /**
+         * Emits an event to delete a comment.
+         * The parent component should handle the deletion logic.
+         *
+         * @returns {void}
+         */
         handleDelete(blogId, commentId) {
             this.$emit('deleteComment', {blogId, commentId});
         }
