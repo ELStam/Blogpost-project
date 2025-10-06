@@ -4,7 +4,7 @@
         <icon-component
             :blog="blog"
             :comment="commentId"
-            @deleteComment="$emit('deleteComment', commentId)"
+            @delete="handleDelete"
         />
     </div>
 </template>
@@ -31,6 +31,11 @@ export default {
         commentId: {
             type: Number,
             required: true
+        }
+    },
+    methods: {
+        handleDelete(blogId, commentId) {
+            this.$emit('deleteComment', {blogId, commentId});
         }
     }
 };

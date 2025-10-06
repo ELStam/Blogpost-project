@@ -1,5 +1,4 @@
 import CommentService from "@/services/modules/CommentService.js";
-import BlogService from "@/services/modules/BlogService.js";
 
 export default {
     namespaced: true,
@@ -32,14 +31,15 @@ export default {
          *
          * @return {Promise<void>}
          */
-        removeComment({commit}, id) {
-            return CommentService.deleteComment(id)
-                .then(() => {
-                    commit('REMOVE_COMMENT', id)
-                }).catch(error => {
-                    throw error
-                })
-        },
+        async removeComment({commit}, {blogId, commentId}) {
+            try {
+                await CommentService.deleteComment(blogId, commentId);
+                commit('DELETE_COMMENT', commentId);
+            } catch (error) {
+                console.error('Failed to delete comment:', error);
+                throw error;
+            }
+        }
     },
 
     getters: {

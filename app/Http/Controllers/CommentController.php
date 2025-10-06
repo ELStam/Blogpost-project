@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Blog\DeleteBlogRequest;
 use App\Http\Requests\Comments\CreateCommentRequest;
 use App\Http\Requests\Comments\DeleteCommentRequest;
 use App\Models\BlogModel;

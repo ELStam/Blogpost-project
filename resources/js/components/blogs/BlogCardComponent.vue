@@ -17,7 +17,7 @@
             <h2 class="blog-card__title">{{ blog.title }}</h2>
             <span class="blog-card__text">{{ blog.introduction }}</span>
 
-            <router-link :to="{ name: 'BlogDetail', params: {id: blog.id}}">
+            <router-link :to="{ name: 'BlogDetail', params: { id: blog.id }}">
                 <button class="blog-card__button">Lees verder</button>
             </router-link>
 
@@ -48,7 +48,7 @@
 import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 import IconComponent from "@/components/general/IconComponent.vue";
 import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
-import {mapActions} from 'vuex'
+import {mapActions} from 'vuex';
 import CommentComponent from "@/components/blogs/CommentComponent.vue";
 import CommentService from "@/services/modules/CommentService.js";
 
@@ -71,7 +71,9 @@ export default {
 
     computed: {
         bannerUrl() {
-            return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
+            return this.blog.banner
+                ? `/storage/${this.blog.banner}`
+                : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
         }
     },
 
@@ -92,6 +94,7 @@ export default {
                 .then(() => alert('Blog deleted successfully'))
                 .catch(err => console.error(err));
         },
+
         async submitComment() {
             if (!this.newComment.trim()) return;
             try {
@@ -103,11 +106,17 @@ export default {
             }
         },
 
-        deleteComment() {
-            this.removeComment(this.comments.id)
-                .then(() => alert('Comment deleted successfully'))
-                .catch(err => console.error(err));
-        },
+        deleteComment({blogId, commentId}) {
+            this.removeComment({blogId, commentId})
+                .then(() => {
+                    this.comments = this.comments.filter(c => c.id !== commentId);
+                    alert('Comment deleted successfully');
+                })
+                .catch(err => {
+                    console.error('Failed to delete comment:', err);
+                    alert('Could not delete comment.');
+                });
+        }
     }
 }
 </script>
