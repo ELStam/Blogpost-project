@@ -67,6 +67,7 @@ class CommentController extends Controller
      * Deletes the comment from the storage.
      *
      * @param DeleteCommentRequest $request
+     * @param BlogModel $blog
      * @param CommentModel $comment
      *
      * @return JsonResponse

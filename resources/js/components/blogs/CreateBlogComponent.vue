@@ -130,8 +130,8 @@ export default {
     },
 
     created() {
-        this.fetchCategories()
-        this.clearErrors()
+        this.fetchCategories();
+        this.clearErrors();
     },
 
     methods: {

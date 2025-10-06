@@ -12,18 +12,19 @@
 
     &-button {
         display: flex;
+
         &__button {
             &:hover {
                 cursor: pointer;
             }
 
             &.--create {
+                align-self: flex-end;
                 background-color: transparent;
                 border: none;
                 font-size: 30px;
-                padding: 5px;
-                align-self: flex-end;
                 margin-bottom: 10px;
+                padding: 5px;
             }
 
             &.--submit {
@@ -51,7 +52,7 @@
                 &:hover {
                     background-color: #a2a2a2;
                     border: none;
-                    color: #FFFFFF;
+                    color: #fff;
                 }
             }
         }

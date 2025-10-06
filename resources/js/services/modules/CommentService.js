@@ -34,8 +34,9 @@ export default class CommentService {
      *
      * Sends a DELETE request to the 'comment.destroy'.
      *
-     * @param {number} id
      * @returns {Promise<Object|undefined>}
+     * @param blogId
+     * @param commentId
      */
     static async deleteComment(blogId, commentId) {
         try {

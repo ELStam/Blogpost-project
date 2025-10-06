@@ -1,6 +1,7 @@
 <template>
     <div :class="['profile-photo', $attrs?.class]">
         <img
+            alt="Profile-photo"
             class="profile-photo__image"
             v-bind="attrsWithoutClass"
             @click="handleClick"

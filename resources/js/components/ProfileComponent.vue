@@ -71,7 +71,7 @@ export default {
     },
 
     created() {
-        this.fetchCurrentUser()
+        this.fetchCurrentUser();
     },
 
     methods: {
