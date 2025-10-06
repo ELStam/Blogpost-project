@@ -28,7 +28,7 @@ export default class CommentService {
             throw error;
         }
     }
-    
+
     /**
      * Deletes the comment by its ID.
      *
@@ -37,9 +37,12 @@ export default class CommentService {
      * @param {number} id
      * @returns {Promise<Object|undefined>}
      */
-    static async deleteComment(id) {
+    static async deleteComment(blogId, commentId) {
         try {
-            const response = await apiClient.delete(route('comments.destroy', {comment: id}))
+            const response = await apiClient.delete(route('comments.destroy', {
+                comment: commentId,
+                blog: blogId
+            }))
             return response.data
         } catch (error) {
             alert(error)

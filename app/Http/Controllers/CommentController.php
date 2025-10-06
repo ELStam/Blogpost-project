@@ -71,7 +71,7 @@ class CommentController extends Controller
      *
      * @return JsonResponse
      */
-    public function destroy(DeleteCommentRequest $request, CommentModel $comment): JsonResponse
+    public function destroy(DeleteCommentRequest $request, BlogModel $blog, CommentModel $comment): JsonResponse
     {
         try {
             $comment->delete();
