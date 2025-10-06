@@ -15,12 +15,31 @@
 
         <div class="blog-card__body">
             <h2 class="blog-card__title">{{ blog.title }}</h2>
+            <span class="blog-card__text">{{ blog.introduction }}</span>
 
-            <p class="blog-card__text">{{ blog.introduction }}</p>
-
-            <router-link :to="{ name: 'BlogDetail', params: {id: blog.id}}">
+            <router-link :to="{ name: 'BlogDetail', params: { id: blog.id }}">
                 <button class="blog-card__button">Lees verder</button>
             </router-link>
+
+            <div class="blog-card-comment">
+                <input
+                    v-model="newComment"
+                    class="blog-card-comment__input"
+                    placeholder="Schrijf een opmerking..."
+                    type="text"
+                    @keyup.enter="submitComment"
+                />
+
+                <div v-for="comment in comments" :key="comment.id">
+                    <comment-component
+                        :blog="blog"
+                        :comment-id="comment.id"
+                        :text="comment.body"
+                        :user="comment.user"
+                        @deleteComment="deleteComment"
+                    />
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -29,48 +48,74 @@
 import ProfilePhotoComponent from "@/components/general/ProfilePhotoComponent.vue";
 import IconComponent from "@/components/general/IconComponent.vue";
 import DateFormatMixin from "@/mixins/DateFormatMixin.vue";
-import {mapActions} from "vuex";
+import {mapActions} from 'vuex';
+import CommentComponent from "@/components/blogs/CommentComponent.vue";
+import CommentService from "@/services/modules/CommentService.js";
 
 export default {
     name: 'BlogCardComponent',
 
     mixins: [DateFormatMixin],
-
-    components: {IconComponent, ProfilePhotoComponent},
+    components: {CommentComponent, IconComponent, ProfilePhotoComponent},
 
     props: {
-        blog: {
-            type: Object,
-            required: true
-        }
+        blog: {type: Object, required: true}
+    },
+
+    data() {
+        return {
+            newComment: '',
+            comments: []
+        };
     },
 
     computed: {
-        /**
-         * Formats the Banner URL for proper viewing
-         *
-         * @returns {string}
-         */
         bannerUrl() {
-            return this.blog.banner ? `/storage/${this.blog.banner}` : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
+            return this.blog.banner
+                ? `/storage/${this.blog.banner}`
+                : '/assets/lukas-blazek-GnvurwJsKaY-unsplash.jpg';
+        }
+    },
+
+    async mounted() {
+        try {
+            this.comments = await CommentService.getAllComments(this.blog.id);
+        } catch (error) {
+            console.error("Failed to load comments:", error);
         }
     },
 
     methods: {
         ...mapActions('blog', ['removeBlog']),
+        ...mapActions('comment', ['removeComment']),
 
-        /**
-         * Handles the deletion of the blog.
-         * It calls the 'removeBlog' action with the blog's id.
-         *
-         * @returns {void}
-         */
         handleDelete() {
-            this.removeBlog(this.blog.id).then(() => {
-                alert('Blog deleted successfully')
-            }).catch((error) => {
-                throw error
-            })
+            this.removeBlog(this.blog.id)
+                .then(() => alert('Blog deleted successfully'))
+                .catch(err => console.error(err));
+        },
+
+        async submitComment() {
+            if (!this.newComment.trim()) return;
+            try {
+                const comment = await CommentService.addComment(this.blog.id, this.newComment);
+                this.comments.push(comment);
+                this.newComment = '';
+            } catch (error) {
+                console.error("Error adding comment:", error);
+            }
+        },
+
+        deleteComment({blogId, commentId}) {
+            this.removeComment({blogId, commentId})
+                .then(() => {
+                    this.comments = this.comments.filter(c => c.id !== commentId);
+                    alert('Comment deleted successfully');
+                })
+                .catch(err => {
+                    console.error('Failed to delete comment:', err);
+                    alert('Could not delete comment.');
+                });
         }
     }
 }

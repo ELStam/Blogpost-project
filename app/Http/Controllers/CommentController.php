@@ -17,22 +17,22 @@ class CommentController extends Controller
     /**
      * Display a listing of the comments.
      *
-     * @param BlogModel $blog
-     *
+     * @param $blogId
      * @return JsonResponse
      */
-    public function index(BlogModel $blog): JsonResponse
+    public function index($blogId): JsonResponse
     {
         try {
-            $comments = $blog->comments()->with('user')->get();
+            $comments = CommentModel::with('user')
+                ->where('blog_id', $blogId)
+                ->get();
 
             return response()->json([
+                'message' => 'Comments retrieved successfully.',
                 'comments' => $comments
             ]);
         } catch (Exception $exception) {
-            return response()->json([
-                'message' => $exception->getMessage()
-            ]);
+            return response()->json(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -48,19 +48,18 @@ class CommentController extends Controller
     {
         try {
             $validated = $request->validated();
-
             $validated['user_id'] = auth()->id();
+            $validated['blog_id'] = $blog->id;
 
-            $comment = $blog->comments()->create($validated);
+            $comment = CommentModel::create($validated);
+            $comment->load('user');
 
             return response()->json([
                 'message' => 'Comment successfully created!',
                 'comment' => $comment
             ]);
         } catch (Exception $exception) {
-            return response()->json([
-                'message' => $exception->getMessage()
-            ]);
+            return response()->json(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -72,8 +71,20 @@ class CommentController extends Controller
      *
      * @return JsonResponse
      */
-    public function destroy(DeleteCommentRequest $request, CommentModel $comment): JsonResponse
+    public function destroy(DeleteCommentRequest $request, BlogModel $blog, CommentModel $comment): JsonResponse
     {
-        //
+        try {
+            $comment->delete();
+
+            return response()->json([
+                'message' => 'Comment deleted'
+            ]);
+        } catch (Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
+
+
 }

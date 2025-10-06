@@ -2,7 +2,7 @@
     <div v-if="isOwner" class="blog-icons">
         <img
             alt="Pencil for edit"
-            class="blog-icons__image  blog-icons__image--edit"
+            class="blog-icons__image blog-icons__image--edit"
             src="/assets/draw.png"
             @click="onEdit()"
         />
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 
 export default {
     name: 'IconComponent',
@@ -25,7 +25,12 @@ export default {
         blog: {
             type: Object,
             required: true
-        }
+        },
+        comment: {
+            type: [String, Number],
+            required: false,
+            default: ''
+        },
     },
 
     computed: {
@@ -40,12 +45,12 @@ export default {
          * @returns {boolean}
          */
         isOwner() {
-            return this.currentUser?.id === this.blog.user_id
+            return this.currentUser?.id === this.blog.user_id;
         }
     },
 
     created() {
-        this.fetchCurrentUser()
+        this.fetchCurrentUser();
     },
 
     methods: {
@@ -53,23 +58,25 @@ export default {
 
         /**
          * Emits an 'edit' event with the blog object when the edit icon is clicked.
-         * 
+         *
          * @returns {void}
          */
         onEdit() {
-            this.$emit('edit', this.blog)
+            this.$emit('edit', this.blog);
         },
 
         /**
-         * Emits a 'delete' event with the blog object when the delete icon is clicked.
-         * 
+         * Emits a 'delete' event with the blog/comment when the delete icon is clicked.
+         *
          * @returns {void}
          */
         onDelete() {
-            this.$emit('delete', this.blog)
+            if (this.comment !== null) {
+                this.$emit('delete', this.blog.id, this.comment);
+            } else {
+                this.$emit('delete', this.blog.id);
+            }
         }
-
     }
-
 }
 </script>

@@ -5,7 +5,7 @@
             :type="type"
             class="base-button__button"
             v-bind="$attrs"
-            v-on="$listeners"
+            v-on="$attrs"
         >
             <slot></slot>
         </button>
@@ -14,19 +14,19 @@
 
 <script>
 export default {
-    name: 'BaseButtonComponent',
+    name: "BaseButtonComponent",
 
     inheritAttrs: false,
 
     props: {
         buttonClass: {
             type: String,
-            default: ''
+            default: ""
         },
         type: {
             type: String,
-            default: 'button'
+            default: "button"
         }
     }
-}
+};
 </script>

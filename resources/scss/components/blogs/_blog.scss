@@ -98,11 +98,13 @@ $blog: ".blog";
         &__title {
             color: #111A51;
             font-weight: bold;
+            min-height: 80px;
         }
 
         &__text {
             color: #cecece;
             margin: 20px 0;
+            min-height: 150px;
         }
 
         &__button {
@@ -122,6 +124,22 @@ $blog: ".blog";
                 cursor: pointer;
             }
         }
+
+        &-comment {
+            border-top: 1px solid #ccc;
+            margin-top: 20px;
+            padding-top: 25px;
+
+            &__input {
+                align-items: center;
+                background-color: #fff;
+                border-radius: 30px;
+                display: flex;
+                margin-bottom: 30px;
+                padding: 20px;
+                width: 100%;
+            }
+        }
     }
 
     // Detail styling
@@ -132,7 +150,6 @@ $blog: ".blog";
         &__banner {
             height: 350px;
             object-fit: cover;
-            object-position: bottom;
             width: 100%;
         }
 
@@ -158,9 +175,9 @@ $blog: ".blog";
             padding: 20px;
 
             &-title {
-            color: #c04e1a;
+                color: #c04e1a;
             }
-        } 
+        }
     }
 
     // Post Styling
@@ -261,9 +278,9 @@ $blog: ".blog";
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 30px;
         max-width: 100%;
-        
+        padding: 30px;
+
         &__container {
             background-color: #fff;
             border: 1px solid #E0E0E0;
@@ -272,7 +289,7 @@ $blog: ".blog";
             width: 800px;
         }
 
-         &__title {
+        &__title {
             color: #111A51;
             font-family: "Rockwell Extra Bold", Rockwell, serif;
             margin-bottom: 20px;
@@ -305,27 +322,28 @@ $blog: ".blog";
         }
 
         &__label {
-            
+
+
             &.--categories {
                 color: #111A51;
-                font-weight: bold;
                 font-size: 18px;
+                font-weight: bold;
             }
 
             &.--checkbox {
                 margin: 10px;
-                
+
             }
         }
 
         &__checkbox {
             margin: 5px 0;
         }
-        
+
         &__buttons {
             display: flex;
             gap: 10px;
         }
-    
+
     }
 }

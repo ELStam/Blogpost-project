@@ -8,11 +8,14 @@ import router from '@/router/router';
 import blogStore from '@/store/blogStore'
 import authStore from "@/store/authStore.js";
 import userStore from "@/store/userStore.js";
+import commentStore from "@/store/commentStore.js";
+
 import {createStore} from "vuex";
 
 const app = createApp(App)
 const stores = createStore({
     modules: {
+        comment: commentStore,
         blog: blogStore,
         auth: authStore,
         user: userStore

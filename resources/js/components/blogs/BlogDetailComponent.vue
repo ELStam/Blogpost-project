@@ -21,7 +21,6 @@
                     </h3>
 
                     <blog-item-component :blog="blog"/>
-                    <blog-item-component :blog="blog"/>
                 </div>
             </template>
 

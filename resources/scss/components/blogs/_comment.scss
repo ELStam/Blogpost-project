@@ -1,0 +1,13 @@
+.comment {
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    transition: background-color 0.2s ease;
+
+    &-text {
+        color: #333;
+        font-size: 14px;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+}
