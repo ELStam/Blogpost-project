@@ -5,6 +5,7 @@ export default class CommentService {
 
     /**
      * Fetch all comments for a specific blog
+     * @param blogId
      */
     static async getAllComments(blogId) {
         try {
@@ -18,6 +19,9 @@ export default class CommentService {
 
     /**
      * Add a new comment
+     *
+     * @param blogId
+     * @param body
      */
     static async addComment(blogId, body) {
         try {
