@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Blog;
 
-use App\Models\Blog;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
