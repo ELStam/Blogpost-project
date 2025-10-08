@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('blogs/{blog}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::get('blogs/{blog}/comments', [CommentController::class, 'index'])->name('comments.index');
-    Route::delete('blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::delete('blogs/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
     Route::get('/user', [UserController::class, 'current'])->name('user.current');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

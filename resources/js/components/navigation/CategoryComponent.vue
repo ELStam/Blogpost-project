@@ -1,7 +1,9 @@
 <template>
     <div class="category">
         <div class="category-sidebar">
-            <h3 class="category__label">{{ label }}</h3>
+            <h3 class="category__label">
+                {{ label }}
+            </h3>
             <div class="category__list">
                 <ul class="category__list-items">
                     <li class="category__list-item">
@@ -10,7 +12,9 @@
                         </button>
                     </li>
                     <li v-for="category in categories" class="category__list-item">
-                        <button class="category__button">{{ category.name }}</button>
+                        <button class="category__button">
+                            {{ category.name }}
+                        </button>
                     </li>
                     <li class="category__list-item">
                         <button

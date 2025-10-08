@@ -30,7 +30,11 @@
                     @keyup.enter="submitComment"
                 />
 
-                <div v-for="comment in comments" :key="comment.id" class="blog-card-comment__item">
+                <div
+                    v-for="comment in comments"
+                    :key="comment.id"
+                    class="blog-card-comment__item"
+                >
                     <comment-component
                         :blog="blog"
                         :comment-id="comment.id"

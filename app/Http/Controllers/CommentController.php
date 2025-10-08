@@ -67,12 +67,11 @@ class CommentController extends Controller
      * Deletes the comment from the database.
      *
      * @param DeleteCommentRequest $request
-     * @param BlogModel $blog
      * @param CommentModel $comment
      *
      * @return JsonResponse
      */
-    public function destroy(DeleteCommentRequest $request, BlogModel $blog, CommentModel $comment): JsonResponse
+    public function destroy(DeleteCommentRequest $request, CommentModel $comment): JsonResponse
     {
         try {
             $comment->delete();
