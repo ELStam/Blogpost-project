@@ -127,8 +127,8 @@ export default {
         /**
          * Deletes a comment for a given blog.
          *
-         * @param blogId
-         * @param commentId
+         * @param {number} blogId
+         * @param {number} commentId
          */
         deleteComment({blogId, commentId}) {
             this.removeComment({blogId, commentId})
