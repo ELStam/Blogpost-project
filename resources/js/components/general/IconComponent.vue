@@ -28,7 +28,6 @@ export default {
         },
         comment: {
             type: [String, Number],
-            required: false,
             default: ''
         },
     },
