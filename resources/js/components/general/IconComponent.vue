@@ -70,9 +70,9 @@ export default {
          * @returns {void}
          */
         onDelete() {
-            this.$emit('delete', this.blog.id, this.comment !== null
-                ? this.comment
-                : undefined);
+            this.comment
+                ? this.$emit('delete', this.blog.id, this.comment)
+                : this.$emit('delete', this.blog.id);
         }
     }
 }
