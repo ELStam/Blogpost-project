@@ -8,6 +8,10 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
 
+/**
+ *
+ * Handles the validation of requests when creating a blog.
+ */
 class CreateBlogRequest extends FormRequest
 {
     /**

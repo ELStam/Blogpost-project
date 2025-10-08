@@ -6,6 +6,10 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
+/**
+ *
+ * Handles the validation of requests when updating a blog.
+ */
 class UpdateBlogRequest extends FormRequest
 {
     /**
