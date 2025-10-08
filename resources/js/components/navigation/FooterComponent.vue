@@ -4,7 +4,6 @@
             <h1 class="app-blog-footer__title">blog.</h1>
             <span class="app-blog-footer__contact">Contact</span>
         </div>
-
     </footer>
 </template>
 

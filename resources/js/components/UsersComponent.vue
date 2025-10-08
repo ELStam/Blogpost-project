@@ -8,7 +8,6 @@
             <h3 class="users-info__username">@{{ user.username }}</h3>
             <span class="users-info__name">{{ user.name }}</span>
             <span class="users-info__followers">{{ user.followers }} volgers</span>
-
         </div>
     </div>
 </template>

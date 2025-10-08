@@ -43,7 +43,6 @@
                     </div>
                 </div>
             </div>
-
             <router-link v-else :to="{name: 'Login'}" class="app-blog-header__link">
                 <button class="app-blog-header__button">Inloggen</button>
             </router-link>
