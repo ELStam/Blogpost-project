@@ -6,10 +6,9 @@
                     label="Categorieën"
                 />
             </template>
-
             <template #default>
-                <main class="posts__content">
-                    <h1 class="posts__content__title">Top Posts</h1>
+                <main class="posts-content">
+                    <h1 class="posts-content__title">Top Posts</h1>
                     <blog-list-component random/>
                 </main>
             </template>
@@ -25,6 +24,7 @@ import BaseButtonComponent from "@/components/forms/BaseButtonComponent.vue";
 
 export default {
     name: "PostsComponent",
+
     components: {
         BaseButtonComponent,
         CategoryComponent,
@@ -32,6 +32,5 @@ export default {
         UsersComponent,
         BlogListComponent
     },
-
 };
 </script>

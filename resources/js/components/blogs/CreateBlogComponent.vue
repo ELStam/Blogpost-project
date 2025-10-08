@@ -60,9 +60,9 @@
                             </div>
                         </div>
 
-                        <div class="blog-create__file">
+                        <div class="blog-create-file">
                             <input
-                                class="blog-create__file-input"
+                                class="blog-create-file__input"
                                 type="file"
                                 @change="selectedFile($event)"
                             />

@@ -17,10 +17,10 @@ class CommentController extends Controller
     /**
      * Display a listing of the comments.
      *
-     * @param $blogId
+     * @param int $blogId
      * @return JsonResponse
      */
-    public function index($blogId): JsonResponse
+    public function index(int $blogId): JsonResponse
     {
         try {
             $comments = CommentModel::with('user')
@@ -37,7 +37,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Store a newly created comment in storage.
+     * Store a newly created comment in database.
      *
      * @param CreateCommentRequest $request
      * @param BlogModel $blog
@@ -64,7 +64,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Deletes the comment from the storage.
+     * Deletes the comment from the database.
      *
      * @param DeleteCommentRequest $request
      * @param BlogModel $blog

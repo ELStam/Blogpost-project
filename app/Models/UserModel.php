@@ -8,6 +8,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * Model for all User related data
+ */
 class UserModel extends Authenticatable
 {
     protected $table = 'users';
@@ -28,16 +31,32 @@ class UserModel extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * Get the users who follow this user.
+     *
+     * @return BelongsToMany
+     *
+     */
     public function followers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+        return $this->belongsToMany(UserModel::class, 'followers', 'user_id', 'follower_id');
     }
 
+    /**
+     * Get the users this user is following.
+     *
+     * @return BelongsToMany
+     */
     public function following(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+        return $this->belongsToMany(UserModel::class, 'followers', 'follower_id', 'user_id');
     }
 
+    /**
+     * Get the blogs created by this user.
+     *
+     * @return HasMany
+     */
     public function blogs(): HasMany
     {
         return $this->hasMany(BlogModel::class, 'user_id');

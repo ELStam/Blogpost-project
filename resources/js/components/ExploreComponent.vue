@@ -11,8 +11,8 @@
                 </div>
             </template>
             <template #default>
-                <main class="explore__content">
-                    <h1 class="explore__content__title">Ontdek</h1>
+                <main class="explore-content">
+                    <h1 class="explore-content__title">Ontdek</h1>
                     <blog-list-component random/>
                 </main>
 

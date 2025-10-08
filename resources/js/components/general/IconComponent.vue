@@ -71,11 +71,9 @@ export default {
          * @returns {void}
          */
         onDelete() {
-            if (this.comment !== null) {
-                this.$emit('delete', this.blog.id, this.comment);
-            } else {
-                this.$emit('delete', this.blog.id);
-            }
+            this.$emit('delete', this.blog.id, this.comment !== null
+                ? this.comment
+                : undefined);
         }
     }
 }

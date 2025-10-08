@@ -15,7 +15,8 @@
                     <li class="category__list-item">
                         <button
                             class="category__button category__button--all"
-                            onclick="window.location.href='categories';">
+                            @click="goToCategories"
+                        >
                             Bekijk alle categorieën
                         </button>
                     </li>
@@ -49,6 +50,14 @@ export default {
 
     methods: {
         ...mapActions('blog', ['fetchCategories']),
+        /**
+         * Navigates the user to the categories page.
+         *
+         * @returns {void}
+         */
+        goToCategories() {
+            this.$router.push('/categories');
+        }
     }
 }
 </script>

@@ -11,10 +11,14 @@ export default {
 
     mutations: {
         /**
-         * Remove a comment by its id
+         * Removes a comment from 'state.comments' bases on the id
          *
          * @param {Object} state
-         * @param {number} commentId
+         * @param {Array<Object>} state.comments
+         * @param {number|string} commentId
+         *
+         * @returns {void}
+         *
          */
         DELETE_COMMENT(state, commentId) {
             state.comments = state.comments.filter(c => c.id !== commentId);
@@ -27,7 +31,9 @@ export default {
          *
          * @param {Object} context
          * @param {Function} context.commit
-         * @param {number} id
+         * @param {Object} payload
+         * @param {number} payload.blogId
+         * @param {number} payload.commentId
          *
          * @return {Promise<void>}
          */

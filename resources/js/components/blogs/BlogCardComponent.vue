@@ -30,7 +30,7 @@
                     @keyup.enter="submitComment"
                 />
 
-                <div v-for="comment in comments" :key="comment.id">
+                <div v-for="comment in comments" :key="comment.id" class="blog-card-comment__item">
                     <comment-component
                         :blog="blog"
                         :comment-id="comment.id"
@@ -105,7 +105,11 @@ export default {
                 .then(() => alert('Blog deleted successfully'))
                 .catch(err => console.error(err));
         },
-
+        /**
+         * Submits a new comment for the current blog.
+         *
+         * @return {Promise<void>}
+         */
         async submitComment() {
             if (!this.newComment.trim()) return;
             try {
@@ -116,7 +120,12 @@ export default {
                 console.error("Error adding comment:", error);
             }
         },
-
+        /**
+         * Deletes a comment for a given blog.
+         *
+         * @param blogId
+         * @param commentId
+         */
         deleteComment({blogId, commentId}) {
             this.removeComment({blogId, commentId})
                 .then(() => {

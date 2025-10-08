@@ -14,7 +14,9 @@ import IconComponent from "@/components/general/IconComponent.vue";
 
 export default {
     name: "CommentComponent",
+
     components: {IconComponent},
+
     props: {
         text: {
             type: String,
@@ -33,6 +35,7 @@ export default {
             required: true
         }
     },
+    
     methods: {
         /**
          * Emits an event to delete a comment.

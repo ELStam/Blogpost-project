@@ -5,6 +5,10 @@ namespace App\Http\Requests\Comments;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ *
+ *  Handles the validation of requests when creating a comment.
+ */
 class CreateCommentRequest extends FormRequest
 {
     /**
