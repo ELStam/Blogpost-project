@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+/**
+ * Seeds the Users table with initial data.
+ *
+ */
 class UsersSeeder extends Seeder
 {
     public function run()
