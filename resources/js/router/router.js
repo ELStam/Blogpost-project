@@ -10,6 +10,7 @@ import CreateBlogComponent from "@/components/blogs/CreateBlogComponent.vue";
 import CategoryListComponent from "@/components/general/CategoryListComponent.vue";
 import ExploreComponent from "@/components/ExploreComponent.vue";
 import PostsComponent from "@/components/PostsComponent.vue";
+import BlogSearchComponent from "@/components/blogs/BlogSearchComponent.vue";
 
 const routes = [
     {
@@ -85,6 +86,14 @@ const routes = [
         component: PostsComponent,
         meta: {
             requiresAuth: true
+        }
+    },
+    {
+        path: '/search',
+        name: 'BlogSearch',
+        component: BlogSearchComponent,
+        meta: {
+            requiresAuth: false
         }
     }
 ]

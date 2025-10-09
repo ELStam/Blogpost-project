@@ -47,6 +47,24 @@ export default {
                 return shuffled.slice(0, 3);
             }
             return list;
+        },
+
+        /**
+         * Filters the blogs based on search term
+         *
+         * @returns {Array}
+         */
+        SearchedBlogs() {
+            if (!this.searchTerm || this.searchTerm.trim() === '') {
+                return this.blogs;
+            }
+
+            const term = this.searchTerm.trim().toLowerCase();
+
+            return this.blogs.filter(blog =>
+                blog.title.toLowerCase().includes(term) ||
+                (blog.content && blog.content.toLowerCase().includes(term))
+            );
         }
     },
 

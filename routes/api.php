@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogSearchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-
+Route::get('search', [BlogSearchController::class, 'search'])->name('search');
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 
 Route::middleware('auth:sanctum')->group(function () {
