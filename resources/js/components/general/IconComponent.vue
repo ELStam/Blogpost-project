@@ -72,7 +72,7 @@ export default {
         onDelete() {
             this.comment
                 ? this.$emit('delete', this.blog.id, this.comment)
-                : this.$emit('delete', this.blog.id);
+                : this.$emit('delete', this.blog.id)
         }
     }
 }
