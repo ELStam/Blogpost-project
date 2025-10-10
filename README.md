@@ -33,13 +33,13 @@ npm install
 php artisan key:generate
 ```
 
-6. Run database migrations (and optionally seed dummy data)
+5. Run database migrations (and optionally seed dummy data)
 
 ```
 php artisan migrate --seed
 ```
 
-7. Start development servers:
+6. Start development servers:
 
 - Frontend (Vite):
   ```
