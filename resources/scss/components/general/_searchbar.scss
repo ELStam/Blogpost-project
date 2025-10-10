@@ -1,0 +1,21 @@
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    &__input {
+        border: 2px solid #ccc;
+        border-radius: 30px;
+        font-size: 1rem;
+        max-width: 600px;
+        outline: none;
+        padding: 12px 16px;
+        transition: border 0.3s;
+        width: 100%;
+
+        &::placeholder {
+            color: #aaa;
+        }
+
+    }
+}

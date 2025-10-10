@@ -13,6 +13,7 @@
                 <router-link class="app-blog-header__link" to="/following">Volgend</router-link>
                 <router-link :to="{name: 'CategoryList'}" class="app-blog-header__link">Categorieën</router-link>
                 <router-link class="app-blog-header__link" to="/posts">Top Posts</router-link>
+                <router-link class="app-blog-header__link" to="/search">Zoeken</router-link>
 
                 <div class="app-blog-header__dropdown">
                     <img

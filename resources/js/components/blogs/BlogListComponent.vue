@@ -25,11 +25,15 @@ export default {
         random: {
             type: Boolean,
             default: false
+        },
+        blogs: {
+            type: Array,
+            default: null
         }
     },
 
     computed: {
-        ...mapGetters('blog', ['blogs']),
+        ...mapGetters('blog', {allBlogs: 'blogs'}),
         ...mapGetters('user', ['currentUser']),
 
         /**
@@ -38,9 +42,11 @@ export default {
          * @returns {Array}
          */
         displayedBlogs() {
-            let list = (this.onlyCurrentUser && this.currentUser)
-                ? this.blogs.filter(blog => blog.user_id === this.currentUser.id)
-                : this.blogs;
+            let list = this.blogs ?? this.allBlogs;
+
+            list = (this.onlyCurrentUser && this.currentUser)
+                ? list.filter(blog => blog.user_id === this.currentUser.id)
+                : list;
 
             if (this.random && list.length > 0) {
                 let shuffled = [...list].sort(() => 0.5 - Math.random());
@@ -51,12 +57,12 @@ export default {
     },
 
     created() {
-        this.fetchBlogs();
+        if (!this.blogs) this.fetchBlogs();
         this.fetchCurrentUser();
     },
 
     beforeUnmount() {
-        this.resetBlogs();
+        if (!this.blogs) this.resetBlogs();
     },
 
     methods: {
