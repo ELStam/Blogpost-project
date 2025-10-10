@@ -1,7 +1,10 @@
 # Blog Post Project
 
 ## Overview
-This is a blog post management application built with **Laravel 12** (backend) and **Vue 3** (frontend). It demonstrates a SPA architecture using:
+
+This is a blog post management application built with **Laravel 12** (backend) and **Vue 3** (frontend). It demonstrates
+a SPA architecture using:
+
 - **VueX** for state management
 - **Axios** for API requests
 - **Ziggy** for Laravel named route management
@@ -9,29 +12,35 @@ This is a blog post management application built with **Laravel 12** (backend) a
 - **SASS/SCSS** for styling
 
 ## Installation
+
 1. Install PHP dependencies:
+
 ```
 composer install
 ```
 
-3. Install JavaScript dependencies:
+2. Install JavaScript dependencies:
+
 ```
 npm install
 ```
 
-5. Copy the environment file and configure. Set your database credentials and other environment variables in .env
+3. Copy the environment file and configure. Set your database credentials and other environment variables in .env
 
-6. Generate the application key:
+4. Generate the application key:
+
 ```
 php artisan key:generate
 ```
 
-5. Run database migrations (and optionally seed dummy data)
+6. Run database migrations (and optionally seed dummy data)
+
 ```
 php artisan migrate --seed
 ```
 
 7. Start development servers:
+
 - Frontend (Vite):
   ```
   npm run dev
