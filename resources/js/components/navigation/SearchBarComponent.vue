@@ -5,7 +5,7 @@
             :placeholder="placeholder"
             class="search-bar__input"
             type="text"
-            @input="onInput"
+            @keyup.enter="onEnter"
         />
     </div>
 </template>
@@ -26,9 +26,9 @@ export default {
     },
     methods: {
         /**
-         * Emit the current input value to the parent on input
+         * Emit the current input value to the parent when Enter is pressed
          */
-        onInput() {
+        onEnter() {
             this.$emit('search', this.input);
         }
     }

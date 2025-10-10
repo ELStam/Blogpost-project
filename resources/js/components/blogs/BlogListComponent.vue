@@ -25,11 +25,15 @@ export default {
         random: {
             type: Boolean,
             default: false
+        },
+        blogs: {
+            type: Array,
+            default: null
         }
     },
 
     computed: {
-        ...mapGetters('blog', ['blogs']),
+        ...mapGetters('blog', {allBlogs: 'blogs'}),
         ...mapGetters('user', ['currentUser']),
 
         /**
@@ -38,43 +42,27 @@ export default {
          * @returns {Array}
          */
         displayedBlogs() {
-            let list = (this.onlyCurrentUser && this.currentUser)
-                ? this.blogs.filter(blog => blog.user_id === this.currentUser.id)
-                : this.blogs;
+            let list = this.blogs ?? this.allBlogs;
+
+            list = (this.onlyCurrentUser && this.currentUser)
+                ? list.filter(blog => blog.user_id === this.currentUser.id)
+                : list;
 
             if (this.random && list.length > 0) {
                 let shuffled = [...list].sort(() => 0.5 - Math.random());
                 return shuffled.slice(0, 3);
             }
             return list;
-        },
-
-        /**
-         * Filters the blogs based on search term
-         *
-         * @returns {Array}
-         */
-        SearchedBlogs() {
-            if (!this.searchTerm || this.searchTerm.trim() === '') {
-                return this.blogs;
-            }
-
-            const term = this.searchTerm.trim().toLowerCase();
-
-            return this.blogs.filter(blog =>
-                blog.title.toLowerCase().includes(term) ||
-                (blog.content && blog.content.toLowerCase().includes(term))
-            );
         }
     },
 
     created() {
-        this.fetchBlogs();
+        if (!this.blogs) this.fetchBlogs();
         this.fetchCurrentUser();
     },
 
     beforeUnmount() {
-        this.resetBlogs();
+        if (!this.blogs) this.resetBlogs();
     },
 
     methods: {
