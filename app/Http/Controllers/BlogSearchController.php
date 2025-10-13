@@ -7,6 +7,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\BlogModel;
 
+/**
+ * Controller that handles all logic related to Searching.
+ */
 class BlogSearchController extends Controller
 {
     /**

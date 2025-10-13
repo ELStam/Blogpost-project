@@ -13,17 +13,20 @@
 <script>
 export default {
     name: "SearchBarComponent",
+
     props: {
         placeholder: {
             type: String,
             default: ''
         }
     },
+
     data() {
         return {
             input: '',
         };
     },
+
     methods: {
         /**
          * Emit the current input value to the parent when Enter is pressed
