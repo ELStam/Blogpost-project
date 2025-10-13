@@ -5,7 +5,7 @@
                 <category-component label="Categorieën"/>
                 <div class="following-sidebar-profile">
                     <span class="following-sidebar-profile__friends">
-                        Bekijk meer van je vrienden
+                        Top Bloggers
                     </span>
                     <users-component :users="users"/>
                 </div>
