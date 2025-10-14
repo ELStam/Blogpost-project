@@ -30,6 +30,8 @@ export default {
     methods: {
         /**
          * Emit the current input value to the parent when Enter is pressed
+         *
+         * @returns {void}
          */
         onEnter() {
             this.$emit('search', this.input);

@@ -47,12 +47,15 @@ export default {
             );
         }
     },
-    
+
     methods: {
         ...mapActions('blog', ['fetchBlogs']),
         /**
          * Updated the search Term used for filtering blogs.
+         *
          * @param {String} value
+         *
+         * @returns {void}
          */
         updateSearch(value) {
             this.searchTerm = value;
