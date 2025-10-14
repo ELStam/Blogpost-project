@@ -118,8 +118,7 @@ export default {
                 commit('SET_BLOGS', [])
             }
         },
-
-
+        
         /**
          * Fetches the blog based on id via the API and commits it to the store.
          *
