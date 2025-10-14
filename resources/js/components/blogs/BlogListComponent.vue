@@ -1,8 +1,5 @@
 <template>
     <div class="blog-list">
-        <!--        <span v-for="blog in displayedBlogs">-->
-        <!--            {{ blog.title }}-->
-        <!--        </span>-->
         <blog-card-component
             v-for="blog in displayedBlogs"
             :key="blog.id"
