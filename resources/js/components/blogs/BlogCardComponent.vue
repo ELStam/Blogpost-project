@@ -6,7 +6,7 @@
                 class="--card"
                 src="/assets/img.png"
             />
-            <span class="blog-card__username">@{{ blog.user.username }}</span>
+            <span class="blog-card__username">@{{ blog?.user?.username }}</span>
             <span class="blog-card__date">{{ dateFormat(blog.created_at) }}</span>
             <icon-component :blog="blog" @delete="handleDelete"/>
         </div>

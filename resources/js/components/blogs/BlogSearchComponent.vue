@@ -5,7 +5,7 @@
             @search="updateSearch"
         />
         <BlogListComponent
-            :blogs="filteredBlogs"
+            :blogs="blogs"
         />
     </div>
 </template>
@@ -31,39 +31,32 @@ export default {
 
     computed: {
         ...mapGetters('blog', ['blogs']),
-        /**
-         * Returns a list that match the searchTerm
-         * If searchTerm is empty, return all blogs.
-         *
-         * @returns {Array}
-         */
-        filteredBlogs() {
-            if (!this.searchTerm.trim()) return this.blogs;
-
-            const term = this.searchTerm.trim().toLowerCase();
-            return this.blogs.filter(blog =>
-                blog.title.toLowerCase().includes(term) ||
-                (blog.content && blog.content.toLowerCase().includes(term))
-            );
-        }
     },
 
     methods: {
         ...mapActions('blog', ['fetchBlogs']),
+
         /**
-         * Updated the search Term used for filtering blogs.
+         * Calls the backend when Enter is pressed in the search bar.
          *
          * @param {String} value
-         *
-         * @returns {void}
          */
-        updateSearch(value) {
+        async updateSearch(value) {
             this.searchTerm = value;
+            try {
+                await this.fetchBlogs(this.searchTerm);
+            } catch (error) {
+                console.error('Error during search:', error);
+            }
         }
     },
 
-    created() {
-        this.fetchBlogs();
+    async created() {
+        try {
+            await this.fetchBlogs();
+        } catch (error) {
+            console.error("Error during initial fetch:", error);
+        }
     }
 };
 </script>

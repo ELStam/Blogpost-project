@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\BlogModel;
@@ -22,28 +21,18 @@ class BlogSearchController extends Controller
     {
         $query = $request->query('title');
 
-        if (!$query) {
-            return response()->json([
-                'message' => 'No search query provided.',
-                'blogs' => [],
-            ]);
+        $blogs = BlogModel::query()->with(['user', 'categories']);
+
+        if ($query) {
+            $blogs->where(function ($q) use ($query) {
+                $q->where('title', 'LIKE', "%{$query}%");
+            });
         }
 
-        $blogs = $this->getBlogs($query);
 
         return response()->json([
-            'blogs' => $blogs,
+            'message' => $query ? 'Filtered blogs' : 'All blogs',
+            'blogs' => $blogs->get()
         ]);
-    }
-
-    /**
-     * Search blogs by title.
-     *
-     * @param string $query
-     * @return Collection
-     */
-    private function getBlogs(string $query): Collection
-    {
-        return BlogModel::where('title', 'LIKE', '%' . $query . '%')->get();
     }
 }

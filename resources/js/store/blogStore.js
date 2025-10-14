@@ -1,5 +1,6 @@
 import BlogService from "@/services/modules/BlogService.js";
 import CategoryService from "@/services/modules/CategoryService.js";
+import apiClient from "@/services/apiClient.js";
 
 export default {
     namespaced: true,
@@ -95,18 +96,29 @@ export default {
          *
          * @param {Object} context
          * @param {Function} context.commit
+         * @param {string} query
          *
-         * @return {Promise<void>}
+         * @return {Promise<Array>}
          */
-        fetchBlogs({commit}) {
-            return BlogService.getAllBlogs()
-                .then(response => {
-                    commit('SET_BLOGS', response)
-                })
-                .catch(error => {
-                    throw error
-                })
+        async fetchBlogs({commit}, query = '') {
+            if (!query)
+                return BlogService.getAllBlogs()
+                    .then(response => commit('SET_BLOGS', response))
+                    .catch(error => {
+                        throw error
+                    });
+
+            try {
+                const response = await apiClient.get('api/search', {
+                    params: {title: query}
+                });
+                commit('SET_BLOGS', response.data.blogs ?? [])
+            } catch (error) {
+                console.error('Search error:', error);
+                commit('SET_BLOGS', [])
+            }
         },
+
 
         /**
          * Fetches the blog based on id via the API and commits it to the store.
