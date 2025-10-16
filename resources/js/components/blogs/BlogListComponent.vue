@@ -45,7 +45,7 @@ export default {
             let list = this.blogs ?? this.allBlogs;
 
             list = (this.onlyCurrentUser && this.currentUser)
-                ? list.filter(blog => blog.user_id === this.currentUser.id)
+                ? list.filter(blog => blog.user.id === this.currentUser.id)
                 : list;
 
             if (this.random && list.length > 0) {
