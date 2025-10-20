@@ -184,7 +184,27 @@ export default {
          */
         resetBlogs({commit}) {
             commit('RESET_BLOGS')
-        }
+        },
+
+        /**
+         * Updates a blog via the API.
+         *
+         * @param {Object} _context
+         * @param {Object} payload
+         * @param {number} payload.id
+         * @param {Object} payload.blog
+         *
+         * @return {Promise<void>}
+         */
+        async updateBlog({}, {id, blog}) {
+            try {
+                return await BlogService.updateBlog(id, blog);
+            } catch (error) {
+                if (error.status === 422) return error.response.data.errors;
+                throw error;
+            }
+        },
+
     },
 
     getters: {

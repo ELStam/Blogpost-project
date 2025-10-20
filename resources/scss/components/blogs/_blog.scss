@@ -19,8 +19,9 @@ $blog: ".blog";
 
     }
 
-    // Create blog Styling
-    &-create {
+    // Create and Edit blog Styling
+    &-create,
+    &-edit {
         align-items: center;
         background-color: #fff;
         display: flex;
@@ -273,8 +274,9 @@ $blog: ".blog";
         }
     }
 
-    // Create Styling
-    &-create {
+    // Create and Edit Styling
+    &-create,
+    &-edit {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -323,7 +325,6 @@ $blog: ".blog";
 
         &__label {
 
-
             &.--categories {
                 color: #111A51;
                 font-size: 18px;
@@ -344,6 +345,5 @@ $blog: ".blog";
             display: flex;
             gap: 10px;
         }
-
     }
 }

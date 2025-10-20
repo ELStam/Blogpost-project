@@ -61,7 +61,7 @@ export default {
          * @returns {void}
          */
         onEdit() {
-            this.$emit('edit', this.blog);
+            window.location.href = `/blogs/${this.blog.id}/edit`;
         },
 
         /**

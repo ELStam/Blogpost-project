@@ -97,7 +97,7 @@ class BlogController extends Controller
             $blog->load('categories');
 
             return response()->json([
-                'message' => 'Blog updated succesfully',
+                'message' => 'Blog updated successfully',
                 'blog' => $blog
             ], 201);
         } catch (Exception $exception) {
