@@ -5,6 +5,7 @@ namespace App\Http\Requests\Blog;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rules\File;
 
 /**
  *
@@ -31,6 +32,13 @@ class UpdateBlogRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
+            'banner' => [
+                File::image([
+                    'jpeg',
+                    'jpg',
+                    'png'
+                ])
+            ],
             'introduction' => 'required|string|max:255',
             'paragraph_title' => 'required|string|max:255',
             'paragraph_body' => 'required|string',

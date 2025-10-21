@@ -92,12 +92,26 @@ class BlogController extends Controller
     public function update(UpdateBlogRequest $request, BlogModel $blog): JsonResponse
     {
         try {
-            $blog->update($request->validated());
-            $blog->categories()->sync($request['categories_id']);
-            $blog->load('categories');
+            $validated = $request->validated();
+            $blog->update($validated);
+            $blog->categories()->sync($validated['categories_id'] ?? []);
+
+            if ($request->hasFile('banner')) {
+                $originalName = $request->file('banner')?->getClientOriginalName();
+                $path = "blog/$blog->id";
+
+                Storage::disk('public')
+                    ->putFileAs($path, $request->file('banner'), $originalName);
+
+                $blog->update([
+                    'banner' => "$path/$originalName"
+                ]);
+            }
+
+            $blog->load(['categories', 'user']);
 
             return response()->json([
-                'message' => 'Blog updated succesfully',
+                'message' => 'Blog updated successfully',
                 'blog' => $blog
             ], 201);
         } catch (Exception $exception) {

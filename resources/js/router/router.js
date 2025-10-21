@@ -11,6 +11,7 @@ import CategoryListComponent from "@/components/general/CategoryListComponent.vu
 import ExploreComponent from "@/components/ExploreComponent.vue";
 import PostsComponent from "@/components/PostsComponent.vue";
 import BlogSearchComponent from "@/components/blogs/BlogSearchComponent.vue";
+import BlogEditComponent from "@/components/blogs/BlogEditComponent.vue";
 
 const routes = [
     {
@@ -26,6 +27,15 @@ const routes = [
         name: 'BlogDetail',
         component: BlogDetailComponent,
         props: true,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/blogs/:id/edit',
+        name: 'BlogEdit',
+        component: BlogEditComponent,
+        props: route => ({blogId: Number(route.params.id)}),
         meta: {
             requiresAuth: true
         }

@@ -118,7 +118,7 @@ export default {
                 commit('SET_BLOGS', [])
             }
         },
-        
+
         /**
          * Fetches the blog based on id via the API and commits it to the store.
          *
@@ -127,13 +127,15 @@ export default {
          *
          * @param {number} id
          *
-         * @return {Promise<void>}
+         * @return {Promise<Object>}
          */
         fetchBlog({commit}, id) {
             return BlogService.getBlog(id)
                 .then(response => {
                     commit('SET_BLOG', response)
-                }).catch(error => {
+                    return response
+                })
+                .catch(error => {
                     throw error
                 })
         },
@@ -184,7 +186,27 @@ export default {
          */
         resetBlogs({commit}) {
             commit('RESET_BLOGS')
-        }
+        },
+
+        /**
+         * Updates a blog via the API.
+         *
+         * @param {Object} _context
+         * @param {Object} payload
+         * @param {number} payload.id
+         * @param {Object} payload.blog
+         *
+         * @return {Promise<void>}
+         */
+        async updateBlog({}, {id, blog}) {
+            try {
+                return await BlogService.updateBlog(id, blog);
+            } catch (error) {
+                if (error.status === 422) return error.response.data.errors;
+                throw error;
+            }
+        },
+
     },
 
     getters: {
