@@ -59,9 +59,9 @@ export default {
      * @param {string} blog.paragraph_title
      * @param {string} blog.paragraph_body
      * @param {Array<number>} blog.category_id
-     * @param {File|null} [blog.banner]
+     * @param {File|null} blog.banner
      *
-     * @returns {Promise<Object|undefined>} - The updated blog.
+     * @returns {Promise<Object|undefined>}
      */
     async updateBlog(id, blog) {
         try {
@@ -78,7 +78,7 @@ export default {
             if (blog.banner) {
                 formData.append('banner', blog.banner);
             }
-            
+
             const response = await apiClient.post(
                 route('blogs.update', id) + '?_method=PUT',
                 formData,
