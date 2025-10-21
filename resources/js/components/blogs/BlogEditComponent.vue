@@ -152,11 +152,11 @@ export default {
             try {
                 const data = await this.$store.dispatch('blog/fetchBlog', this.blogId);
                 this.blog = {
-                    title: data.title || "",
-                    introduction: data.introduction || "",
+                    title: data.title,
+                    introduction: data.introduction,
                     category_id: data.category_id || [],
-                    paragraph_title: data.paragraph_title || "",
-                    paragraph_body: data.paragraph_body || "",
+                    paragraph_title: data.paragraph_title,
+                    paragraph_body: data.paragraph_body,
                     banner: null,
                 };
             } catch (error) {
@@ -172,17 +172,15 @@ export default {
             this.blog.banner = event.target.files[0];
         },
         /**
-         * Handle the edit of the blog
+         * Handles the edit of the blog
          *
          * @returns {Promise<void>}
          */
         async handleUpdateBlog() {
             try {
                 await this.$store.dispatch('blog/updateBlog', {id: this.blogId, blog: this.blog});
-
                 alert('Blog successfully updated');
                 this.$router.push({name: 'Home'});
-
             } catch (error) {
                 console.error(error);
             }

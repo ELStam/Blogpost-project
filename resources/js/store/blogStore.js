@@ -118,7 +118,7 @@ export default {
                 commit('SET_BLOGS', [])
             }
         },
-        
+
         /**
          * Fetches the blog based on id via the API and commits it to the store.
          *
@@ -127,13 +127,15 @@ export default {
          *
          * @param {number} id
          *
-         * @return {Promise<void>}
+         * @return {Promise<Object>}
          */
         fetchBlog({commit}, id) {
             return BlogService.getBlog(id)
                 .then(response => {
                     commit('SET_BLOG', response)
-                }).catch(error => {
+                    return response
+                })
+                .catch(error => {
                     throw error
                 })
         },
