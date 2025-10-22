@@ -87,6 +87,14 @@
                         </div>
                     </form>
                 </main>
+                <transition>
+                    <div
+                        v-if="showSuccessMessage"
+                        class="blog-edit__success-message fade"
+                    >
+                        Blog updated successfully!
+                    </div>
+                </transition>
             </template>
         </page-layout>
     </div>
@@ -128,6 +136,7 @@ export default {
                 paragraph_body: "",
                 banner: null,
             },
+            showSuccessMessage: false,
         };
     },
 
@@ -143,8 +152,8 @@ export default {
     },
 
     methods: {
-        ...mapActions("blog", ["fetchCategories", "updateBlog"]),
-        ...mapActions("auth", ["clearErrors"]),
+        ...mapActions('blog', ['fetchCategories', 'updateBlog']),
+        ...mapActions('auth', ['clearErrors']),
         /**
          * Fetches a blog by its ID.
          */
@@ -179,8 +188,13 @@ export default {
         async handleUpdateBlog() {
             try {
                 await this.$store.dispatch('blog/updateBlog', {id: this.blogId, blog: this.blog});
-                alert('Blog successfully updated');
-                this.$router.push({name: 'Home'});
+
+                this.showSuccessMessage = true;
+
+                setTimeout(() => {
+                    this.showSuccessMessage = false;
+                    this.$router.push({name: "Home"});
+                }, 3000);
             } catch (error) {
                 console.error(error);
             }
