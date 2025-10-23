@@ -19,21 +19,15 @@
         }
 
         @keyframes fadeInOut {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px) scale(0.95);
-            }
-            10% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
-            }
-            90% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
-            }
+            0%,
             100% {
                 opacity: 0;
-                transform: translateX(-50%) translateY(-20px) scale(0.95);
+                transform: translate(-50%, -20px) scale(0.95);
+            }
+            25%,
+            75% {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(1);
             }
         }
     }
