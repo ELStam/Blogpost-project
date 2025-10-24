@@ -71,6 +71,10 @@ export default {
          */
         RESET_BLOGS(state) {
             state.blogs = []
+        },
+
+        SET_ERRORS(state, errors) {
+            state.errors = errors
         }
     },
 
@@ -198,15 +202,16 @@ export default {
          *
          * @return {Promise<void>}
          */
-        async updateBlog({}, {id, blog}) {
+        async updateBlog({commit}, {id, blog}) {
             try {
-                return await BlogService.updateBlog(id, blog);
+                commit('SET_ERRORS', {})
+                return await BlogService.updateBlog(id, blog)
             } catch (error) {
-                if (error.status === 422) return error.response.data.errors;
-                throw error;
+                console.log(true)
+                console.log(error)
+                throw error
             }
         },
-
     },
 
     getters: {

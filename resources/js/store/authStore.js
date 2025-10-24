@@ -59,8 +59,7 @@ export default {
                 token
                     ? commit('SET_TOKEN', token)
                     : commit('SET_ERRORS', data)
-                console.log(data)
-
+                
                 return data
             } catch (error) {
                 throw error

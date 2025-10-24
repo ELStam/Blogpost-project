@@ -87,7 +87,7 @@ export default {
 
             return response.data.blog;
         } catch (error) {
-            alert(error);
+            throw error
         }
     },
     /**

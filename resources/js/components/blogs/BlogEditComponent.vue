@@ -5,8 +5,6 @@
                 <main class="blog-edit__container">
                     <h1 class="blog-edit__title">Blog bewerken</h1>
 
-                    <error-component :errors="getErrors"/>
-
                     <form class="blog-edit__form" @submit.prevent="handleUpdateBlog">
                         <div class="blog-edit__field">
                             <base-input-component
@@ -89,10 +87,14 @@
                 </main>
                 <transition>
                     <div
-                        v-if="showSuccessMessage"
-                        class="blog-edit__success-message fade"
+                        v-if="showMessage"
+                        :class="[
+                            'blog-edit__message',
+                            'fade',
+                             isSuccess ? 'blog-edit__message--success' : 'blog-edit__message--error'
+                             ]"
                     >
-                        Blog updated successfully!
+                        {{ serverMessage }}
                     </div>
                 </transition>
             </template>
@@ -136,12 +138,14 @@ export default {
                 paragraph_body: "",
                 banner: null,
             },
-            showSuccessMessage: false,
+            showMessage: false,
+            isSuccess: false,
+            serverMessage: '',
         };
     },
 
     computed: {
-        ...mapGetters('blog', ['categories']),
+        ...mapGetters('blog', ['categories', 'test']),
         ...mapGetters('auth', ['getErrors'])
     },
 
@@ -188,15 +192,24 @@ export default {
         async handleUpdateBlog() {
             try {
                 await this.$store.dispatch('blog/updateBlog', {id: this.blogId, blog: this.blog});
-
-                this.showSuccessMessage = true;
+                this.isSuccess = true;
+                this.serverMessage = 'Blog updated successfully!';
+                this.showMessage = true;
 
                 setTimeout(() => {
-                    this.showSuccessMessage = false;
+                    this.showMessage = false;
                     this.$router.push({name: "Home"});
                 }, 3000);
             } catch (error) {
-                console.error(error);
+                if (error.status === 422 || error.response.data.errors) {
+                    this.isSuccess = false;
+                    this.showMessage = true;
+                    this.serverMessage = 'Failed to update blog';
+
+                    setTimeout(() => {
+                        this.showMessage = false;
+                    }, 3000);
+                }
             }
         },
         /**
