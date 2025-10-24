@@ -207,8 +207,6 @@ export default {
                 commit('SET_ERRORS', {})
                 return await BlogService.updateBlog(id, blog)
             } catch (error) {
-                console.log(true)
-                console.log(error)
                 throw error
             }
         },
