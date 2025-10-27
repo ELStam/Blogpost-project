@@ -145,7 +145,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('blog', ['categories', 'test']),
+        ...mapGetters('blog', ['categories']),
         ...mapGetters('auth', ['getErrors'])
     },
 
